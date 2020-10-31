@@ -55,7 +55,11 @@ module axistream_snooper # (
     parameter ENABLE_BACKPRESSURE = 0,
     
     //Derived parameters. Don't set these
-    parameter KEEP_WIDTH = SN_FWD_DATA_WIDTH/8
+    parameter KEEP_WIDTH = SN_FWD_DATA_WIDTH/8,
+
+    //tag parameters
+    parameter TAG_WIDTH = 6,
+    parameter CIRCULAR_BUFFER_SIZE = 50
 ) (
     input wire clk,
     input wire rst,
@@ -77,6 +81,9 @@ module axistream_snooper # (
     output wire sn_done,
     input wire rdy_for_sn,
     output wire rdy_for_sn_ack, //Yeah, I'm ready for a snack
+
+    //reorder tag
+    output reg [TAG_WIDTH-1:0] reorder_tag,
     
     output wire packet_dropped_inc //At any clock edge, a 1 means increment number of dropped packets
 );
@@ -99,7 +106,7 @@ module axistream_snooper # (
     wire sn_done_i;
     wire rdy_for_sn_i;
     wire rdy_for_sn_ack_i; //Yeah, I'm ready for a snack
-    
+
     
     //State machine signals
     `localparam NOT_STARTED = 2'b00;
@@ -153,6 +160,21 @@ end else begin
     assign sn_TLAST_i = sn_TLAST;
 `endgen
 
+//reorder tag counter
+//ignoring processed packets logic for now
+always @(posedge clk) begin
+    if (rst) begin
+        reorder_tag <= 0;
+    end else if (sn_TLAST) begin
+        if (CIRCULAR_BUFFER_SIZE - 1 == reorder_tag) begin
+            reorder_tag <= 0;
+        end else begin
+            reorder_tag <= reorder_tag + 1;
+        end
+    end else begin
+        reorder_tag <= reorder_tag;
+    end
+end
     
     //Interface to parallel_cores
     assign rdy_for_sn_i = rdy_for_sn;    

@@ -69,6 +69,10 @@ module parallel_cores # (
     parameter PACKMEM_ADDR_WIDTH = BYTE_ADDR_WIDTH - `CLOG2(PACKMEM_DATA_WIDTH/8),
     parameter INC_WIDTH = `CLOG2(PACKMEM_DATA_WIDTH/8)+1,
     parameter PLEN_WIDTH = 32,
+
+    //tag parameters
+    parameter TAG_WIDTH = 6,
+    parameter CIRCULAR_BUFFER_SIZE = 50,
     
     parameter DBG_INFO_WIDTH = 
 	  BYTE_ADDR_WIDTH	//byte_rd_addr
@@ -93,6 +97,7 @@ module parallel_cores # (
     input wire sn_done,
     output wire rdy_for_sn,
     input wire rdy_for_sn_ack, //Yeah, I'm ready for a snack
+    input wire [TAG_WIDTH-1:0] reorder_tag_in,
     
     //Interface to forwarder
     input wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
@@ -103,6 +108,7 @@ module parallel_cores # (
     input wire fwd_done,
     output wire rdy_for_fwd,
     input wire rdy_for_fwd_ack,
+    output wire [TAG_WIDTH-1:0] reorder_tag_out,
     
     //Interface for new code input
     input wire [CODE_ADDR_WIDTH-1:0] inst_wr_addr,

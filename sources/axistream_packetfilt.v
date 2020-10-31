@@ -71,7 +71,11 @@ module axistream_packetfilt # (
         //Not to be set manually
         parameter CODE_ADDR_WIDTH = `CLOG2(INST_MEM_DEPTH),
         parameter CODE_DATA_WIDTH = 64,
-		parameter BYTE_ADDR_WIDTH = `CLOG2(PACKET_MEM_BYTES)
+		parameter BYTE_ADDR_WIDTH = `CLOG2(PACKET_MEM_BYTES),
+        //tag parameters
+        parameter TAG_WIDTH = 6,
+        parameter CIRCULAR_BUFFER_SIZE = 50
+
 `ifndef DISABLE_AXILITE
         , //yes, this comma needs to be here
         parameter AXI_ADDR_WIDTH = 12 // width of the AXI address bus
@@ -95,6 +99,7 @@ module axistream_packetfilt # (
         output wire [`KEEP_WIDTH-1:0] fwd_TKEEP,
         output wire fwd_TLAST,
         output wire fwd_TVALID,
+        output wire [TAG_WIDTH-1:0] reorder_tag_AXI,
         input wire fwd_TREADY,
         
         //Debug outputs
@@ -190,6 +195,9 @@ module axistream_packetfilt # (
     wire sn_done;
     wire rdy_for_sn;
     wire rdy_for_sn_ack; //Yeah, I'm ready for a snack
+    //reorder tag
+    wire [TAG_WIDTH - 1:0] reorder_tag_snooper; 
+    wire [TAG_WIDTH - 1:0] reorder_tag_forwarder; 
     
     //Interface from packet mem to forwarder
     wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr;
@@ -331,7 +339,8 @@ module axistream_packetfilt # (
         .sn_done(sn_done),
         .rdy_for_sn(rdy_for_sn),
         .rdy_for_sn_ack(rdy_for_sn_ack), //Yeah, I'm ready for a snack
-        .packet_dropped_inc(dropped_inc)
+        .packet_dropped_inc(dropped_inc),
+        .reorder_tag(reorder_tag_snooper)
     );
 
 //SPECIAL CASE: When N = 1, we don't instantiate all that complicated logic for
@@ -364,6 +373,7 @@ generate if (N > 1) begin
         .sn_done(sn_done),
         .rdy_for_sn(rdy_for_sn),
         .rdy_for_sn_ack(rdy_for_sn_ack), //Yeah, I'm ready for a snack
+        .reorder_tag_in(reorder_tag_snooper), //reorder tag input from snooper
 
         //Interface to forwarder
         .fwd_addr(fwd_addr),
@@ -374,6 +384,7 @@ generate if (N > 1) begin
         .fwd_done(fwd_done),
         .rdy_for_fwd(rdy_for_fwd),
         .rdy_for_fwd_ack(rdy_for_fwd_ack),
+        .reorder_tag_out(reorder_tag_forwarder), //reorder tag output to forwarder
 
         //Interface for new code input
         .inst_wr_addr(inst_wr_addr),
@@ -407,6 +418,7 @@ end else begin
         .sn_done(sn_done),
         .rdy_for_sn(rdy_for_sn),
         .rdy_for_sn_ack(rdy_for_sn_ack), //Yeah, I'm ready for a snack
+        .reorder_tag_in(reorder_tag_snooper),
 
         //Interface to forwarder
         .fwd_addr(fwd_addr),
@@ -417,6 +429,7 @@ end else begin
         .fwd_done(fwd_done),
         .rdy_for_fwd(rdy_for_fwd),
         .rdy_for_fwd_ack(rdy_for_fwd_ack),
+        .reorder_tag_out(reorder_tag_forwarder),
 
         //Interface for new code input
         .inst_wr_addr(inst_wr_addr),
@@ -459,6 +472,7 @@ end endgenerate
         .fwd_TLAST(fwd_TLAST),
         .fwd_TVALID(fwd_TVALID),
         .fwd_TREADY(fwd_TREADY),
+        .reorder_tag_out(reorder_tag_AXI),
 
         //Interface to parallel_cores
         .fwd_addr(fwd_addr),
@@ -469,7 +483,10 @@ end endgenerate
 
         .fwd_done(fwd_done),
         .rdy_for_fwd(rdy_for_fwd),
-        .rdy_for_fwd_ack(rdy_for_fwd_ack)
+        .rdy_for_fwd_ack(rdy_for_fwd_ack),
+
+        //reorder tag
+        .reorder_tag_in(reorder_tag_forwarder)
     );
 endmodule
 

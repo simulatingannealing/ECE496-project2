@@ -55,6 +55,10 @@ module axistream_forwarder # (
     parameter PACKMEM_DATA_WIDTH = SN_FWD_DATA_WIDTH,
     parameter MEM_LAT = 2,
     parameter PLEN_WIDTH = 32,
+
+    //tag parameters
+    parameter TAG_WIDTH = 6,
+    parameter CIRCULAR_BUFFER_SIZE = 50,
     
     //Probably don't set these parameters
     parameter FIFO_ORDER = 4 //FIFO will have capacity 2^FIFO_ORDER
@@ -68,6 +72,7 @@ module axistream_forwarder # (
     output wire fwd_TLAST,
     output wire fwd_TVALID,
     input wire fwd_TREADY,
+    output wire [TAG_WIDTH-1:0] reorder_tag_out,
     
     //Interface to parallel_cores
     output wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
@@ -75,6 +80,7 @@ module axistream_forwarder # (
     input wire [PACKMEM_DATA_WIDTH-1:0] fwd_rd_data,
     input wire fwd_rd_data_vld,
     input wire [PLEN_WIDTH-1:0] fwd_byte_len,
+    input wire [TAG_WIDTH-1:0] reorder_tag_in,
     
     output wire fwd_done,
     input wire rdy_for_fwd,
