@@ -76,14 +76,13 @@ module axistream_snooper # (
     //Interface to parallel_cores
     output wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr,
     output wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data,
+    //reorder tag
+    output reg [TAG_WIDTH-1:0] sn_wr_reorder_tag,
     output wire sn_wr_en,
     output wire [PACKMEM_INC_WIDTH-1:0] sn_byte_inc,
     output wire sn_done,
     input wire rdy_for_sn,
     output wire rdy_for_sn_ack, //Yeah, I'm ready for a snack
-
-    //reorder tag
-    output reg [TAG_WIDTH-1:0] reorder_tag,
     
     output wire packet_dropped_inc //At any clock edge, a 1 means increment number of dropped packets
 );
@@ -161,21 +160,21 @@ end else begin
 `endgen
 
     // TODO - is this only valid in simulation?
-    initial reorder_tag <= 0;
+    initial sn_wr_reorder_tag <= 0;
 
     //reorder tag counter
     //ignoring processed packets logic for now
     always @(posedge clk) begin
         if (rst) begin
-            reorder_tag <= 0;
+            sn_wr_reorder_tag <= 0;
         end else if (sn_TLAST) begin
-            if (CIRCULAR_BUFFER_SIZE - 1 == reorder_tag) begin
-                reorder_tag <= 0;
+            if (CIRCULAR_BUFFER_SIZE - 1 == sn_wr_reorder_tag) begin
+                sn_wr_reorder_tag <= 0;
             end else begin
-                reorder_tag <= reorder_tag + 1;
+                sn_wr_reorder_tag <= sn_wr_reorder_tag + 1;
             end
         end else begin
-            reorder_tag <= reorder_tag;
+            sn_wr_reorder_tag <= sn_wr_reorder_tag;
         end
     end
 

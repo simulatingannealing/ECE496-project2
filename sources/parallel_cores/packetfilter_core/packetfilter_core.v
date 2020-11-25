@@ -102,23 +102,23 @@ module packetfilter_core # (
     //Interface to snooper
     input wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr,
     input wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data,
+    input wire [TAG_WIDTH-1:0] sn_wr_reorder_tag,
     input wire sn_wr_en,
     input wire [INC_WIDTH-1:0] sn_byte_inc,
     input wire sn_done,
     output wire rdy_for_sn,
     input wire rdy_for_sn_ack, //Yeah, I'm ready for a snack
-    input wire [TAG_WIDTH-1:0] reorder_tag_in,
     
     //Interface to forwarder
     input wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
     input wire fwd_rd_en,
     output wire [PACKMEM_DATA_WIDTH-1:0] fwd_rd_data,
+    output wire [TAG_WIDTH-1:0] fwd_rd_reorder_tag,
     output wire fwd_rd_data_vld,
     output wire [PLEN_WIDTH-1:0] fwd_byte_len,
     input wire fwd_done,
     output wire rdy_for_fwd,
     input wire rdy_for_fwd_ack,
-    output wire [TAG_WIDTH-1:0] reorder_tag_out,
     
     //Interface for new code input
     input wire [CODE_ADDR_WIDTH-1:0] inst_wr_addr,
@@ -163,7 +163,8 @@ module packetfilter_core # (
         .PLEN_WIDTH(PLEN_WIDTH),
         .BUF_IN(BUF_IN),
         .BUF_OUT(BUF_OUT),
-        .PESS(PESS)
+        .PESS(PESS),
+        .TAG_WIDTH(TAG_WIDTH)
     ) the_p3_system (
         .clk(clk),
         .rst(rst),
@@ -171,6 +172,7 @@ module packetfilter_core # (
         .sn_wr_data(sn_wr_data),
         .sn_wr_en(sn_wr_en),
         .sn_byte_inc(sn_byte_inc),
+        .sn_wr_reorder_tag(sn_wr_reorder_tag),
         .sn_done(sn_done),
         .rdy_for_sn(rdy_for_sn),
         .rdy_for_sn_ack(rdy_for_sn_ack), //Yeah, I'm ready for a snack
@@ -187,6 +189,7 @@ module packetfilter_core # (
         .fwd_addr(fwd_addr),
         .fwd_rd_en(fwd_rd_en),
         .fwd_rd_data(fwd_rd_data),
+        .fwd_rd_reorder_tag(fwd_rd_reorder_tag),
         .fwd_rd_data_vld(fwd_rd_data_vld),
         .fwd_byte_len(fwd_byte_len),
         .fwd_done(fwd_done),

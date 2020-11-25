@@ -54,7 +54,10 @@ module p3 # (
 	parameter PLEN_WIDTH = 32,
     parameter BUF_IN = 0,
     parameter BUF_OUT = 0,
-    parameter PESS = 0
+    parameter PESS = 0,
+
+    //tag parameters
+    parameter TAG_WIDTH = 6
 )(
     input wire clk,
     input wire rst,
@@ -62,6 +65,7 @@ module p3 # (
     //Interface to snooper
     input wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr,
     input wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data,
+    input wire [TAG_WIDTH-1:0] sn_wr_reorder_tag,
     input wire sn_wr_en,
     input wire [INC_WIDTH-1:0] sn_byte_inc,
     
@@ -75,6 +79,7 @@ module p3 # (
     input wire cpu_rd_en,
     input wire [1:0] transfer_sz,
     output wire [31:0] resized_mem_data,
+    
     output wire resized_mem_data_vld,
     output wire [PLEN_WIDTH-1:0] cpu_byte_len,
     
@@ -88,6 +93,7 @@ module p3 # (
     input wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
     input wire fwd_rd_en,
     output wire [PACKMEM_DATA_WIDTH-1:0] fwd_rd_data,
+    output wire [TAG_WIDTH-1:0] fwd_rd_reorder_tag,
     output wire fwd_rd_data_vld,
     output wire [PLEN_WIDTH-1:0] fwd_byte_len,
     
@@ -117,7 +123,6 @@ module p3 # (
     wire [1:0] pang_sel;
     wire [1:0] pong_sel;
     
-    
     //And you may ask yourself... 
     //...why are we going to all this extra trouble with putting every signal
     //through an adapter, even if it is the same as it ever was
@@ -144,17 +149,20 @@ module p3 # (
     wire fwd_rd_en_i;
     wire [PACKMEM_DATA_WIDTH-1:0] fwd_rd_data_i;
     wire fwd_rd_data_vld_i;
-    wire [PLEN_WIDTH-1:0] fwd_byte_len_i;   
+    wire [PLEN_WIDTH-1:0] fwd_byte_len_i;
+    wire [TAG_WIDTH-1:0] fwd_reorder_tag_i;
     
     //ping inputs
     wire ping_rd_en; 
     wire ping_wr_en; 
     wire [INTERNAL_ADDR_WIDTH-1:0] ping_addr; 
     wire [PACKMEM_DATA_WIDTH-1:0] ping_idata;
+    wire [TAG_WIDTH-1:0] ping_reorder_tag_in;
     wire [INC_WIDTH-1:0] ping_byte_inc;
     wire ping_reset_len;
     //ping outputs
     wire [PACKMEM_DATA_WIDTH-1:0] ping_odata;
+    wire [TAG_WIDTH-1:0] ping_reorder_tag_out;
     wire ping_odata_vld;
     wire [PLEN_WIDTH-1:0] ping_byte_length;
     
@@ -163,10 +171,12 @@ module p3 # (
     wire pang_wr_en; 
     wire [INTERNAL_ADDR_WIDTH-1:0] pang_addr; 
     wire [PACKMEM_DATA_WIDTH-1:0] pang_idata;
+    wire [TAG_WIDTH-1:0] pang_reorder_tag_in;
     wire [INC_WIDTH-1:0] pang_byte_inc;
     wire pang_reset_len;
     //pang outputs
     wire [PACKMEM_DATA_WIDTH-1:0] pang_odata;
+    wire [TAG_WIDTH-1:0] pang_reorder_tag_out;
     wire pang_odata_vld;
     wire [PLEN_WIDTH-1:0] pang_byte_length;
     
@@ -175,10 +185,12 @@ module p3 # (
     wire pong_wr_en; 
     wire [INTERNAL_ADDR_WIDTH-1:0] pong_addr; 
     wire [PACKMEM_DATA_WIDTH-1:0] pong_idata;
+    wire [TAG_WIDTH-1:0] pong_reorder_tag_in;
     wire [INC_WIDTH-1:0] pong_byte_inc;
     wire pong_reset_len;
     //pong outputs
     wire [PACKMEM_DATA_WIDTH-1:0] pong_odata;
+    wire [TAG_WIDTH-1:0] pong_reorder_tag_out;
     wire pong_odata_vld;
     wire [PLEN_WIDTH-1:0] pong_byte_length;
     
@@ -252,7 +264,8 @@ module p3 # (
         //These control pessimistic registers in the p_ng buffers
         .BUF_IN(BUF_IN),
         .BUF_OUT(BUF_OUT),
-        .PESS(PESS) //If 1, our output will be buffered
+        .PESS(PESS), //If 1, our output will be buffered
+        .TAG_WIDTH(TAG_WIDTH)
     ) to_fwd (
         .clk(clk),
         .rst(rst),
@@ -303,29 +316,38 @@ module p3 # (
         .ADDR_WIDTH(INTERNAL_ADDR_WIDTH),
         .DATA_WIDTH(PACKMEM_DATA_WIDTH),
         .INC_WIDTH(INC_WIDTH),
-        .PLEN_WIDTH(PLEN_WIDTH)
+        .PLEN_WIDTH(PLEN_WIDTH),
+        .TAG_WIDTH(TAG_WIDTH)
     ) themux (
 
         //Format is {addr, wr_data, wr_en, bytes_inc}
         .from_sn({sn_addr_i, sn_wr_data_i, sn_wr_en_i, sn_byte_inc_i}),
+        .reorder_tag_from_sn(sn_wr_reorder_tag),
         //Format is {addr, reset_sig, rd_en}
         .from_cpu({cpu_addr_i, B_rej, cpu_rd_en_i}),
         .from_fwd({fwd_addr_i, C_done, fwd_rd_en_i}),
         
         //Format is {rd_data, rd_data_vld, packet_len}
         .from_ping({ping_odata, ping_odata_vld, ping_byte_length}),
+        .reorder_tag_from_ping(ping_reorder_tag_out),
         .from_pang({pang_odata, pang_odata_vld, pang_byte_length}),
+        .reorder_tag_from_pang(pang_reorder_tag_out),
         .from_pong({pong_odata, pong_odata_vld, pong_byte_length}),
+        .reorder_tag_from_pong(pong_reorder_tag_out),
         
         //Nothing to output to snooper
         //Format is {rd_data, rd_data_vld, packet_len}
         .to_cpu({cpu_bigword_i, cpu_bigword_vld_i, cpu_byte_len_i}),
         .to_fwd({fwd_rd_data_i, fwd_rd_data_vld_i, fwd_byte_len_i}),
+        .reorder_tag_to_fwd(fwd_reorder_tag_i),
         
         //Format here is {addr, wr_data, wr_en, bytes_inc, reset_sig, rd_en}
         .to_ping({ping_addr, ping_idata, ping_wr_en, ping_byte_inc, ping_reset_len, ping_rd_en}),
+        .reorder_tag_to_ping(ping_reorder_tag_in),
         .to_pang({pang_addr, pang_idata, pang_wr_en, pang_byte_inc, pang_reset_len, pang_rd_en}),
+        .reorder_tag_to_pang(pang_reorder_tag_in),
         .to_pong({pong_addr, pong_idata, pong_wr_en, pong_byte_inc, pong_reset_len, pong_rd_en}),
+        .reorder_tag_to_pong(pong_reorder_tag_in),
         
         .sn_sel(sn_sel),
         .cpu_sel(cpu_sel),
@@ -355,6 +377,28 @@ module p3 # (
         .odata_vld(ping_odata_vld), //@1 + BUF_IN + BUF_OUT
         .byte_length(ping_byte_length)
     );
+    // TODO - should this be combined with the main ping buffer with an increased bus width?
+    // TODO - should the enable signals be changed to only assert once per packet?
+    // TODO - address and data widths?
+    p_ng # (
+        .ADDR_WIDTH(INTERNAL_ADDR_WIDTH),
+        .DATA_WIDTH(TAG_WIDTH),
+        .INC_WIDTH(INC_WIDTH),
+        .PLEN_WIDTH(PLEN_WIDTH),
+        .BUF_IN(BUF_IN),
+        .BUF_OUT(BUF_OUT)
+    ) ping_tag (
+        .clk(clk),
+        .rst(rst || ping_reset_len), //Note: does not actually change the stored memory
+        .rd_en(ping_rd_en), //@0
+        .wr_en(ping_wr_en), //@0
+        .addr(ping_addr), //@0
+        .idata(ping_reorder_tag_in), //@0
+        .byte_inc(ping_byte_inc), //@0
+        .odata(ping_reorder_tag_out), //@1 + BUF_IN + BUF_OUT
+        .odata_vld(ping_odata_vld), //@1 + BUF_IN + BUF_OUT
+        .byte_length(ping_byte_length)
+    );
 
     p_ng # (
         .ADDR_WIDTH(INTERNAL_ADDR_WIDTH),
@@ -375,6 +419,25 @@ module p3 # (
         .odata_vld(pang_odata_vld), //@1 + BUF_IN + BUF_OUT
         .byte_length(pang_byte_length)
     );
+    p_ng # (
+        .ADDR_WIDTH(INTERNAL_ADDR_WIDTH),
+        .DATA_WIDTH(TAG_WIDTH),
+        .INC_WIDTH(INC_WIDTH),
+        .PLEN_WIDTH(PLEN_WIDTH),
+        .BUF_IN(BUF_IN),
+        .BUF_OUT(BUF_OUT)
+    ) pang_tag (
+        .clk(clk),
+        .rst(rst || pang_reset_len), //Note: does not actually change the stored memory
+        .rd_en(pang_rd_en), //@0
+        .wr_en(pang_wr_en), //@0
+        .addr(pang_addr), //@0
+        .idata(pang_reorder_tag_in), //@0
+        .byte_inc(pang_byte_inc), //@0
+        .odata(pang_reorder_tag_out), //@1 + BUF_IN + BUF_OUT
+        .odata_vld(pang_odata_vld), //@1 + BUF_IN + BUF_OUT
+        .byte_length(pang_byte_length)
+    );
 
     p_ng # (
         .ADDR_WIDTH(INTERNAL_ADDR_WIDTH),
@@ -392,6 +455,25 @@ module p3 # (
         .idata(pong_idata), //@0
         .byte_inc(pong_byte_inc), //@0
         .odata(pong_odata), //@1 + BUF_IN + BUF_OUT
+        .odata_vld(pong_odata_vld), //@1 + BUF_IN + BUF_OUT
+        .byte_length(pong_byte_length)
+    );
+    p_ng # (
+        .ADDR_WIDTH(INTERNAL_ADDR_WIDTH),
+        .DATA_WIDTH(TAG_WIDTH),
+        .INC_WIDTH(INC_WIDTH),
+        .PLEN_WIDTH(PLEN_WIDTH),
+        .BUF_IN(BUF_IN),
+        .BUF_OUT(BUF_OUT)
+    ) pong_tag (
+        .clk(clk),
+        .rst(rst || pong_reset_len), //Note: does not actually change the stored memory
+        .rd_en(pong_rd_en), //@0
+        .wr_en(pong_wr_en), //@0
+        .addr(pong_addr), //@0
+        .idata(pong_reorder_tag_in), //@0
+        .byte_inc(pong_byte_inc), //@0
+        .odata(pong_reorder_tag_out), //@1 + BUF_IN + BUF_OUT
         .odata_vld(pong_odata_vld), //@1 + BUF_IN + BUF_OUT
         .byte_length(pong_byte_length)
     );

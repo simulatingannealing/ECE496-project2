@@ -92,23 +92,24 @@ module parallel_cores # (
     //Interface to snooper
     input wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr,
     input wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data,
+    input wire [TAG_WIDTH-1:0] sn_wr_reorder_tag,
     input wire sn_wr_en,
     input wire [INC_WIDTH-1:0] sn_byte_inc,
     input wire sn_done,
     output wire rdy_for_sn,
     input wire rdy_for_sn_ack, //Yeah, I'm ready for a snack
-    input wire [TAG_WIDTH-1:0] reorder_tag_in,
+    
     
     //Interface to forwarder
     input wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
     input wire fwd_rd_en,
     output wire [PACKMEM_DATA_WIDTH-1:0] fwd_rd_data,
+    output wire [TAG_WIDTH-1:0] fwd_rd_reorder_tag,
     output wire fwd_rd_data_vld,
     output wire [PLEN_WIDTH-1:0] fwd_byte_len,
     input wire fwd_done,
     output wire rdy_for_fwd,
     input wire rdy_for_fwd_ack,
-    output wire [TAG_WIDTH-1:0] reorder_tag_out,
     
     //Interface for new code input
     input wire [CODE_ADDR_WIDTH-1:0] inst_wr_addr,
@@ -127,6 +128,7 @@ module parallel_cores # (
     
     wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr_i;
     wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data_i;
+    wire [TAG_WIDTH-1:0] sn_wr_reorder_tag_i;
     wire [N-1:0] sn_wr_en_i;
     wire [INC_WIDTH-1:0] sn_byte_inc_i;
     wire [N-1:0] sn_done_i;
@@ -138,6 +140,7 @@ module parallel_cores # (
     wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr_i;
     wire [N-1:0] fwd_rd_en_i;
     wire [N*PACKMEM_DATA_WIDTH-1:0] fwd_rd_data_i;
+    wire [N*TAG_WIDTH-1:0] fwd_rd_reorder_tag_i;
     wire [N-1:0] fwd_rd_data_vld_i;
     wire [N*PLEN_WIDTH-1:0] fwd_byte_len_i;
     wire [N-1:0] fwd_done_i;
@@ -157,7 +160,8 @@ module parallel_cores # (
             .PACKMEM_DATA_WIDTH(PACKMEM_DATA_WIDTH),
             .BUF_IN(BUF_IN),
             .BUF_OUT(BUF_OUT),
-            .PESS(PESS)
+            .PESS(PESS),
+            .TAG_WIDTH(TAG_WIDTH)
         ) filt (
             .clk(clk),
             .rst(rst),
@@ -166,16 +170,19 @@ module parallel_cores # (
             //Interface to snooper
             .sn_addr(sn_addr_i),
             .sn_wr_data(sn_wr_data_i),
+            .sn_wr_reorder_tag(sn_wr_reorder_tag_i),
             .sn_wr_en(sn_wr_en_i[i]),
             .sn_byte_inc(sn_byte_inc_i),
             .sn_done(sn_done_i[i]),
             .rdy_for_sn(rdy_for_sn_i[i]),
             .rdy_for_sn_ack(rdy_for_sn_ack_i[i]), //Yeah, I'm ready for a snack
+            
 
             //Interface to forwarder
             .fwd_addr(fwd_addr_i),
             .fwd_rd_en(fwd_rd_en_i[i]),
             .fwd_rd_data(fwd_rd_data_i[PACKMEM_DATA_WIDTH*(i+1)-1 -: PACKMEM_DATA_WIDTH]),
+            .fwd_rd_reorder_tag(fwd_rd_reorder_tag_i[TAG_WIDTH*(i+1)-1 -: TAG_WIDTH]),
             .fwd_rd_data_vld(fwd_rd_data_vld_i[i]),
             .fwd_byte_len(fwd_byte_len_i[PLEN_WIDTH*(i+1)-1 -: PLEN_WIDTH]),
             .fwd_done(fwd_done_i[i]),
@@ -200,7 +207,8 @@ module parallel_cores # (
         .N(N),
         .TAG_SZ(TAG_SZ),
         .DELAY_CONF(DELAY_CONF),
-        .PESS(PESS)
+        .PESS(PESS),
+        .TAG_WIDTH(TAG_WIDTH)
     ) snooper_arbiter (
         .clk(clk),
         .rst(rst),
@@ -208,6 +216,7 @@ module parallel_cores # (
         //Interface to snooper
         .addr(sn_addr),
         .wr_data(sn_wr_data),
+        .wr_reorder_tag(sn_wr_reorder_tag),
         .wr_en(sn_wr_en),
         .byte_inc(sn_byte_inc),
         .done(sn_done),
@@ -220,6 +229,7 @@ module parallel_cores # (
 
         .sn_addr(sn_addr_i),
         .sn_wr_data(sn_wr_data_i),
+        .sn_wr_reorder_tag(sn_wr_reorder_tag_i),
         .sn_wr_en(sn_wr_en_i),
         .sn_byte_inc(sn_byte_inc_i),
         .sn_done(sn_done_i),
@@ -232,7 +242,8 @@ module parallel_cores # (
         .PACKMEM_ADDR_WIDTH(PACKMEM_ADDR_WIDTH),
         .PACKMEM_DATA_WIDTH(PACKMEM_DATA_WIDTH),
         .PLEN_WIDTH(PLEN_WIDTH),
-        .DELAY_CONF(DELAY_CONF)
+        .DELAY_CONF(DELAY_CONF),
+        .TAG_WIDTH(TAG_WIDTH)
     ) forwarder_arbiter (
         .clk(clk),
         .rst(rst),
@@ -241,6 +252,7 @@ module parallel_cores # (
         .addr(fwd_addr),
         .rd_en(fwd_rd_en),
         .rd_data(fwd_rd_data),
+        .rd_reorder_tag(fwd_rd_reorder_tag),
         .rd_data_vld(fwd_rd_data_vld),
         .byte_len(fwd_byte_len),
         .done(fwd_done),
@@ -251,6 +263,7 @@ module parallel_cores # (
         .fwd_addr(fwd_addr_i),
         .fwd_rd_en(fwd_rd_en_i),
         .fwd_rd_data(fwd_rd_data_i),
+        .fwd_rd_reorder_tag(fwd_rd_reorder_tag_i),
         .fwd_rd_data_vld(fwd_rd_data_vld_i),
         .fwd_byte_len(fwd_byte_len_i),
         .fwd_done(fwd_done_i),

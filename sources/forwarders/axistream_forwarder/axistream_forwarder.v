@@ -68,19 +68,19 @@ module axistream_forwarder # (
     
     //AXI Stream interface
     output wire [SN_FWD_DATA_WIDTH-1:0] fwd_TDATA,
+    output wire [TAG_WIDTH-1:0] fwd_reorder_tag,
     output wire [SN_FWD_DATA_WIDTH/8-1:0] fwd_TKEEP,
     output wire fwd_TLAST,
     output wire fwd_TVALID,
     input wire fwd_TREADY,
-    output wire [TAG_WIDTH-1:0] reorder_tag_out,
     
     //Interface to parallel_cores
     output wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
     output wire fwd_rd_en,
     input wire [PACKMEM_DATA_WIDTH-1:0] fwd_rd_data,
+    input wire [TAG_WIDTH-1:0] fwd_rd_reorder_tag,
     input wire fwd_rd_data_vld,
     input wire [PLEN_WIDTH-1:0] fwd_byte_len,
-    input wire [TAG_WIDTH-1:0] reorder_tag_in,
     
     output wire fwd_done,
     input wire rdy_for_fwd,
@@ -100,6 +100,7 @@ module axistream_forwarder # (
     
     //FIFO queues
     reg [SN_FWD_DATA_WIDTH-1:0] TDATA_fifo[0:FIFO_DEPTH-1];
+    reg [TAG_WIDTH-1:0] reorder_tag_fifo[0:FIFO_DEPTH-1];
     reg [SN_FWD_DATA_WIDTH/8-1:0] TKEEP_fifo[0:FIFO_DEPTH-1];
     reg TLAST_fifo[0:FIFO_DEPTH-1];
     
@@ -107,6 +108,7 @@ module axistream_forwarder # (
     genvar i;
     for (i = 0; i < FIFO_DEPTH; i = i + 1) begin
         initial TDATA_fifo[i] = 0;
+        initial reorder_tag_fifo[i] = 0;
         initial TKEEP_fifo[i] = 0;
         initial TLAST_fifo[i] = 0;
     end
@@ -250,6 +252,7 @@ end endgenerate
     //AXI Stream signals
     //TODO: have pessimistic mode gate these with a bhand?
     assign fwd_TDATA = TDATA_fifo[rd_ptr];
+    assign fwd_reorder_tag = reorder_tag_fifo[rd_ptr];
     assign fwd_TKEEP = TKEEP_fifo[rd_ptr];
     assign fwd_TVALID = ((in_flight_cnt - pending) != 0);
     assign fwd_TLAST = TLAST_fifo[rd_ptr];
@@ -263,6 +266,7 @@ end endgenerate
     always @(posedge clk) begin
         if (wr_to_fifo && !rst) begin
             TDATA_fifo[TDATA_wr_ptr] <= fwd_rd_data_adapted;
+            reorder_tag_fifo[TDATA_wr_ptr] <= fwd_rd_reorder_tag;
         end 
         
         if (wr_to_keep_last && !rst) begin

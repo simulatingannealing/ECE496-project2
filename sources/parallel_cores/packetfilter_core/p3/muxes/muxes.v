@@ -73,28 +73,39 @@ module muxes # (
     parameter ADDR_WIDTH = 10,
 	parameter DATA_WIDTH = 64,
     parameter INC_WIDTH = 8, 
-	parameter PLEN_WIDTH = 32 
+	parameter PLEN_WIDTH = 32,
+
+	//tag parameters
+    parameter TAG_WIDTH = 6
 )(
 	//Inputs
 	//Format is {addr, wr_data, wr_en, bytes_inc}
 	input wire [ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH -1:0] from_sn,
+	input wire [TAG_WIDTH-1:0] reorder_tag_from_sn,
 	//Format is {addr, reset_sig, rd_en}
 	input wire [ADDR_WIDTH + `ENABLE_BIT + `RESET_SIG -1:0] from_cpu,
 	input wire [ADDR_WIDTH + `ENABLE_BIT + `RESET_SIG -1:0] from_fwd,
 	//Format is {rd_data, rd_data_vld, packet_len}
 	input wire [DATA_WIDTH + `VLD_BIT + PLEN_WIDTH -1:0] from_ping,
+	input wire [TAG_WIDTH-1:0] reorder_tag_from_ping,
 	input wire [DATA_WIDTH + `VLD_BIT + PLEN_WIDTH -1:0] from_pang,
+	input wire [TAG_WIDTH-1:0] reorder_tag_from_pang,
 	input wire [DATA_WIDTH + `VLD_BIT + PLEN_WIDTH -1:0] from_pong,
+	input wire [TAG_WIDTH-1:0] reorder_tag_from_pong,
 	
 	//Outputs
 	//Nothing to output to snooper
 	//Format is {rd_data, rd_data_vld, packet_len}
 	output wire [DATA_WIDTH + `VLD_BIT + PLEN_WIDTH -1:0] to_cpu,
 	output wire [DATA_WIDTH + `VLD_BIT + PLEN_WIDTH -1:0] to_fwd,
+	output wire [TAG_WIDTH-1:0] reorder_tag_to_fwd,
 	//Format here is {addr, wr_data, wr_en, bytes_inc, reset_sig, rd_en}
 	output wire [ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH + `RESET_SIG + `ENABLE_BIT -1:0] to_ping,
+	output wire [TAG_WIDTH-1:0] reorder_tag_to_ping,
 	output wire [ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH + `RESET_SIG + `ENABLE_BIT -1:0] to_pang,
+	output wire [TAG_WIDTH-1:0] reorder_tag_to_pang,
 	output wire [ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH + `RESET_SIG + `ENABLE_BIT -1:0] to_pong,
+	output wire [TAG_WIDTH-1:0] reorder_tag_to_pong,
 	
 	//Selects
 	input wire [1:0] sn_sel,
@@ -120,6 +131,13 @@ mux3 # (DATA_WIDTH + `VLD_BIT + PLEN_WIDTH) fwd_mux (
 	.C(from_pong),
 	.sel(fwd_sel),
 	.D(to_fwd)
+);
+mux3 # (TAG_WIDTH) reorder_tag_fwd_mux (
+	.A(reorder_tag_from_ping),
+	.B(reorder_tag_from_pang),
+	.C(reorder_tag_from_pong),
+	.sel(fwd_sel),
+	.D(reorder_tag_to_fwd)
 );
 
 //One agent always has exclusive control of a buffer, even though it
@@ -148,6 +166,14 @@ mux3 # (ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH + `RESET_SIG + `ENABLE
 	.sel(ping_sel),
 	.D(to_ping)
 );
+// TODO - is there data from cpu/fwd?
+mux3 # (TAG_WIDTH) reorder_tag_ping_mux (
+	.A(reorder_tag_from_sn),
+	.B({TAG_WIDTH{1'b0}}),
+	.C({TAG_WIDTH{1'b0}}),
+	.sel(ping_sel),
+	.D(reorder_tag_to_ping)
+);
 
 mux3 # (ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH + `RESET_SIG + `ENABLE_BIT) pang_mux (
 	.A(from_sn_padded),
@@ -156,6 +182,13 @@ mux3 # (ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH + `RESET_SIG + `ENABLE
 	.sel(pang_sel),
 	.D(to_pang)
 );
+mux3 # (TAG_WIDTH) reorder_tag_pang_mux (
+	.A(reorder_tag_from_sn),
+	.B({TAG_WIDTH{1'b0}}),
+	.C({TAG_WIDTH{1'b0}}),
+	.sel(pang_sel),
+	.D(reorder_tag_to_pang)
+);
 
 mux3 # (ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH + `RESET_SIG + `ENABLE_BIT) pong_mux (
 	.A(from_sn_padded),
@@ -163,6 +196,13 @@ mux3 # (ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH + `RESET_SIG + `ENABLE
 	.C(from_fwd_padded),
 	.sel(pong_sel),
 	.D(to_pong)
+);
+mux3 # (TAG_WIDTH) reorder_tag_pong_mux (
+	.A(reorder_tag_from_sn),
+	.B({TAG_WIDTH{1'b0}}),
+	.C({TAG_WIDTH{1'b0}}),
+	.sel(pong_sel),
+	.D(reorder_tag_to_pong)
 );
 
 endmodule
