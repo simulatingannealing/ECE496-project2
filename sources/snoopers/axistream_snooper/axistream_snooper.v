@@ -160,22 +160,25 @@ end else begin
     assign sn_TLAST_i = sn_TLAST;
 `endgen
 
-//reorder tag counter
-//ignoring processed packets logic for now
-always @(posedge clk) begin
-    if (rst) begin
-        reorder_tag <= 0;
-    end else if (sn_TLAST) begin
-        if (CIRCULAR_BUFFER_SIZE - 1 == reorder_tag) begin
+    // TODO - is this only valid in simulation?
+    initial reorder_tag <= 0;
+
+    //reorder tag counter
+    //ignoring processed packets logic for now
+    always @(posedge clk) begin
+        if (rst) begin
             reorder_tag <= 0;
+        end else if (sn_TLAST) begin
+            if (CIRCULAR_BUFFER_SIZE - 1 == reorder_tag) begin
+                reorder_tag <= 0;
+            end else begin
+                reorder_tag <= reorder_tag + 1;
+            end
         end else begin
-            reorder_tag <= reorder_tag + 1;
+            reorder_tag <= reorder_tag;
         end
-    end else begin
-        reorder_tag <= reorder_tag;
     end
-end
-    
+
     //Interface to parallel_cores
     assign rdy_for_sn_i = rdy_for_sn;    
     
