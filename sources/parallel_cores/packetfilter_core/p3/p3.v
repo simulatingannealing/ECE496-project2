@@ -150,7 +150,7 @@ module p3 # (
     wire [PACKMEM_DATA_WIDTH-1:0] fwd_rd_data_i;
     wire fwd_rd_data_vld_i;
     wire [PLEN_WIDTH-1:0] fwd_byte_len_i;
-    wire [TAG_WIDTH-1:0] fwd_reorder_tag_i;
+    wire [TAG_WIDTH-1:0] fwd_rd_reorder_tag_i;
     
     //ping inputs
     wire ping_rd_en; 
@@ -290,6 +290,8 @@ module p3 # (
         .rd_data_vld(fwd_rd_data_vld_i),
         .bytes(fwd_byte_len_i)
     ); 
+    // Tag does not go through adapter
+    assign fwd_rd_reorder_tag = fwd_rd_reorder_tag_i;
 
     p3ctrl ctrlr (
         .clk(clk),
@@ -339,7 +341,7 @@ module p3 # (
         //Format is {rd_data, rd_data_vld, packet_len}
         .to_cpu({cpu_bigword_i, cpu_bigword_vld_i, cpu_byte_len_i}),
         .to_fwd({fwd_rd_data_i, fwd_rd_data_vld_i, fwd_byte_len_i}),
-        .reorder_tag_to_fwd(fwd_reorder_tag_i),
+        .reorder_tag_to_fwd(fwd_rd_reorder_tag_i),
         
         //Format here is {addr, wr_data, wr_en, bytes_inc, reset_sig, rd_en}
         .to_ping({ping_addr, ping_idata, ping_wr_en, ping_byte_inc, ping_reset_len, ping_rd_en}),
