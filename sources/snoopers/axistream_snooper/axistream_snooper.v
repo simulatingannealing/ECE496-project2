@@ -55,7 +55,11 @@ module axistream_snooper # (
     parameter ENABLE_BACKPRESSURE = 0,
     
     //Derived parameters. Don't set these
-    parameter KEEP_WIDTH = SN_FWD_DATA_WIDTH/8
+    parameter KEEP_WIDTH = SN_FWD_DATA_WIDTH/8,
+
+    //tag parameters
+    parameter TAG_WIDTH = 6,
+    parameter CIRCULAR_BUFFER_SIZE = 50
 ) (
     input wire clk,
     input wire rst,
@@ -72,6 +76,8 @@ module axistream_snooper # (
     //Interface to parallel_cores
     output wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr,
     output wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data,
+    //reorder tag
+    output reg [TAG_WIDTH-1:0] sn_wr_reorder_tag,
     output wire sn_wr_en,
     output wire [PACKMEM_INC_WIDTH-1:0] sn_byte_inc,
     output wire sn_done,
@@ -153,7 +159,25 @@ end else begin
     assign sn_TLAST_i = sn_TLAST;
 `endgen
 
-    
+    // TODO - is this only valid in simulation?
+    initial sn_wr_reorder_tag <= 0;
+
+    //reorder tag counter
+    //ignoring processed packets logic for now
+    always @(posedge clk) begin
+        if (rst) begin
+            sn_wr_reorder_tag <= 0;
+        end else if (sn_TLAST) begin
+            if (CIRCULAR_BUFFER_SIZE - 1 == sn_wr_reorder_tag) begin
+                sn_wr_reorder_tag <= 0;
+            end else begin
+                sn_wr_reorder_tag <= sn_wr_reorder_tag + 1;
+            end
+        end else begin
+            sn_wr_reorder_tag <= sn_wr_reorder_tag;
+        end
+    end
+
     //Interface to parallel_cores
     assign rdy_for_sn_i = rdy_for_sn;    
     

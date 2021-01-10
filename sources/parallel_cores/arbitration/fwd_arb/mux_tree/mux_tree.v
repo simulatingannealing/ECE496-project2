@@ -70,7 +70,10 @@ module mux_tree # (
     
     //Auto-derived parameters. Do not set
 	parameter PADDED = (N%3 == 1) ? N : ((N%3 == 0) ? (N+1) : (N+2)),
-	parameter TAG_SZ = 2*`CLOG4(PADDED) //= 2 * ceil(log_4(PADDED))
+	parameter TAG_SZ = 2*`CLOG4(PADDED), //= 2 * ceil(log_4(PADDED))
+
+    //tag parameters
+    parameter TAG_WIDTH = 6
 ) (
     input wire clk,
     input wire rst,

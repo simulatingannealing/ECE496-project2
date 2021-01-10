@@ -46,7 +46,10 @@ module snoop_arb # (
     //1 = delay stage on every second level
     //2 = delay stage on all levels
     parameter PESS = (N>16), //Enables pessimistic mode
-    parameter DELAY_CONF = (PESS) ? 1 : 0
+    parameter DELAY_CONF = (PESS) ? 1 : 0,
+
+    //tag parameters
+    parameter TAG_WIDTH = 6
 ) (
     input wire clk,
     input wire rst,
@@ -56,6 +59,7 @@ module snoop_arb # (
     //Interface to snooper
     input wire [PACKMEM_ADDR_WIDTH-1:0] addr,
     input wire [PACKMEM_DATA_WIDTH-1:0] wr_data,
+    input wire [TAG_WIDTH-1:0] wr_reorder_tag,
     input wire wr_en,
     input wire [INC_WIDTH-1:0] byte_inc,
     input wire done,
@@ -69,6 +73,7 @@ module snoop_arb # (
     //Only hot signals need to be gated, so we avoid the 2D array port problem 
     output wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr,
     output wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data,
+    output wire [TAG_WIDTH-1:0] sn_wr_reorder_tag,
     output wire [N-1:0] sn_wr_en,
     output wire [INC_WIDTH-1:0] sn_byte_inc,
     output wire [N-1:0] sn_done,
@@ -85,6 +90,7 @@ module snoop_arb # (
     
     wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr_i;
     wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data_i;
+    wire [TAG_WIDTH-1:0] sn_wr_reorder_tag_i;
     wire [N-1:0] sn_wr_en_i;
     wire [INC_WIDTH-1:0] sn_byte_inc_i;
     wire [N-1:0] sn_done_i;
@@ -125,6 +131,7 @@ module snoop_arb # (
     //Assign the rest of the internal signals
     assign sn_addr_i = addr;
     assign sn_wr_data_i = wr_data;
+    assign sn_wr_reorder_tag_i = wr_reorder_tag;
     assign sn_byte_inc_i = byte_inc;
     
     genvar i;
@@ -142,6 +149,7 @@ module snoop_arb # (
         
         reg [PACKMEM_ADDR_WIDTH-1:0] sn_addr_r = 0;
         reg [PACKMEM_DATA_WIDTH-1:0] sn_wr_data_r = 0;
+        reg [TAG_WIDTH-1:0] sn_wr_reorder_tag_r = 0;
         reg [N-1:0] sn_wr_en_r = 0;
         reg [INC_WIDTH-1:0] sn_byte_inc_r = 0;
         reg [N-1:0] sn_done_r = 0;
@@ -149,6 +157,7 @@ module snoop_arb # (
         always @(posedge clk) begin
             sn_addr_r <= sn_addr_i;
             sn_wr_data_r <= sn_wr_data_i;
+            sn_wr_reorder_tag_r <= sn_wr_reorder_tag_i;
             sn_wr_en_r <= sn_wr_en_i;
             sn_byte_inc_r <= sn_byte_inc_i;
             sn_done_r <= sn_done_i;
@@ -156,6 +165,7 @@ module snoop_arb # (
         end
         assign sn_addr = sn_addr_r;
         assign sn_wr_data = sn_wr_data_r;
+        assign sn_wr_reorder_tag = sn_wr_reorder_tag_r;
         assign sn_wr_en = sn_wr_en_r;
         assign sn_byte_inc = sn_byte_inc_r;
         assign sn_done = sn_done_r;
@@ -163,6 +173,7 @@ module snoop_arb # (
     end else begin : direct_assignment
         assign sn_addr = sn_addr_i;
         assign sn_wr_data = sn_wr_data_i;
+        assign sn_wr_reorder_tag = sn_wr_reorder_tag_i;
         assign sn_wr_en = sn_wr_en_i;
         assign sn_byte_inc = sn_byte_inc_i;
         assign sn_done = sn_done_i;
@@ -178,6 +189,7 @@ end else begin
     //really easy to do:
     assign sn_addr = addr;
     assign sn_wr_data = wr_data;
+    assign sn_wr_reorder_tag = wr_reorder_tag;
     assign sn_byte_inc = byte_inc;
     assign sn_wr_en[0] = wr_en;
     assign sn_done[0] = done;

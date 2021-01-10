@@ -28,7 +28,10 @@ module fwd_adapter # (
     //These control pessimistic registers in the p_ng buffers
     parameter BUF_IN = 0,
     parameter BUF_OUT = 0,
-    parameter PESS = 0 //If 1, our output will be buffered
+    parameter PESS = 0, //If 1, our output will be buffered
+
+    //tag parameters
+    parameter TAG_WIDTH = 6
 )(
     input wire clk,
     input wire rst,

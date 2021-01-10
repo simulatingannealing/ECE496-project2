@@ -71,7 +71,11 @@ module axistream_packetfilt # (
         //Not to be set manually
         parameter CODE_ADDR_WIDTH = `CLOG2(INST_MEM_DEPTH),
         parameter CODE_DATA_WIDTH = 64,
-		parameter BYTE_ADDR_WIDTH = `CLOG2(PACKET_MEM_BYTES)
+		parameter BYTE_ADDR_WIDTH = `CLOG2(PACKET_MEM_BYTES),
+        //tag parameters
+        parameter TAG_WIDTH = 6,
+        parameter CIRCULAR_BUFFER_SIZE = 50
+
 `ifndef DISABLE_AXILITE
         , //yes, this comma needs to be here
         parameter AXI_ADDR_WIDTH = 12 // width of the AXI address bus
@@ -92,6 +96,7 @@ module axistream_packetfilt # (
     
         //AXI Stream forwarder interface
         output wire [SN_FWD_DATA_WIDTH-1:0] fwd_TDATA,
+        output wire [TAG_WIDTH-1:0] fwd_reorder_tag,
         output wire [`KEEP_WIDTH-1:0] fwd_TKEEP,
         output wire fwd_TLAST,
         output wire fwd_TVALID,
@@ -185,6 +190,7 @@ module axistream_packetfilt # (
     //Interface from packet mem to snooper
     wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr;
     wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data;
+    wire [TAG_WIDTH-1:0] sn_wr_reorder_tag;
     wire sn_wr_en;
     wire [PACKMEM_INC_WIDTH-1:0] sn_byte_inc;
     wire sn_done;
@@ -195,6 +201,7 @@ module axistream_packetfilt # (
     wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr;
     wire fwd_rd_en;
     wire [PACKMEM_DATA_WIDTH-1:0] fwd_rd_data;
+    wire [TAG_WIDTH-1:0] fwd_rd_reorder_tag;
     wire fwd_rd_data_vld;
     wire [PLEN_WIDTH-1:0] fwd_byte_len;
     wire fwd_done;
@@ -326,6 +333,7 @@ module axistream_packetfilt # (
         //Interface to parallel_cores
         .sn_addr(sn_addr),
         .sn_wr_data(sn_wr_data),
+        .sn_wr_reorder_tag(sn_wr_reorder_tag),
         .sn_wr_en(sn_wr_en),
         .sn_byte_inc(sn_byte_inc),
         .sn_done(sn_done),
@@ -350,7 +358,8 @@ generate if (N > 1) begin
         .PACKMEM_DATA_WIDTH(PACKMEM_DATA_WIDTH),
         .BUF_IN(BUF_IN),
         .BUF_OUT(BUF_OUT),
-        .PESS(PESS)
+        .PESS(PESS),
+        .TAG_WIDTH(TAG_WIDTH)
     ) the_actual_filter (
         .clk(clk),
         .rst(!control_start),
@@ -359,6 +368,7 @@ generate if (N > 1) begin
         //Interface to snooper
         .sn_addr(sn_addr),
         .sn_wr_data(sn_wr_data),
+        .sn_wr_reorder_tag(sn_wr_reorder_tag), //reorder tag input from snooper
         .sn_wr_en(sn_wr_en),
         .sn_byte_inc(sn_byte_inc),
         .sn_done(sn_done),
@@ -369,6 +379,7 @@ generate if (N > 1) begin
         .fwd_addr(fwd_addr),
         .fwd_rd_en(fwd_rd_en),
         .fwd_rd_data(fwd_rd_data),
+        .fwd_rd_reorder_tag(fwd_rd_reorder_tag), //reorder tag output to forwarder
         .fwd_rd_data_vld(fwd_rd_data_vld),
         .fwd_byte_len(fwd_byte_len),
         .fwd_done(fwd_done),
@@ -402,6 +413,7 @@ end else begin
         //Interface to snooper
         .sn_addr(sn_addr),
         .sn_wr_data(sn_wr_data),
+        .sn_wr_reorder_tag(sn_wr_reorder_tag),
         .sn_wr_en(sn_wr_en),
         .sn_byte_inc(sn_byte_inc),
         .sn_done(sn_done),
@@ -412,6 +424,7 @@ end else begin
         .fwd_addr(fwd_addr),
         .fwd_rd_en(fwd_rd_en),
         .fwd_rd_data(fwd_rd_data),
+        .fwd_rd_reorder_tag(fwd_rd_reorder_tag),
         .fwd_rd_data_vld(fwd_rd_data_vld),
         .fwd_byte_len(fwd_byte_len),
         .fwd_done(fwd_done),
@@ -455,6 +468,7 @@ end endgenerate
 
         //AXI Stream interface
         .fwd_TDATA(fwd_TDATA),
+        .fwd_reorder_tag(fwd_reorder_tag),
         .fwd_TKEEP(fwd_TKEEP),
         .fwd_TLAST(fwd_TLAST),
         .fwd_TVALID(fwd_TVALID),
@@ -464,6 +478,7 @@ end endgenerate
         .fwd_addr(fwd_addr),
         .fwd_rd_en(fwd_rd_en),
         .fwd_rd_data(fwd_rd_data),
+        .fwd_rd_reorder_tag(fwd_rd_reorder_tag),
         .fwd_rd_data_vld(fwd_rd_data_vld),
         .fwd_byte_len(fwd_byte_len),
 

@@ -61,7 +61,10 @@ module fwd_arb # (
     //0 = all combinational
     //1 = delay stage on every second level
     //2 = delay stage on all levels
-    parameter DELAY_CONF = (N>16)? 1 : 0
+    parameter DELAY_CONF = (N>16)? 1 : 0,
+
+    //tag parameters
+    parameter TAG_WIDTH = 6
 ) (
     input wire clk,
     input wire rst,
@@ -72,6 +75,7 @@ module fwd_arb # (
     input wire [PACKMEM_ADDR_WIDTH-1:0] addr,
     input wire rd_en,
     output wire [PACKMEM_DATA_WIDTH-1:0] rd_data,
+    output wire [TAG_WIDTH-1:0] rd_reorder_tag,
     output wire rd_data_vld,
     output wire [PLEN_WIDTH-1:0] byte_len,
     input wire done,
@@ -86,6 +90,7 @@ module fwd_arb # (
     output wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
     output wire [N-1:0] fwd_rd_en,
     input wire [N*PACKMEM_DATA_WIDTH-1:0] fwd_rd_data,
+    input wire [N*TAG_WIDTH-1:0] fwd_rd_reorder_tag,
     input wire [N-1:0] fwd_rd_data_vld,
     input wire [N*PLEN_WIDTH-1:0] fwd_byte_len,
     output wire [N-1:0] fwd_done,
@@ -174,6 +179,17 @@ module fwd_arb # (
         .sel(selection), //TODO: delay this input by MEM_LAT cycles, then remove WAITING state from forwarder
         .ins(mux_ins),
         .result({rd_data, rd_data_vld, byte_len})
+    );
+    mux_tree # (
+        .N(N),
+        .WIDTH(TAG_WIDTH)
+    ) reorder_tag_the_big_mux (
+        .clk(clk),
+        .rst(rst),
+        
+        .sel(selection), //TODO: delay this input by MEM_LAT cycles, then remove WAITING state from forwarder
+        .ins(fwd_rd_reorder_tag),
+        .result(rd_reorder_tag)
     );
     
     //Assign remaining signals in forwarder -> filter direction
