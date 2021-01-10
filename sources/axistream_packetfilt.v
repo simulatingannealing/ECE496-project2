@@ -100,7 +100,6 @@ module axistream_packetfilt # (
         output wire [`KEEP_WIDTH-1:0] fwd_TKEEP,
         output wire fwd_TLAST,
         output wire fwd_TVALID,
-        
         input wire fwd_TREADY,
         
         //Debug outputs
@@ -197,7 +196,7 @@ module axistream_packetfilt # (
     wire sn_done;
     wire rdy_for_sn;
     wire rdy_for_sn_ack; //Yeah, I'm ready for a snack
-        
+    
     //Interface from packet mem to forwarder
     wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr;
     wire fwd_rd_en;
@@ -375,7 +374,6 @@ generate if (N > 1) begin
         .sn_done(sn_done),
         .rdy_for_sn(rdy_for_sn),
         .rdy_for_sn_ack(rdy_for_sn_ack), //Yeah, I'm ready for a snack
-        
 
         //Interface to forwarder
         .fwd_addr(fwd_addr),
@@ -421,7 +419,6 @@ end else begin
         .sn_done(sn_done),
         .rdy_for_sn(rdy_for_sn),
         .rdy_for_sn_ack(rdy_for_sn_ack), //Yeah, I'm ready for a snack
-        
 
         //Interface to forwarder
         .fwd_addr(fwd_addr),

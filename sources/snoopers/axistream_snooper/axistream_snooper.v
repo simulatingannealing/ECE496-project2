@@ -105,7 +105,7 @@ module axistream_snooper # (
     wire sn_done_i;
     wire rdy_for_sn_i;
     wire rdy_for_sn_ack_i; //Yeah, I'm ready for a snack
-
+    
     
     //State machine signals
     `localparam NOT_STARTED = 2'b00;

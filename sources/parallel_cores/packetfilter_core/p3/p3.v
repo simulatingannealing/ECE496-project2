@@ -79,7 +79,6 @@ module p3 # (
     input wire cpu_rd_en,
     input wire [1:0] transfer_sz,
     output wire [31:0] resized_mem_data,
-    
     output wire resized_mem_data_vld,
     output wire [PLEN_WIDTH-1:0] cpu_byte_len,
     
@@ -122,6 +121,7 @@ module p3 # (
     wire [1:0] ping_sel;
     wire [1:0] pang_sel;
     wire [1:0] pong_sel;
+    
     
     //And you may ask yourself... 
     //...why are we going to all this extra trouble with putting every signal

@@ -99,7 +99,6 @@ module parallel_cores # (
     output wire rdy_for_sn,
     input wire rdy_for_sn_ack, //Yeah, I'm ready for a snack
     
-    
     //Interface to forwarder
     input wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
     input wire fwd_rd_en,
@@ -176,7 +175,6 @@ module parallel_cores # (
             .sn_done(sn_done_i[i]),
             .rdy_for_sn(rdy_for_sn_i[i]),
             .rdy_for_sn_ack(rdy_for_sn_ack_i[i]), //Yeah, I'm ready for a snack
-            
 
             //Interface to forwarder
             .fwd_addr(fwd_addr_i),

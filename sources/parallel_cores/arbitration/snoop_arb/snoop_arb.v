@@ -78,6 +78,7 @@ module snoop_arb # (
     output wire [INC_WIDTH-1:0] sn_byte_inc,
     output wire [N-1:0] sn_done,
     output wire [N-1:0] rdy_for_sn_ack //Yeah, I'm ready for a snack
+
 );
 
 `genif (N > 1) begin
