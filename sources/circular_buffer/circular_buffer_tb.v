@@ -24,26 +24,26 @@ module circular_buffer_tb;
     reg clk;
     reg rst;
 
-    wire rdy_to_send;
+    reg rdy_to_send;
 
-    wire [`DATA_WIDTH-1:0] buffer_TDATA;
-    wire [`TAG_WIDTH-1:0] reorder_tag_in;
-    wire buffer_TLAST;
-    wire buffer_TVALID;
-    wire buffer_TREADY;
-    wire buffer_TKEEP;
+    reg [`DATA_WIDTH-1:0] buffer_TDATA;
+    reg [`TAG_WIDTH-1:0] reorder_tag_in;
+    reg buffer_TLAST;
+    reg buffer_TVALID;
+    reg buffer_TREADY;
+    reg buffer_TKEEP;
 
-    wire [1:0] packet_status;
+    reg [1:0] packet_status;
 
-    wire [`DATA_WIDTH-1:0] buffer_TDATA_out;
-    wire buffer_TLAST_out;
-    wire buffer_TVALID_out;
-    wire buffer_TREADY_out;
-    wire buffer_TKEEP_out;
+    reg [`DATA_WIDTH-1:0] buffer_TDATA_out;
+    reg buffer_TLAST_out;
+    reg buffer_TVALID_out;
+    reg buffer_TREADY_out;
+    reg buffer_TKEEP_out;
 
-    wire [`TAG_WIDTH-1:0] reorder_tag_out;
+    reg [`TAG_WIDTH-1:0] reorder_tag_out;
 
-    wire fwd_rdy;
+    reg fwd_rdy;
 
     
     integer fd, dummy;
@@ -83,7 +83,7 @@ module circular_buffer_tb;
         dummy = $fscanf(fd, "%h%h%b%b%b%b", 
             buffer_TDATA,
             buffer_TKEEP,
-            buffer_TREADY,
+            buffer_TREADY_out,
             buffer_TVALID,
             buffer_TLAST,
             rdy_to_send

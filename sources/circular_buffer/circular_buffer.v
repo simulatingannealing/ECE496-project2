@@ -69,7 +69,6 @@ module circular_buffer #(
             wr_addr[i] <= 0;
             wr_data[i] <= 0;
             rd_addr[i] <= 0;
-            rd_data[i] <= 0;
             circular_buffer_valid[i] <= 0;
             TDATA_counter[i] <= 0;
             TVALID_count <= 0;
@@ -90,7 +89,6 @@ module circular_buffer #(
                 wr_addr[i] <= 0;
                 wr_data[i] <= 0;
                 rd_addr[i] <= 0;
-                rd_data[i] <= 0;
                 circular_buffer_valid[i] <= 0;
                 TDATA_counter[i] <= 0;
             end
