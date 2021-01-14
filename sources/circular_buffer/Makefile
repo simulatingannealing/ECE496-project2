@@ -1,6 +1,6 @@
-MODULE := axistream_snooper
-MODULE_CAPS := AXISTREAM_SNOOPER
-VERILOG_INCLUDE = -Isn_width_adapter/
+MODULE := circular_buffer
+MODULE_CAPS := CIRCULAR_BUFFER
+# VERILOG_INCLUDE = -Isn_width_adapter/
 
 default:	$(MODULE).vcd
 

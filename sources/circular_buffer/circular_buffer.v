@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module reorder_buffer #(
+module circular_buffer #(
     parameter TAG_WIDTH = 6,
     parameter CIRCULAR_BUFFER_SIZE = 50,
     parameter DATA_WIDTH = 64,

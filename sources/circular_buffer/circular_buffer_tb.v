@@ -5,18 +5,18 @@
 `timescale 1ns / 1ps
 
 /*
-axistream_snooper.v
+circular_buffer_tb.v
 
 */
 
-`include "axistream_snooper.v"
+`include "circular_buffer.v"
 
 `define SN_FWD_DATA_WIDTH   64
 `define SN_FWD_ADDR_WIDTH   9
 `define INC_WIDTH           3
 `define PESS                0
 
-module testbench_template;
+module circular_buffer_tb;
 
     parameter KEEP_WIDTH = `SN_FWD_DATA_WIDTH/8;
     
@@ -42,7 +42,7 @@ module testbench_template;
     integer fd, dummy;
     
     initial begin
-        $dumpfile("axistream_snooper.vcd");
+        $dumpfile("circular_buffer.vcd");
         $dumpvars;
         $dumplimit(512000);
         
@@ -57,7 +57,7 @@ module testbench_template;
         
         rdy_for_sn <= 0;
         
-        fd = $fopen("axistream_snooper_drivers.mem", "r");
+        fd = $fopen("circular_buffer_drivers.mem", "r");
         if (fd == 0) begin
             $display("Could not open file");
             $finish;
@@ -91,7 +91,7 @@ module testbench_template;
         );
     end
 
-    axistream_snooper # (
+    circular_buffer # (
         .SN_FWD_DATA_WIDTH(`SN_FWD_DATA_WIDTH),
         .SN_FWD_ADDR_WIDTH(`SN_FWD_ADDR_WIDTH),
         .SN_INC_WIDTH     (`INC_WIDTH        ),
