@@ -1,5 +1,7 @@
 `timescale 1ns / 1ps
 
+// `include "../parallel_cores/packetfilter_core/inst_mem/inst_mem.v"
+
 module circular_buffer #(
     parameter TAG_WIDTH = 6,
     parameter CIRCULAR_BUFFER_SIZE = 50,
@@ -18,6 +20,7 @@ module circular_buffer #(
     input wire [TAG_WIDTH-1:0] reorder_tag_in,
     input wire buffer_TLAST,
     input wire buffer_TVALID,
+    output wire buffer_TREADY,
 
     //from memory table
     input wire [1:0] packet_status,
@@ -26,6 +29,7 @@ module circular_buffer #(
     output wire [DATA_WIDTH-1:0] buffer_TDATA_out,
     output wire buffer_TLAST_out,
     output wire buffer_TVALID_out,
+    input wire buffer_TREADY_out,
 
     //to memory table
     output wire [TAG_WIDTH-1:0] reorder_tag_out,
@@ -150,10 +154,10 @@ module circular_buffer #(
     //ram
     genvar j;
     generate
-        for (j=1; j<=CIRCULAR_BUFFER_SIZE; j=j+1) begin
+        for (j=0; j<CIRCULAR_BUFFER_SIZE; j=j+1) begin
             sdpram # (.ADDR_WIDTH(ADDR_WIDTH),.DATA_WIDTH(DATA_WIDTH)) myram (
                       .clk(clk),
-                      .en(1),
+                      .en(1'b1),
                       .wr_addr(wr_addr[j]),
                       .wr_data(wr_data[j]),
                       .wr_en(wr_en[j]),
@@ -162,3 +166,4 @@ module circular_buffer #(
                      );
         end
     endgenerate
+endmodule

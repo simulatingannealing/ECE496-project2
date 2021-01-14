@@ -9,35 +9,42 @@ circular_buffer_tb.v
 
 */
 
-`include "circular_buffer.v"
+// `include "circular_buffer.v"
 
-`define SN_FWD_DATA_WIDTH   64
-`define SN_FWD_ADDR_WIDTH   9
-`define INC_WIDTH           3
-`define PESS                0
+`define TAG_WIDTH               6
+`define CIRCULAR_BUFFER_SIZE    3   // Normally 50
+`define DATA_WIDTH              64
+`define ADDR_WIDTH              10
+`define MAX_TDATA_PER_PACKET    256
 
 module circular_buffer_tb;
 
-    parameter KEEP_WIDTH = `SN_FWD_DATA_WIDTH/8;
+    parameter KEEP_WIDTH = `DATA_WIDTH/8;
     
     reg clk;
     reg rst;
-    reg [`SN_FWD_DATA_WIDTH-1:0] sn_TDATA;
-    reg [KEEP_WIDTH-1:0] sn_TKEEP;
-    reg sn_TREADY;
-    wire sn_bp_TREADY;
-    reg sn_TVALID;
-    reg sn_TLAST;
-    wire [`SN_FWD_ADDR_WIDTH-1:0] sn_addr;
-    wire [`SN_FWD_DATA_WIDTH-1:0] sn_wr_data;
-    wire sn_wr_en;
-    wire [`INC_WIDTH-1:0] sn_byte_inc;
-    wire sn_done;
-    //reg sn_done_ack;
-    reg rdy_for_sn;
-    wire rdy_for_sn_ack; //Yeah; I'm ready for a snack
-    
-    wire packet_dropped_inc;
+
+    wire rdy_to_send;
+
+    wire [`DATA_WIDTH-1:0] buffer_TDATA;
+    wire [`TAG_WIDTH-1:0] reorder_tag_in;
+    wire buffer_TLAST;
+    wire buffer_TVALID;
+    wire buffer_TREADY;
+    wire buffer_TKEEP;
+
+    wire [1:0] packet_status;
+
+    wire [`DATA_WIDTH-1:0] buffer_TDATA_out;
+    wire buffer_TLAST_out;
+    wire buffer_TVALID_out;
+    wire buffer_TREADY_out;
+    wire buffer_TKEEP_out;
+
+    wire [`TAG_WIDTH-1:0] reorder_tag_out;
+
+    wire fwd_rdy;
+
     
     integer fd, dummy;
     
@@ -48,14 +55,6 @@ module circular_buffer_tb;
         
         clk <= 0;
         rst <= 0;
-        
-        sn_TDATA <= 0;
-        sn_TKEEP <= 0;
-        sn_TREADY <= 0;
-        sn_TVALID <= 0;
-        sn_TLAST <= 0;
-        
-        rdy_for_sn <= 0;
         
         fd = $fopen("circular_buffer_drivers.mem", "r");
         if (fd == 0) begin
@@ -82,39 +81,41 @@ module circular_buffer_tb;
         
         #0.01
         dummy = $fscanf(fd, "%h%h%b%b%b%b", 
-            sn_TDATA,
-            sn_TKEEP,
-            sn_TREADY,
-            sn_TVALID,
-            sn_TLAST,
-            rdy_for_sn
+            buffer_TDATA,
+            buffer_TKEEP,
+            buffer_TREADY,
+            buffer_TVALID,
+            buffer_TLAST,
+            rdy_to_send
         );
     end
 
     circular_buffer # (
-        .SN_FWD_DATA_WIDTH(`SN_FWD_DATA_WIDTH),
-        .SN_FWD_ADDR_WIDTH(`SN_FWD_ADDR_WIDTH),
-        .SN_INC_WIDTH     (`INC_WIDTH        ),
-        .PESS             (`PESS             ),
-        .ENABLE_BACKPRESSURE(1)
+        .TAG_WIDTH(`TAG_WIDTH),
+        .CIRCULAR_BUFFER_SIZE(`CIRCULAR_BUFFER_SIZE),
+        .DATA_WIDTH(`DATA_WIDTH),
+        .ADDR_WIDTH(`ADDR_WIDTH),
+        .MAX_TDATA_PER_PACKET(`MAX_TDATA_PER_PACKET)
     ) DUT (
         .clk(clk),
         .rst(rst),
-        .sn_TDATA(sn_TDATA),
-        .sn_TKEEP(sn_TKEEP),
-        .sn_TREADY(sn_TREADY),
-        .sn_bp_TREADY(sn_bp_TREADY),
-        .sn_TVALID(sn_TVALID),
-        .sn_TLAST(sn_TLAST),
-        .sn_addr(sn_addr),
-        .sn_wr_data(sn_wr_data),
-        .sn_wr_en(sn_wr_en),
-        .sn_byte_inc(sn_byte_inc),
-        .sn_done(sn_done),
-        //.sn_done_ack(sn_done_ack),
-        .rdy_for_sn(rdy_for_sn),
-        .rdy_for_sn_ack(rdy_for_sn_ack), //Yeah, I'm ready for a snack
-        .packet_dropped_inc(packet_dropped_inc)
+        .rdy_to_send(rdy_to_send),
+        .buffer_TDATA(buffer_TDATA),
+        .reorder_tag_in(reorder_tag_in),
+        .buffer_TLAST(buffer_TLAST),
+        .buffer_TVALID(buffer_TVALID),
+        .buffer_TREADY(buffer_TREADY),
+
+        .packet_status(packet_status),
+
+        .buffer_TDATA_out(buffer_TDATA_out),
+        .buffer_TLAST_out(buffer_TLAST_out),
+        .buffer_TVALID_out(buffer_TVALID_out),
+        .buffer_TREADY_out(buffer_TREADY_out),
+
+        .reorder_tag_out(reorder_tag_out),
+
+        .fwd_rdy(fwd_rdy)
     );
 
 

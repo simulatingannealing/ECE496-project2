@@ -1,4 +1,4 @@
-TDATA               TKEEP   TREADY  TVALID  TLAST   rdy_for_sn
+TDATA               TKEEP   TREADY  TVALID  TLAST   rdy_to_send
 0000000000000000    00      1       0       0       0
 FAFFADAFFABEDAFF    FF      1       1       0       0
 1234567812345678    FF      1       1       0       1
