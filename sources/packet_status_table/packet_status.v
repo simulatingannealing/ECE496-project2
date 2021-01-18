@@ -22,7 +22,8 @@
 
 module packet_status # (
     parameter TAG_WIDTH = 6,
-    parameter CIRCULAR_BUFFER_SIZE = 50
+    parameter CIRCULAR_BUFFER_SIZE = 50,
+    parameter STATUS_TABLE_SIZE = CIRCULAR_BUFFER_SIZE * 2
 )(
     input wire clk,
     input wire rst,
@@ -33,20 +34,12 @@ module packet_status # (
     // from the circular buffer
     input wire [TAG_WIDTH-1:0] cb_reorder_tag,
     // to the circular buffer
-    output wire [1:0] cb_rd_packet_status
+    output wire [1:0] cb_rd_packet_status,
+    output reg [STATUS_TABLE_SIZE-1:0] status_table
     
 );
-    reg [1:0] status_table [CIRCULAR_BUFFER_SIZE-1:0];
+    // reg [1:0] status_table [CIRCULAR_BUFFER_SIZE-1:0];
     reg [TAG_WIDTH-1:0] status_reset_iterator;
-    
-    // initialization, simulation only
-    integer i;
-    initial begin
-        for (i = 0; i < CIRCULAR_BUFFER_SIZE; i=i+1) begin
-            status_table[i] <= 2'b00;
-        end
-        status_reset_iterator <= 0;
-    end
     
     /* status:
     00: pending
@@ -55,16 +48,21 @@ module packet_status # (
     always @(posedge clk) begin
         if (! rst) begin
             if (status_reset_iterator != cb_reorder_tag) begin
-                status_table[status_reset_iterator] <= 2'b00;
+                // status_table[status_reset_iterator] <= 2'b00;
+                status_table[{status_reset_iterator,1'b0}] <= 1'b0;
+                status_table[{status_reset_iterator,1'b1}] <= 1'b0;
             end
             if (BPF_wr_valid) begin
-                status_table[BPF_reorder_tag] <= {BPF_wr_packet_status, 1'b1};
+                // status_table[BPF_reorder_tag] <= {BPF_wr_packet_status, 1'b1};
+                status_table[{BPF_reorder_tag,1'b0}] <= 1'b1;
+                status_table[{BPF_reorder_tag,1'b1}] <= BPF_wr_packet_status;
             end
         end else begin
             // initialize the status table to "pending" status
-            for (i = 0; i < 50; i = i + 1) begin
-                status_table[i] <= 2'b00;
-            end
+            // for (i = 0; i < CIRCULAR_BUFFER_SIZE; i = i + 1) begin
+                // status_table[i] <= 2'b00;
+            // end
+            status_table <= 0;
         end
     end
     
@@ -77,6 +75,9 @@ module packet_status # (
         end
     end
     
-    assign cb_rd_packet_status = status_table[cb_reorder_tag];
+    // assign cb_rd_packet_status = status_table[cb_reorder_tag];
+    assign cb_rd_packet_status = {status_table[{cb_reorder_tag,1'b1}], status_table[{cb_reorder_tag,1'b0}]};
+    
+    
     
 endmodule
