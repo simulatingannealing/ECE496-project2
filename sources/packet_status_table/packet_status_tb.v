@@ -41,7 +41,7 @@
 module packet_status_tb;
     
     localparam TAG_WIDTH = 6;
-    localparam CIRCULAR_BUFFER_SIZE = 7;
+    localparam CIRCULAR_BUFFER_SIZE = 50;
     localparam STATUS_TABLE_SIZE = CIRCULAR_BUFFER_SIZE * 2;
     
     /** inputs and outputs of the packet status module **/
@@ -53,15 +53,16 @@ module packet_status_tb;
     wire BPF_wr_packet_status;
     // from the circular buffer
     reg [TAG_WIDTH-1:0] cb_reorder_tag;
+    reg cb_back_pressuring;
     // to the circular buffer
     wire [1:0] cb_rd_packet_status;
     wire [STATUS_TABLE_SIZE-1:0] status_table; // for simulation demo
     
     /** testbench logics **/
-    localparam PACKET_NUM = 61;
+    localparam PACKET_NUM = 334; 
     reg [`CLOG2(PACKET_NUM)-1:0] num_input_packet;
     // simulate the signals from BPFs
-    localparam BPF_WR_VALID_COUNTER_WIDTH = 1;
+    localparam BPF_WR_VALID_COUNTER_WIDTH = 2;
     reg [BPF_WR_VALID_COUNTER_WIDTH-1:0] BPF_wr_valid_counter;
     // from the testbench data file
     reg [`CLOG2(PACKET_NUM)-1:0] packet_index;
@@ -73,7 +74,6 @@ module packet_status_tb;
     // simulate the signals from the circular buffer
     reg [`CLOG2(PACKET_NUM)-1:0] num_output_packet;
     reg [`CLOG2(PACKET_NUM)-1:0] base_num_packets;
-    wire is_refreshing_circular_buffer;
     wire is_all_sent_in;
     wire is_all_sent_out;
     // output of the packet status module
@@ -82,7 +82,7 @@ module packet_status_tb;
     
     integer fd, dummy;
     initial begin
-        clk = 1;
+        clk = 0;
         rst = 1;
         cb_reorder_tag = 0;
         // get data from a memory file
@@ -102,6 +102,7 @@ module packet_status_tb;
         num_output_packet = 0;
         base_num_packets = 0;
         BPF_wr_valid_counter = 0;
+        cb_back_pressuring = 0;
     end
     
     always #5 clk <= ~clk;
@@ -109,21 +110,31 @@ module packet_status_tb;
     assign BPF_wr_valid = &BPF_wr_valid_counter;
     assign BPF_reorder_tag = packet_index % CIRCULAR_BUFFER_SIZE;
     assign BPF_wr_packet_status = packet_status_in_real_order;
-    assign is_refreshing_circular_buffer = (num_input_packet>base_num_packets) && 
-                                           (num_input_packet%CIRCULAR_BUFFER_SIZE==0) && 
-                                           (cb_reorder_tag < CIRCULAR_BUFFER_SIZE-1);
     
+    // simulate the signals from the BPF cores
+    // write is valid every (1<<BPF_WR_VALID_COUNTER_WIDTH) clock cycles
     always @(posedge clk) begin
         rst <= 0;
-        BPF_wr_valid_counter <= BPF_wr_valid_counter + (! is_refreshing_circular_buffer);
+        BPF_wr_valid_counter <= BPF_wr_valid_counter + (! cb_back_pressuring);
         if (! is_all_sent_in) begin
-            if (~BPF_wr_valid && ! is_refreshing_circular_buffer) begin
-                #0.01
+            if (((BPF_wr_valid&&(((num_input_packet + 1)%CIRCULAR_BUFFER_SIZE)==0)) || cb_back_pressuring) && 
+                ((cb_reorder_tag < CIRCULAR_BUFFER_SIZE-1) || 
+                 (cb_reorder_tag == CIRCULAR_BUFFER_SIZE-1 && ! cb_rd_packet_status[0]))) begin
+                // when a number of packets remain to be sent out
+                // but another group of packets are all sent in,
+                // set cb_back_pressuring to 1 starting next clock cycle
+                cb_back_pressuring <= 1;
+            end else begin
+                cb_back_pressuring <= 0;
+            end
+            if ((BPF_wr_valid_counter == (1<<BPF_WR_VALID_COUNTER_WIDTH)-2) && ! cb_back_pressuring) begin
                 dummy = $fscanf(fd, "%b%d%b",
                     packet_status,
                     packet_index,
                     packet_status_in_real_order
                 );
+            end
+            if ((BPF_wr_valid_counter == (1<<BPF_WR_VALID_COUNTER_WIDTH)-1) && ! cb_back_pressuring) begin
                 packet_index_trace[num_input_packet] <= packet_index;
                 packet_status_trace[num_input_packet] <= packet_status;
                 packet_status_in_real_order_trace[num_input_packet] <= packet_status_in_real_order;
@@ -152,6 +163,7 @@ module packet_status_tb;
         .status_table(status_table)
     );
     
+    // simulate the signals from the circular buffer
     // assume the circular buffer emits a packet as soon as the status is ready
     always @(posedge clk) begin
         if (! is_all_sent_out) begin
