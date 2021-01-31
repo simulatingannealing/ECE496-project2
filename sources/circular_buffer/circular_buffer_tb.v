@@ -57,6 +57,8 @@ module circular_buffer_tb;
     reg [`MAX_TDATA_PER_PACKET-1:0] input_packets [`NUM_PACKET_FILES-1:0];
     reg [32-1:0] input_packet_lengths [`NUM_PACKET_FILES-1:0];
 
+    integer total_packet_reorder_tags [`TOTAL_NUM_INPUT_PACKETS];
+
     reg[20*8-1:0] file_name;
     
     initial begin
@@ -66,6 +68,18 @@ module circular_buffer_tb;
         
         clk <= 0;
         rst <= 0;
+
+        // Random input reorder tags
+        total_packet_reorder_tags[0] = 1;
+        total_packet_reorder_tags[1] = 0;
+        total_packet_reorder_tags[2] = 2;
+        total_packet_reorder_tags[3] = 0;
+        total_packet_reorder_tags[4] = 2;
+        total_packet_reorder_tags[5] = 1;
+        total_packet_reorder_tags[6] = 2;
+        total_packet_reorder_tags[7] = 0;
+        total_packet_reorder_tags[8] = 1;
+        total_packet_reorder_tags[9] = 0;
         
         for (i = 0; i < `NUM_PACKET_FILES; i = i + 1) begin
             $sformat(file_name, "packet_%0d.mem", i + 1);
@@ -114,6 +128,10 @@ module circular_buffer_tb;
     integer i_total_packet;
     integer seed = `SEED;
     initial begin
+        buffer_TDATA = 0;
+        reorder_tag_in = 0;
+        buffer_TVALID = 0;
+        buffer_TLAST = 0;
         #100
         i_packet = $urandom(seed);    // seed random generator
         for (i_total_packet = 0; i_total_packet < `TOTAL_NUM_INPUT_PACKETS; i_total_packet = i_total_packet + 1) begin
@@ -123,11 +141,17 @@ module circular_buffer_tb;
             $display("File packet %0d", i_packet);
             i_word = 0;
 
+            reorder_tag_in = total_packet_reorder_tags[i_total_packet];
+
             for (i_word = 0; i_word < input_packet_lengths[i_packet]; i_word += 1) begin
                 $display("Word %0d", i_word);
                 buffer_TDATA = input_packets[i_packet][i_word*`DATA_WIDTH +: `DATA_WIDTH];
+                buffer_TLAST = 0;
                 if (($urandom() % 100) < 60) begin
                     buffer_TVALID = 1;
+                    if (i_word == input_packet_lengths[i_packet] - 1) begin
+                        buffer_TLAST = 1;
+                    end
                 end
                 else begin
                     buffer_TVALID = 0;
@@ -135,6 +159,7 @@ module circular_buffer_tb;
                 end
                 #10;
             end
+            buffer_TVALID = 0;
         end
         $display("Done all file packets");
         $finish;
