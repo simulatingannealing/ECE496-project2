@@ -12,9 +12,6 @@ module circular_buffer #(
     input wire clk,
     input wire rst,
 
-    //from AXI stream
-    input rdy_to_send,
-
     //from forwarder
     input wire [DATA_WIDTH-1:0] buffer_TDATA,
     input wire [TAG_WIDTH-1:0] reorder_tag_in,
@@ -25,7 +22,7 @@ module circular_buffer #(
     //from memory table
     input wire [1:0] packet_status,
 
-    //to AXI
+    //to AXI output of packet filter IP
     output wire [DATA_WIDTH-1:0] buffer_TDATA_out,
     output wire buffer_TLAST_out,
     output wire buffer_TVALID_out,
@@ -125,7 +122,7 @@ module circular_buffer #(
             refresh_buffer <= 1;
         end else begin
             if(packet_status == 2'b11) begin
-                if (rdy_to_send) begin
+                if (buffer_TREADY_out) begin
                     if(TDATA_counter[out_pointer]!=0) begin
                         TLAST_reg <= 0;
                         rd_addr[out_pointer]<=rd_addr[out_pointer]+1;
