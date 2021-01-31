@@ -15,7 +15,7 @@ circular_buffer_tb.v
 `define CIRCULAR_BUFFER_SIZE    3   // Normally 50
 `define DATA_WIDTH              64
 `define ADDR_WIDTH              10
-`define MAX_TDATA_PER_PACKET    (5 * `DATA_WIDTH)   // packet files have at most 5 lines of data
+`define MAX_TDATA_PER_PACKET    (6 * `DATA_WIDTH)   // packet files have at most 5 lines of data
 
 `define NUM_PACKET_FILES        3
 
@@ -53,7 +53,7 @@ module circular_buffer_tb;
     reg [`DATA_WIDTH-1:0] word;
     reg [`MAX_TDATA_PER_PACKET-1:0] input_packets [`NUM_PACKET_FILES-1:0];
 
-    reg[100*8-1:0] file_name;
+    reg[20*8-1:0] file_name;
     
     initial begin
         $dumpfile("circular_buffer.vcd");
@@ -64,7 +64,8 @@ module circular_buffer_tb;
         rst <= 0;
         
         for (i = 0; i < `NUM_PACKET_FILES; i = i + 1) begin
-            $sformat(file_name, "packet_%d.mem", i + 1);
+            $sformat(file_name, "packet_%0d.mem", i + 1);
+            $display("Opening file %s", file_name);
             fd = $fopen(file_name, "r");
             if (fd == 0) begin
                 $display("Could not open file");
@@ -82,16 +83,18 @@ module circular_buffer_tb;
             i_word = 0;
             loop = 1;
             while (loop) begin
-                if ($feof(fd)) begin
-                    $display("Reached end of drivers file");
-                    loop = 0;
-                end
-                #0.01
+                
+                // #0.01
                 dummy = $fscanf(fd, "%h",
                     word
                     // input_packets[i][i_word*`DATA_WIDTH +: `DATA_WIDTH]
                 );
                 input_packets[i][i_word*`DATA_WIDTH +: `DATA_WIDTH] = word;
+
+                if ($feof(fd)) begin
+                    $display("Reached end of drivers file");
+                    loop = 0;
+                end
 
                 i_word = i_word + 1;
             end
