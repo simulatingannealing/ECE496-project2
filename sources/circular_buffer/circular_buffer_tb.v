@@ -18,6 +18,9 @@ circular_buffer_tb.v
 `define MAX_TDATA_PER_PACKET    (6 * `DATA_WIDTH)   // packet files have at most 5 lines of data
 
 `define NUM_PACKET_FILES        3
+`define TOTAL_NUM_INPUT_PACKETS 10
+
+`define SEED                    37
 
 module circular_buffer_tb;
 
@@ -52,6 +55,7 @@ module circular_buffer_tb;
     reg loop;
     reg [`DATA_WIDTH-1:0] word;
     reg [`MAX_TDATA_PER_PACKET-1:0] input_packets [`NUM_PACKET_FILES-1:0];
+    reg [32-1:0] input_packet_lengths [`NUM_PACKET_FILES-1:0];
 
     reg[20*8-1:0] file_name;
     
@@ -82,6 +86,7 @@ module circular_buffer_tb;
             
             i_word = 0;
             loop = 1;
+            input_packet_lengths[i] = 0;
             while (loop) begin
                 
                 // #0.01
@@ -89,7 +94,10 @@ module circular_buffer_tb;
                     word
                     // input_packets[i][i_word*`DATA_WIDTH +: `DATA_WIDTH]
                 );
+                $display("Word: %x", word);
                 input_packets[i][i_word*`DATA_WIDTH +: `DATA_WIDTH] = word;
+                $display("Packet: %x", input_packets[i]);
+                input_packet_lengths[i] += 1;
 
                 if ($feof(fd)) begin
                     $display("Reached end of drivers file");
@@ -102,6 +110,35 @@ module circular_buffer_tb;
     end
     
     always #5 clk <= ~clk;
+    integer i_packet;
+    integer i_total_packet;
+    integer seed = `SEED;
+    initial begin
+        #100
+        i_packet = $urandom(seed);    // seed random generator
+        for (i_total_packet = 0; i_total_packet < `TOTAL_NUM_INPUT_PACKETS; i_total_packet = i_total_packet + 1) begin
+            $display("Total packet %0d", i_total_packet);
+            
+            i_packet = $urandom() % 3;  // which input file to choose
+            $display("File packet %0d", i_packet);
+            i_word = 0;
+
+            for (i_word = 0; i_word < input_packet_lengths[i_packet]; i_word += 1) begin
+                $display("Word %0d", i_word);
+                buffer_TDATA = input_packets[i_packet][i_word*`DATA_WIDTH +: `DATA_WIDTH];
+                if (($urandom() % 100) < 60) begin
+                    buffer_TVALID = 1;
+                end
+                else begin
+                    buffer_TVALID = 0;
+                    i_word -= 1;
+                end
+                #10;
+            end
+        end
+        $display("Done all file packets");
+        $finish;
+    end
     
     // always @(posedge clk) begin
     //     if ($feof(fd)) begin
