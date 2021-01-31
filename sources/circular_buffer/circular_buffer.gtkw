@@ -1,47 +1,67 @@
 [*]
-[*] GTKWave Analyzer v3.3.102 (w)1999-2019 BSI
-[*] Sun Dec  1 18:45:02 2019
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Sun Jan 31 15:44:28 2021
 [*]
-[dumpfile] "/home/mahkoe/research/fpga-bpf/sources/snoopers/axistream_snooper/axistream_snooper.vcd"
-[dumpfile_mtime] "Sun Dec  1 18:42:42 2019"
-[dumpfile_size] 7794
-[savefile] "/home/mahkoe/research/fpga-bpf/sources/snoopers/axistream_snooper/axistream_snooper.gtkw"
+[dumpfile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.vcd"
+[dumpfile_mtime] "Sun Jan 31 15:38:45 2021"
+[dumpfile_size] 5942
+[savefile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.gtkw"
 [timestart] 0
-[size] 956 1060
-[pos] -1 -541
+[size] 612 1060
+[pos] 23 -1
 *-14.739454 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-[treeopen] testbench_template.
+[treeopen] circular_buffer_tb.
+[treeopen] circular_buffer_tb.DUT.
+[treeopen] circular_buffer_tb.DUT.genblk1[0].
 [sst_width] 214
-[signals_width] 182
+[signals_width] 206
 [sst_expanded] 1
-[sst_vpaned_height] 610
+[sst_vpaned_height] 220
 @28
-testbench_template.clk
-testbench_template.rst
+circular_buffer_tb.DUT.clk
+circular_buffer_tb.DUT.rst
 @800200
--AXIStream signals
+-AXI Input
 @22
-testbench_template.sn_TDATA[63:0]
-testbench_template.sn_TKEEP[7:0]
+circular_buffer_tb.DUT.buffer_TDATA[63:0]
+circular_buffer_tb.DUT.reorder_tag_in[5:0]
 @28
-testbench_template.sn_TVALID
-testbench_template.sn_TREADY
-testbench_template.sn_TLAST
+circular_buffer_tb.DUT.buffer_TLAST
+circular_buffer_tb.DUT.buffer_TVALID
+circular_buffer_tb.DUT.buffer_TREADY
 @1000200
--AXIStream signals
-@28
-testbench_template.rdy_for_sn
-testbench_template.rdy_for_sn_ack
+-AXI Input
+@800200
+-AXI Output
 @22
-testbench_template.sn_byte_inc[7:0]
-testbench_template.sn_wr_data[63:0]
-testbench_template.sn_addr[8:0]
+circular_buffer_tb.DUT.buffer_TDATA_out[63:0]
 @28
-testbench_template.sn_wr_en
-testbench_template.sn_done
-testbench_template.DUT.state[1:0]
-testbench_template.DUT.sn_TLAST_i
-@29
-testbench_template.DUT.rdy_for_sn_i
+circular_buffer_tb.DUT.buffer_TLAST_out
+circular_buffer_tb.DUT.buffer_TVALID_out
+circular_buffer_tb.DUT.buffer_TREADY_out
+@1000200
+-AXI Output
+@22
+circular_buffer_tb.DUT.TDATA_CURRENT[7:0]
+@28
+circular_buffer_tb.DUT.TLAST_reg
+@22
+circular_buffer_tb.DUT.TVALID_count[7:0]
+circular_buffer_tb.DUT.buffer_counter[5:0]
+@28
+circular_buffer_tb.DUT.fwd_rdy
+@420
+circular_buffer_tb.DUT.i
+@22
+circular_buffer_tb.DUT.out_pointer[5:0]
+@28
+circular_buffer_tb.DUT.packet_status[1:0]
+circular_buffer_tb.DUT.rd_en[2:0]
+circular_buffer_tb.DUT.rdy_to_send
+circular_buffer_tb.DUT.refresh_buffer
+@22
+circular_buffer_tb.DUT.reorder_tag_out[5:0]
+@28
+circular_buffer_tb.DUT.wr_en[2:0]
 [pattern_trace] 1
 [pattern_trace] 0
