@@ -7,7 +7,9 @@ module circular_buffer #(
     parameter CIRCULAR_BUFFER_SIZE = 50,
     parameter DATA_WIDTH = 64,
     parameter ADDR_WIDTH = 10,
-    parameter MAX_TDATA_PER_PACKET=256
+    // Max number of clock cycles of data for one packet
+    // Default assumes max 1500 bytes per packet, 32-bit AXI data width
+    parameter MAX_TDATA_PER_PACKET=375
 )(
     input wire clk,
     input wire rst,
@@ -63,7 +65,9 @@ module circular_buffer #(
     generate
         genvar i_gen;
         for (i_gen = 0; i_gen < CIRCULAR_BUFFER_SIZE; i_gen = i_gen + 1) begin
-            assign circular_buffer_valid_dump[i_gen*MAX_TDATA_PER_PACKET +: MAX_TDATA_PER_PACKET] = circular_buffer_valid[i_gen];
+            assign circular_buffer_valid_dump[
+                i_gen*MAX_TDATA_PER_PACKET +: MAX_TDATA_PER_PACKET]
+                = circular_buffer_valid[i_gen];
             assign TDATA_counter_dump[i_gen*8 +: 8] = TDATA_counter[i_gen];
             assign wr_addr_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = wr_addr[i_gen];
             assign wr_data_dump[i_gen*DATA_WIDTH +: DATA_WIDTH] = wr_data[i_gen];

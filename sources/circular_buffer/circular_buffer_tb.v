@@ -15,7 +15,8 @@ circular_buffer_tb.v
 `define CIRCULAR_BUFFER_SIZE    3   // Normally 50
 `define DATA_WIDTH              64
 `define ADDR_WIDTH              10
-`define MAX_TDATA_PER_PACKET    (6 * `DATA_WIDTH)   // packet files have at most 5 lines of data
+`define MAX_TDATA_PER_PACKET    6   // packet files have at most 5 lines of data
+`define MAX_BITS_PER_PACKET     (`MAX_TDATA_PER_PACKET * `DATA_WIDTH)
 
 `define NUM_PACKET_FILES        3
 `define TOTAL_NUM_INPUT_PACKETS 10
@@ -65,7 +66,7 @@ module circular_buffer_tb;
     integer i_word;
     reg loop;
     reg [`DATA_WIDTH-1:0] word;
-    reg [`MAX_TDATA_PER_PACKET*`NUM_PACKET_FILES-1:0] input_packets;
+    reg [`MAX_BITS_PER_PACKET*`NUM_PACKET_FILES-1:0] input_packets;
     reg [32*`NUM_PACKET_FILES-1:0] input_packet_lengths;
 
     integer total_packet_reorder_tags [`TOTAL_NUM_INPUT_PACKETS];
@@ -121,8 +122,8 @@ module circular_buffer_tb;
                     word
                 );
                 $display("Word: %x", word);
-                input_packets[(i*`MAX_TDATA_PER_PACKET) + (i_word*`DATA_WIDTH) +: `DATA_WIDTH] = word;
-                $display("Packet: %x", input_packets[i*`MAX_TDATA_PER_PACKET +: `MAX_TDATA_PER_PACKET]);
+                input_packets[(i*`MAX_BITS_PER_PACKET) + (i_word*`DATA_WIDTH) +: `DATA_WIDTH] = word;
+                $display("Packet: %x", input_packets[i*`MAX_BITS_PER_PACKET +: `MAX_BITS_PER_PACKET]);
                 input_packet_lengths[i*32 +: 32] += 1;
 
                 if ($feof(fd)) begin
@@ -157,7 +158,7 @@ module circular_buffer_tb;
 
             for (i_word = 0; i_word < input_packet_lengths[i_packet*32 +: 32]; i_word += 1) begin
                 $display("Word %0d", i_word);
-                buffer_TDATA = input_packets[(i_packet*`MAX_TDATA_PER_PACKET) + (i_word*`DATA_WIDTH) +: `DATA_WIDTH];
+                buffer_TDATA = input_packets[(i_packet*`MAX_BITS_PER_PACKET) + (i_word*`DATA_WIDTH) +: `DATA_WIDTH];
                 buffer_TLAST = 0;
                 if (($urandom() % 100) < 60) begin
                     buffer_TVALID = 1;
