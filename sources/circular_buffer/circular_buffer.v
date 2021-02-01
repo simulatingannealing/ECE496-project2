@@ -53,6 +53,25 @@ module circular_buffer #(
     wire [7:0] TDATA_CURRENT;
     assign TDATA_CURRENT = TDATA_counter[reorder_tag_in];
 
+    // Just for viewing arrays in GTKWave
+    reg [MAX_TDATA_PER_PACKET*CIRCULAR_BUFFER_SIZE-1:0] circular_buffer_valid_dump;
+    reg [8*CIRCULAR_BUFFER_SIZE-1:0] TDATA_counter_dump;
+    reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] wr_addr_dump;
+    reg [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] wr_data_dump;
+    reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_addr_dump;
+    reg [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_data_dump;
+    generate
+        genvar i_gen;
+        for (i_gen = 0; i_gen < CIRCULAR_BUFFER_SIZE; i_gen = i_gen + 1) begin
+            assign circular_buffer_valid_dump[i_gen*MAX_TDATA_PER_PACKET +: MAX_TDATA_PER_PACKET] = circular_buffer_valid[i_gen];
+            assign TDATA_counter_dump[i_gen*8 +: 8] = TDATA_counter[i_gen];
+            assign wr_addr_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = wr_addr[i_gen];
+            assign wr_data_dump[i_gen*DATA_WIDTH +: DATA_WIDTH] = wr_data[i_gen];
+            assign rd_addr_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = rd_addr[i_gen];
+            assign rd_data_dump[i_gen*DATA_WIDTH +: DATA_WIDTH] = rd_data[i_gen];
+        end
+    endgenerate
+
     //initialization or testing
     integer i;
     initial begin
@@ -68,7 +87,9 @@ module circular_buffer #(
             TVALID_count <= 0;
         end
         out_pointer <= 6'b0;
+        TLAST_reg <= 0;
         buffer_counter <= 0;
+        refresh_buffer <= 0;
     end
 
     //a counter to store the packet datas and tags
@@ -76,6 +97,7 @@ module circular_buffer #(
         if (rst) begin
             //initialization of the buffer
             buffer_counter <= 0;
+            refresh_buffer <= 0;
             for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
                 //circular_buffer_data[i] <= 64'b0;
                 wr_en[i] <= 1;
