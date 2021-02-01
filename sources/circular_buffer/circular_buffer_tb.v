@@ -14,7 +14,6 @@ circular_buffer_tb.v
 `define TAG_WIDTH               6
 `define CIRCULAR_BUFFER_SIZE    3   // Normally 50
 `define DATA_WIDTH              64
-`define ADDR_WIDTH              10
 `define MAX_TDATA_PER_PACKET    6   // packet files have at most 5 lines of data
 `define MAX_BITS_PER_PACKET     (`MAX_TDATA_PER_PACKET * `DATA_WIDTH)
 
@@ -225,7 +224,6 @@ module circular_buffer_tb;
         .TAG_WIDTH(`TAG_WIDTH),
         .CIRCULAR_BUFFER_SIZE(`CIRCULAR_BUFFER_SIZE),
         .DATA_WIDTH(`DATA_WIDTH),
-        .ADDR_WIDTH(`ADDR_WIDTH),
         .MAX_TDATA_PER_PACKET(`MAX_TDATA_PER_PACKET)
     ) DUT (
         .clk(clk),

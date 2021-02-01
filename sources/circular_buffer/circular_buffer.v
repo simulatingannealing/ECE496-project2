@@ -6,7 +6,6 @@ module circular_buffer #(
     parameter TAG_WIDTH = 6,
     parameter CIRCULAR_BUFFER_SIZE = 50,
     parameter DATA_WIDTH = 64,
-    parameter ADDR_WIDTH = 10,
     // Max number of clock cycles of data for one packet
     // Default assumes max 1500 bytes per packet, 32-bit AXI data width
     parameter MAX_TDATA_PER_PACKET=375
@@ -33,6 +32,8 @@ module circular_buffer #(
     //to memory table
     output wire [TAG_WIDTH-1:0] reorder_tag_out
 );
+
+    localparam ADDR_WIDTH = $clog2(MAX_TDATA_PER_PACKET);
 
     reg [TAG_WIDTH-1:0] out_pointer;
     //reg [DATA_WIDTH-1:0] circular_buffer_data [CIRCULAR_BUFFER_SIZE-1:0];
