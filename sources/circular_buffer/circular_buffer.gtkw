@@ -1,14 +1,14 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Sun Jan 31 15:44:28 2021
+[*] Mon Feb  1 15:04:12 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.vcd"
-[dumpfile_mtime] "Sun Jan 31 15:38:45 2021"
-[dumpfile_size] 5942
+[dumpfile_mtime] "Mon Feb  1 15:00:24 2021"
+[dumpfile_size] 12258
 [savefile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.gtkw"
 [timestart] 0
-[size] 612 1060
-[pos] 23 -1
+[size] 614 1060
+[pos] -503 0
 *-14.739454 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] circular_buffer_tb.
 [treeopen] circular_buffer_tb.DUT.
@@ -41,6 +41,14 @@ circular_buffer_tb.DUT.buffer_TVALID_out
 circular_buffer_tb.DUT.buffer_TREADY_out
 @1000200
 -AXI Output
+@800200
+-To/From Table
+@23
+circular_buffer_tb.DUT.reorder_tag_out[5:0]
+@28
+circular_buffer_tb.DUT.packet_status[1:0]
+@1000200
+-To/From Table
 @22
 circular_buffer_tb.DUT.TDATA_CURRENT[7:0]
 @28
@@ -55,13 +63,8 @@ circular_buffer_tb.DUT.i
 @22
 circular_buffer_tb.DUT.out_pointer[5:0]
 @28
-circular_buffer_tb.DUT.packet_status[1:0]
 circular_buffer_tb.DUT.rd_en[2:0]
-circular_buffer_tb.DUT.rdy_to_send
 circular_buffer_tb.DUT.refresh_buffer
-@22
-circular_buffer_tb.DUT.reorder_tag_out[5:0]
-@28
 circular_buffer_tb.DUT.wr_en[2:0]
 [pattern_trace] 1
 [pattern_trace] 0

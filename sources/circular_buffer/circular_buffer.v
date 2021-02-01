@@ -19,20 +19,17 @@ module circular_buffer #(
     input wire buffer_TVALID,
     output wire buffer_TREADY,
 
-    //from memory table
-    input wire [1:0] packet_status,
-
     //to AXI output of packet filter IP
     output wire [DATA_WIDTH-1:0] buffer_TDATA_out,
     output wire buffer_TLAST_out,
     output wire buffer_TVALID_out,
     input wire buffer_TREADY_out,
 
-    //to memory table
-    output wire [TAG_WIDTH-1:0] reorder_tag_out,
+    //from memory table
+    input wire [1:0] packet_status,
 
-    //to forwarder
-    output wire fwd_rdy
+    //to memory table
+    output wire [TAG_WIDTH-1:0] reorder_tag_out
 );
 
     reg [TAG_WIDTH-1:0] out_pointer;
@@ -119,6 +116,7 @@ module circular_buffer #(
             TVALID_count <= 0;
         end else if(CIRCULAR_BUFFER_SIZE-1==out_pointer) begin
             out_pointer <= 0;
+            // TODO - is it legal to assign from two always blocks
             refresh_buffer <= 1;
         end else begin
             if(packet_status == 2'b11) begin
@@ -144,7 +142,7 @@ module circular_buffer #(
     assign buffer_TDATA_out = rd_data[out_pointer];
     assign buffer_TVALID_out = circular_buffer_valid[out_pointer][TVALID_count];
     assign buffer_TLAST_out = TLAST_reg;
-    assign fwd_rdy = (buffer_counter != CIRCULAR_BUFFER_SIZE-1)?1:0;
+    assign buffer_TREADY = (buffer_counter != CIRCULAR_BUFFER_SIZE-1)?1:0;
 
     //ram
     genvar j;
