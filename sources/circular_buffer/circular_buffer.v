@@ -22,7 +22,7 @@ module circular_buffer #(
 
     //to AXI output of packet filter IP
     output wire [DATA_WIDTH-1:0] buffer_TDATA_out,
-    output wire buffer_TLAST_out,
+    output reg buffer_TLAST_out,
     output wire buffer_TVALID_out,
     input wire buffer_TREADY_out,
 
@@ -30,19 +30,17 @@ module circular_buffer #(
     input wire [1:0] packet_status,
 
     //to memory table
-    output wire [TAG_WIDTH-1:0] reorder_tag_out
+    output reg [TAG_WIDTH-1:0] reorder_tag_out
 );
 
     localparam ADDR_WIDTH = $clog2(MAX_TDATA_PER_PACKET);
 
-    reg [TAG_WIDTH-1:0] out_pointer;
     //reg [DATA_WIDTH-1:0] circular_buffer_data [CIRCULAR_BUFFER_SIZE-1:0];
     reg [MAX_TDATA_PER_PACKET-1:0] circular_buffer_valid [CIRCULAR_BUFFER_SIZE-1:0];
     reg [TAG_WIDTH-1:0] buffer_counter;
     reg refresh_buffer;
-    reg [7:0] TDATA_counter [CIRCULAR_BUFFER_SIZE-1:0]; //max 256 tdatas in one packet
-    reg TLAST_reg;
-    reg [7:0] TVALID_count;
+    reg [ADDR_WIDTH-1:0] TDATA_counter [CIRCULAR_BUFFER_SIZE-1:0];
+    reg [ADDR_WIDTH-1:0] TVALID_count;
 
     //ram param for packets
     reg [CIRCULAR_BUFFER_SIZE-1:0] wr_en;
@@ -53,12 +51,12 @@ module circular_buffer #(
     reg [ADDR_WIDTH-1:0] rd_addr [CIRCULAR_BUFFER_SIZE-1:0];
     reg [DATA_WIDTH-1:0] rd_data [CIRCULAR_BUFFER_SIZE-1:0];
 
-    wire [7:0] TDATA_CURRENT;
-    assign TDATA_CURRENT = TDATA_counter[reorder_tag_in];
+    wire [7:0] TDATA_current;
+    assign TDATA_current = TDATA_counter[reorder_tag_in];
 
     // Just for viewing arrays in GTKWave
     reg [MAX_TDATA_PER_PACKET*CIRCULAR_BUFFER_SIZE-1:0] circular_buffer_valid_dump;
-    reg [8*CIRCULAR_BUFFER_SIZE-1:0] TDATA_counter_dump;
+    reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] TDATA_counter_dump;
     reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] wr_addr_dump;
     reg [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] wr_data_dump;
     reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_addr_dump;
@@ -69,7 +67,7 @@ module circular_buffer #(
             assign circular_buffer_valid_dump[
                 i_gen*MAX_TDATA_PER_PACKET +: MAX_TDATA_PER_PACKET]
                 = circular_buffer_valid[i_gen];
-            assign TDATA_counter_dump[i_gen*8 +: 8] = TDATA_counter[i_gen];
+            assign TDATA_counter_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = TDATA_counter[i_gen];
             assign wr_addr_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = wr_addr[i_gen];
             assign wr_data_dump[i_gen*DATA_WIDTH +: DATA_WIDTH] = wr_data[i_gen];
             assign rd_addr_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = rd_addr[i_gen];
@@ -82,7 +80,7 @@ module circular_buffer #(
     initial begin
         for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
             //circular_buffer_data[i] <= 64'b0;
-            wr_en[i] <= 1;
+            wr_en[i] <= 0;
             rd_en[i] <= 0;
             wr_addr[i] <= 0;
             wr_data[i] <= 0;
@@ -91,8 +89,8 @@ module circular_buffer #(
             TDATA_counter[i] <= 0;
             TVALID_count <= 0;
         end
-        out_pointer <= 6'b0;
-        TLAST_reg <= 0;
+        reorder_tag_out <= 6'b0;
+        buffer_TLAST_out <= 0;
         buffer_counter <= 0;
         refresh_buffer <= 0;
     end
@@ -105,7 +103,7 @@ module circular_buffer #(
             refresh_buffer <= 0;
             for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
                 //circular_buffer_data[i] <= 64'b0;
-                wr_en[i] <= 1;
+                wr_en[i] <= 0;
                 rd_en[i] <= 0;
                 wr_addr[i] <= 0;
                 wr_data[i] <= 0;
@@ -114,6 +112,11 @@ module circular_buffer #(
                 TDATA_counter[i] <= 0;
             end
         end else begin
+            
+            // By default, disable all write enables
+            // TODO - check if this is right
+            wr_en <= 0;
+
             if(buffer_counter != CIRCULAR_BUFFER_SIZE-1) begin
                 //load the packets into memory
                 if(buffer_TLAST) begin
@@ -124,7 +127,7 @@ module circular_buffer #(
                 wr_en[reorder_tag_in] <= 1;
                 wr_addr[reorder_tag_in] <= wr_addr[reorder_tag_in] + 1;
                 wr_data[reorder_tag_in] <= buffer_TDATA;
-                circular_buffer_valid[reorder_tag_in][TDATA_CURRENT] <= buffer_TVALID;
+                circular_buffer_valid[reorder_tag_in][TDATA_current] <= buffer_TVALID;
             end else if (refresh_buffer) begin
                 buffer_counter <= 0;
                 refresh_buffer <= 0;
@@ -132,43 +135,40 @@ module circular_buffer #(
         end 
     end
 
-    assign reorder_tag_out = out_pointer;
-
     //a counter for the pointer when status table gets back to us
     //output when packet is accepted & AXI ready 
     always @(posedge clk) begin
         if(rst) begin
-            out_pointer <= 0;
-            TLAST_reg <= 0;
+            reorder_tag_out <= 0;
+            buffer_TLAST_out <= 0;
             TVALID_count <= 0;
-        end else if(CIRCULAR_BUFFER_SIZE-1==out_pointer) begin
-            out_pointer <= 0;
+        end else if(CIRCULAR_BUFFER_SIZE-1==reorder_tag_out) begin
+            reorder_tag_out <= 0;
             // TODO - is it legal to assign from two always blocks
             refresh_buffer <= 1;
         end else begin
             if(packet_status == 2'b11) begin
                 if (buffer_TREADY_out) begin
-                    if(TDATA_counter[out_pointer]!=0) begin
-                        TLAST_reg <= 0;
-                        rd_addr[out_pointer]<=rd_addr[out_pointer]+1;
-                        TDATA_counter[out_pointer]<=TDATA_counter[out_pointer]-1;
+                    if(TDATA_counter[reorder_tag_out]!=0) begin
+                        buffer_TLAST_out <= 0;
+                        rd_addr[reorder_tag_out]<=rd_addr[reorder_tag_out]+1;
+                        TDATA_counter[reorder_tag_out]<=TDATA_counter[reorder_tag_out]-1;
                         TVALID_count <= TVALID_count + 1;
                     end else begin
-                        TLAST_reg <= 1;
-                        out_pointer<=out_pointer+1;
+                        buffer_TLAST_out <= 1;
+                        reorder_tag_out<=reorder_tag_out+1;
                         TVALID_count <= 0;
                     end
                 end
             end else if (packet_status == 2'b01) begin //packet rejected, skip
-                circular_buffer_valid[out_pointer] <= 0;
-                out_pointer <= out_pointer + 1;
+                circular_buffer_valid[reorder_tag_out] <= 0;
+                reorder_tag_out <= reorder_tag_out + 1;
             end
         end
     end
 
-    assign buffer_TDATA_out = rd_data[out_pointer];
-    assign buffer_TVALID_out = circular_buffer_valid[out_pointer][TVALID_count];
-    assign buffer_TLAST_out = TLAST_reg;
+    assign buffer_TDATA_out = rd_data[reorder_tag_out];
+    assign buffer_TVALID_out = circular_buffer_valid[reorder_tag_out][TVALID_count];
     assign buffer_TREADY = (buffer_counter != CIRCULAR_BUFFER_SIZE-1)?1:0;
 
     //ram
