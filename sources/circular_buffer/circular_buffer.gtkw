@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Tue Feb  2 03:06:51 2021
+[*] Tue Feb  2 16:20:22 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.vcd"
-[dumpfile_mtime] "Tue Feb  2 03:06:13 2021"
-[dumpfile_size] 32257
+[dumpfile_mtime] "Tue Feb  2 16:06:38 2021"
+[dumpfile_size] 31329
 [savefile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.gtkw"
-[timestart] 79700
-[size] 1183 1060
-[pos] -227 0
-*-14.739454 100000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 145800
+[size] 1807 1060
+[pos] -851 0
+*-14.739454 199000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] circular_buffer_tb.
 [treeopen] circular_buffer_tb.DUT.
 [sst_width] 213
-[signals_width] 279
+[signals_width] 693
 [sst_expanded] 1
 [sst_vpaned_height] 220
 @28
@@ -51,10 +51,11 @@ circular_buffer_tb.DUT.packet_status[1:0]
 @800200
 -Write to RAM
 @28
+circular_buffer_tb.DUT.wr_en_global
 circular_buffer_tb.DUT.wr_en[2:0]
+circular_buffer_tb.DUT.wr_addr[2:0]
 @22
-circular_buffer_tb.DUT.wr_addr_dump[8:0]
-circular_buffer_tb.DUT.wr_data_dump[191:0]
+circular_buffer_tb.DUT.wr_data[63:0]
 @1000200
 -Write to RAM
 @800200
@@ -66,12 +67,10 @@ circular_buffer_tb.DUT.rd_data_dump[191:0]
 -Read from RAM
 @800200
 -Buffer Control
-@22
-circular_buffer_tb.DUT.buffer_counter[5:0]
 @28
 circular_buffer_tb.DUT.refresh_buffer
-@22
-circular_buffer_tb.DUT.buffer_valid_dump[17:0]
+circular_buffer_tb.DUT.buffer_packet_word_count_dump[8:0]
+circular_buffer_tb.DUT.packet_output_word_idx[2:0]
 @1000200
 -Buffer Control
 [pattern_trace] 1

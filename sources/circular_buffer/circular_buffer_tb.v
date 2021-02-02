@@ -77,7 +77,7 @@ module circular_buffer_tb;
         $dumpvars;
         $dumplimit(512000);
         
-        clk <= 0;
+        clk <= 1;   // Want rising clock edges to be on 10 ns boundaries
         rst <= 0;
 
         // Random input reorder tags
