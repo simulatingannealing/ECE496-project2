@@ -73,6 +73,7 @@ module circular_buffer #(
     integer i;
     initial begin
         buffer_packet_valid <= 0;
+        packet_output_word_idx <= 0;
         for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
             //circular_buffer_data[i] <= 64'b0;
             wr_en[i] <= 0;
@@ -93,6 +94,7 @@ module circular_buffer #(
         if (rst) begin
             //initialization of the buffer
             buffer_packet_valid <= 0;
+            
             for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
                 //circular_buffer_data[i] <= 64'b0;
                 wr_en[i] <= 0;
@@ -133,14 +135,15 @@ module circular_buffer #(
     always @(posedge clk) begin
         if(rst) begin
             reorder_tag_out <= 0;
+            packet_output_word_idx <= 0;
             buffer_TLAST_out <= 0;
             TVALID_count <= 0;
             refresh_buffer <= 0;
-        end else if(CIRCULAR_BUFFER_SIZE-1==reorder_tag_out) begin
+        end else if(CIRCULAR_BUFFER_SIZE==reorder_tag_out) begin
             reorder_tag_out <= 0;
             refresh_buffer <= 1;
         end else begin
-            if(packet_status == 2'b11) begin
+            if(packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out]) begin
                 if (buffer_TREADY_out) begin
                     if(packet_output_word_idx < buffer_packet_word_count[reorder_tag_out]) begin
                         buffer_TLAST_out <= 0;

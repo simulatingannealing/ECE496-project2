@@ -57,7 +57,7 @@ module circular_buffer_tb;
     // Need this to be a 1-D vector instead of a 2-D vector/array
     // because GTKWave does not display 2-D vectors/arrays
     reg [2*`CIRCULAR_BUFFER_SIZE-1:0] packet_status_table;
-    assign packet_status = packet_status_table[reorder_tag_out];
+    assign packet_status = packet_status_table[reorder_tag_out*2 +: 2];
 
     
     integer fd, dummy;
