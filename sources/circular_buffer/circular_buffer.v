@@ -73,7 +73,6 @@ module circular_buffer #(
             buffer_packet_word_count[i] <= 0;
         end
         reorder_tag_out <= 6'b0;
-        buffer_TLAST_out <= 0;
     end
 
     // input
@@ -126,7 +125,6 @@ module circular_buffer #(
         if(rst) begin
             reorder_tag_out <= 0;
             packet_output_word_idx <= 0;
-            buffer_TLAST_out <= 0;
         end else if(CIRCULAR_BUFFER_SIZE==reorder_tag_out) begin
             reorder_tag_out <= 0;
         end else begin
@@ -135,10 +133,8 @@ module circular_buffer #(
                 buffer_TVALID_out <= 1;
                 if (buffer_TREADY_out) begin
                     if(packet_output_word_idx < buffer_packet_word_count[reorder_tag_out]) begin
-                        buffer_TLAST_out <= 0;
                         packet_output_word_idx <= packet_output_word_idx + 1;
                     end else begin
-                        buffer_TLAST_out <= 1;
                         reorder_tag_out<=reorder_tag_out+1;
                         packet_output_word_idx <= 0;
                     end
@@ -148,6 +144,13 @@ module circular_buffer #(
             end
         end
     end
+
+    // TODO - simplify?
+    // TODO - is the ready condition necessary? can TLAST be valid for multiple cycles?
+    assign buffer_TLAST_out =
+        (packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out]) &&
+        buffer_TREADY_out &&
+        (packet_output_word_idx == buffer_packet_word_count[reorder_tag_out]);
 
     assign rd_addr = packet_output_word_idx;
 
