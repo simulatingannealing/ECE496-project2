@@ -46,7 +46,7 @@ module circular_buffer #(
     reg [CIRCULAR_BUFFER_SIZE-1:0] wr_en;
     reg [ADDR_WIDTH-1:0] wr_addr;
     reg [DATA_WIDTH-1:0] wr_data;
-    reg [ADDR_WIDTH-1:0] rd_addr [CIRCULAR_BUFFER_SIZE-1:0];
+    reg [ADDR_WIDTH-1:0] rd_addr;
     reg [DATA_WIDTH-1:0] rd_data [CIRCULAR_BUFFER_SIZE-1:0];
 
     wire [7:0] TDATA_current;
@@ -54,13 +54,11 @@ module circular_buffer #(
 
     // Just for viewing arrays in GTKWave
     reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] buffer_packet_word_count_dump;
-    reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_addr_dump;
     reg [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_data_dump;
     generate
         genvar i_gen;
         for (i_gen = 0; i_gen < CIRCULAR_BUFFER_SIZE; i_gen = i_gen + 1) begin
             assign buffer_packet_word_count_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = buffer_packet_word_count[i_gen];
-            assign rd_addr_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = rd_addr[i_gen];
             assign rd_data_dump[i_gen*DATA_WIDTH +: DATA_WIDTH] = rd_data[i_gen];
         end
     endgenerate
@@ -72,12 +70,10 @@ module circular_buffer #(
         packet_output_word_idx <= 0;
         for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
             //circular_buffer_data[i] <= 64'b0;
-            rd_addr[i] <= 0;
             buffer_packet_word_count[i] <= 0;
         end
         reorder_tag_out <= 6'b0;
         buffer_TLAST_out <= 0;
-        refresh_buffer <= 0;
     end
 
     // input
@@ -89,7 +85,6 @@ module circular_buffer #(
             
             for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
                 //circular_buffer_data[i] <= 64'b0;
-                rd_addr[i] <= 0;
                 buffer_packet_word_count[i] <= 0;
             end
         end else begin
@@ -132,10 +127,8 @@ module circular_buffer #(
             reorder_tag_out <= 0;
             packet_output_word_idx <= 0;
             buffer_TLAST_out <= 0;
-            refresh_buffer <= 0;
         end else if(CIRCULAR_BUFFER_SIZE==reorder_tag_out) begin
             reorder_tag_out <= 0;
-            refresh_buffer <= 1;
         end else begin
             buffer_TVALID_out <= 0;
             if(packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out]) begin
@@ -143,7 +136,6 @@ module circular_buffer #(
                 if (buffer_TREADY_out) begin
                     if(packet_output_word_idx < buffer_packet_word_count[reorder_tag_out]) begin
                         buffer_TLAST_out <= 0;
-                        rd_addr[reorder_tag_out]<=rd_addr[reorder_tag_out]+1;
                         packet_output_word_idx <= packet_output_word_idx + 1;
                     end else begin
                         buffer_TLAST_out <= 1;
@@ -155,15 +147,13 @@ module circular_buffer #(
                 reorder_tag_out <= reorder_tag_out + 1;
             end
         end
-
-        // Reset refresh buffer signal if it has already been done
-        if (refresh_buffer) begin
-            refresh_buffer <= 0;
-        end
     end
 
+    assign rd_addr = packet_output_word_idx;
+
     assign buffer_TDATA_out = rd_data[reorder_tag_out];
-    assign buffer_TREADY = !refresh_buffer;
+    assign refresh_buffer = (CIRCULAR_BUFFER_SIZE==reorder_tag_out);
+    assign buffer_TREADY = !refresh_buffer && !buffer_packet_valid[reorder_tag_in];
 
     //ram
     genvar j;
@@ -177,7 +167,7 @@ module circular_buffer #(
                       .wr_addr(wr_addr),
                       .wr_data(wr_data),
                       .wr_en(wr_en[j]),
-                      .rd_addr(rd_addr[j]),
+                      .rd_addr(rd_addr),
                       .rd_data(rd_data[j])
                      );
         end

@@ -115,8 +115,6 @@ module circular_buffer_tb;
             loop = 1;
             
             while (loop) begin
-                
-                // #0.01
                 dummy = $fscanf(fd, "%h",
                     word
                 );
@@ -144,7 +142,11 @@ module circular_buffer_tb;
         reorder_tag_in = 0;
         buffer_TVALID = 0;
         buffer_TLAST = 0;
-        #100
+
+        // Need to add a small fraction to the delay or else there is a timing glitch in the simulation,
+        // where changes in buffer_TVALID are detected on the previous clock edge
+        #100.001
+
         i_packet = $urandom(seed);    // seed random generator
         for (i_total_packet = 0; i_total_packet < `TOTAL_NUM_INPUT_PACKETS; i_total_packet = i_total_packet + 1) begin
             $display("Total packet %0d", i_total_packet);
@@ -183,6 +185,7 @@ module circular_buffer_tb;
             packet_status_table[i_table*2 +: 2] = PENDING;
         end
 
+        #0.001;
         #100;   // 100 ns
         packet_status_table[1:0] = ACCEPTED;
         packet_status_table[3:2] = ACCEPTED;
