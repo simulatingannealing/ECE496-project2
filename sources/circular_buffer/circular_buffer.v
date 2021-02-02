@@ -36,7 +36,7 @@ module circular_buffer #(
     localparam ADDR_WIDTH = $clog2(MAX_TDATA_PER_PACKET);
 
     //reg [DATA_WIDTH-1:0] circular_buffer_data [CIRCULAR_BUFFER_SIZE-1:0];
-    reg [MAX_TDATA_PER_PACKET-1:0] circular_buffer_valid [CIRCULAR_BUFFER_SIZE-1:0];
+    reg [MAX_TDATA_PER_PACKET-1:0] buffer_valid [CIRCULAR_BUFFER_SIZE-1:0];
     reg [TAG_WIDTH-1:0] buffer_counter;
     reg refresh_buffer;
     reg [ADDR_WIDTH-1:0] TDATA_counter [CIRCULAR_BUFFER_SIZE-1:0];
@@ -44,8 +44,6 @@ module circular_buffer #(
 
     //ram param for packets
     reg [CIRCULAR_BUFFER_SIZE-1:0] wr_en;
-    reg [CIRCULAR_BUFFER_SIZE-1:0] rd_en;
-    reg [CIRCULAR_BUFFER_SIZE-1:0] clock_en;
     reg [ADDR_WIDTH-1:0] wr_addr [CIRCULAR_BUFFER_SIZE-1:0];
     reg [DATA_WIDTH-1:0] wr_data [CIRCULAR_BUFFER_SIZE-1:0];
     reg [ADDR_WIDTH-1:0] rd_addr [CIRCULAR_BUFFER_SIZE-1:0];
@@ -55,7 +53,7 @@ module circular_buffer #(
     assign TDATA_current = TDATA_counter[reorder_tag_in];
 
     // Just for viewing arrays in GTKWave
-    reg [MAX_TDATA_PER_PACKET*CIRCULAR_BUFFER_SIZE-1:0] circular_buffer_valid_dump;
+    reg [MAX_TDATA_PER_PACKET*CIRCULAR_BUFFER_SIZE-1:0] buffer_valid_dump;
     reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] TDATA_counter_dump;
     reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] wr_addr_dump;
     reg [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] wr_data_dump;
@@ -64,9 +62,9 @@ module circular_buffer #(
     generate
         genvar i_gen;
         for (i_gen = 0; i_gen < CIRCULAR_BUFFER_SIZE; i_gen = i_gen + 1) begin
-            assign circular_buffer_valid_dump[
+            assign buffer_valid_dump[
                 i_gen*MAX_TDATA_PER_PACKET +: MAX_TDATA_PER_PACKET]
-                = circular_buffer_valid[i_gen];
+                = buffer_valid[i_gen];
             assign TDATA_counter_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = TDATA_counter[i_gen];
             assign wr_addr_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = wr_addr[i_gen];
             assign wr_data_dump[i_gen*DATA_WIDTH +: DATA_WIDTH] = wr_data[i_gen];
@@ -81,11 +79,10 @@ module circular_buffer #(
         for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
             //circular_buffer_data[i] <= 64'b0;
             wr_en[i] <= 0;
-            rd_en[i] <= 0;
             wr_addr[i] <= 0;
             wr_data[i] <= 0;
             rd_addr[i] <= 0;
-            circular_buffer_valid[i] <= 0;
+            buffer_valid[i] <= 0;
             TDATA_counter[i] <= 0;
             TVALID_count <= 0;
         end
@@ -100,15 +97,14 @@ module circular_buffer #(
         if (rst) begin
             //initialization of the buffer
             buffer_counter <= 0;
-            refresh_buffer <= 0;
+            
             for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
                 //circular_buffer_data[i] <= 64'b0;
                 wr_en[i] <= 0;
-                rd_en[i] <= 0;
                 wr_addr[i] <= 0;
                 wr_data[i] <= 0;
                 rd_addr[i] <= 0;
-                circular_buffer_valid[i] <= 0;
+                buffer_valid[i] <= 0;
                 TDATA_counter[i] <= 0;
             end
         end else begin
@@ -127,10 +123,9 @@ module circular_buffer #(
                 wr_en[reorder_tag_in] <= 1;
                 wr_addr[reorder_tag_in] <= wr_addr[reorder_tag_in] + 1;
                 wr_data[reorder_tag_in] <= buffer_TDATA;
-                circular_buffer_valid[reorder_tag_in][TDATA_current] <= buffer_TVALID;
+                buffer_valid[reorder_tag_in][TDATA_current] <= buffer_TVALID;
             end else if (refresh_buffer) begin
                 buffer_counter <= 0;
-                refresh_buffer <= 0;
             end
         end 
     end
@@ -142,9 +137,9 @@ module circular_buffer #(
             reorder_tag_out <= 0;
             buffer_TLAST_out <= 0;
             TVALID_count <= 0;
+            refresh_buffer <= 0;
         end else if(CIRCULAR_BUFFER_SIZE-1==reorder_tag_out) begin
             reorder_tag_out <= 0;
-            // TODO - is it legal to assign from two always blocks
             refresh_buffer <= 1;
         end else begin
             if(packet_status == 2'b11) begin
@@ -161,14 +156,19 @@ module circular_buffer #(
                     end
                 end
             end else if (packet_status == 2'b01) begin //packet rejected, skip
-                circular_buffer_valid[reorder_tag_out] <= 0;
+                buffer_valid[reorder_tag_out] <= 0;
                 reorder_tag_out <= reorder_tag_out + 1;
             end
+        end
+
+        // Reset refresh buffer signal if it has already been done
+        if (refresh_buffer) begin
+            refresh_buffer <= 0;
         end
     end
 
     assign buffer_TDATA_out = rd_data[reorder_tag_out];
-    assign buffer_TVALID_out = circular_buffer_valid[reorder_tag_out][TVALID_count];
+    assign buffer_TVALID_out = buffer_valid[reorder_tag_out][TVALID_count];
     assign buffer_TREADY = (buffer_counter != CIRCULAR_BUFFER_SIZE-1)?1:0;
 
     //ram

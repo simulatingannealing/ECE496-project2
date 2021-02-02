@@ -1,24 +1,23 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Tue Feb  2 01:49:38 2021
+[*] Tue Feb  2 03:06:51 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.vcd"
-[dumpfile_mtime] "Tue Feb  2 01:44:27 2021"
-[dumpfile_size] 32599
+[dumpfile_mtime] "Tue Feb  2 03:06:13 2021"
+[dumpfile_size] 32257
 [savefile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.gtkw"
 [timestart] 79700
-[size] 991 1060
-[pos] -606 0
+[size] 1183 1060
+[pos] -227 0
 *-14.739454 100000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] circular_buffer_tb.
 [treeopen] circular_buffer_tb.DUT.
 [sst_width] 213
-[signals_width] 315
+[signals_width] 279
 [sst_expanded] 1
 [sst_vpaned_height] 220
-@29
-circular_buffer_tb.DUT.clk
 @28
+circular_buffer_tb.DUT.clk
 circular_buffer_tb.DUT.rst
 @800200
 -AXI Input
@@ -49,27 +48,31 @@ circular_buffer_tb.DUT.reorder_tag_out[5:0]
 circular_buffer_tb.DUT.packet_status[1:0]
 @1000200
 -To/From Table
+@800200
+-Write to RAM
 @28
 circular_buffer_tb.DUT.wr_en[2:0]
 @22
 circular_buffer_tb.DUT.wr_addr_dump[8:0]
 circular_buffer_tb.DUT.wr_data_dump[191:0]
-@28
-circular_buffer_tb.DUT.rd_en[2:0]
+@1000200
+-Write to RAM
+@800200
+-Read from RAM
 @22
 circular_buffer_tb.DUT.rd_addr_dump[8:0]
 circular_buffer_tb.DUT.rd_data_dump[191:0]
-circular_buffer_tb.DUT.circular_buffer_valid_dump[17:0]
-circular_buffer_tb.DUT.TDATA_CURRENT[7:0]
-@28
-circular_buffer_tb.DUT.TLAST_reg
+@1000200
+-Read from RAM
+@800200
+-Buffer Control
 @22
-circular_buffer_tb.DUT.TVALID_count[7:0]
 circular_buffer_tb.DUT.buffer_counter[5:0]
-circular_buffer_tb.DUT.out_pointer[5:0]
 @28
 circular_buffer_tb.DUT.refresh_buffer
 @22
-circular_buffer_tb.DUT.TDATA_counter_dump[23:0]
+circular_buffer_tb.DUT.buffer_valid_dump[17:0]
+@1000200
+-Buffer Control
 [pattern_trace] 1
 [pattern_trace] 0
