@@ -87,6 +87,11 @@ module circular_buffer #(
                 buffer_packet_word_count[i] <= 0;
             end
         end else begin
+            // If the buffer is done outputting a packet, invalidate that packet data in the buffer
+            if (buffer_TLAST_out) begin
+                buffer_packet_valid[reorder_tag_out] <= 1'b0;
+            end
+
             if(buffer_TVALID && buffer_TREADY) begin
                 //load the packets into memory
                 if(buffer_TLAST) begin
@@ -96,11 +101,6 @@ module circular_buffer #(
                 end
                 buffer_packet_word_count[reorder_tag_in] <= buffer_packet_word_count[reorder_tag_in] + 1;
             end
-        end 
-
-        // If the buffer is done outputting a packet, invalidate that packet data in the buffer
-        if (buffer_TLAST_out) begin
-            buffer_packet_valid[reorder_tag_out] <= 0;
         end
     end
 
@@ -125,12 +125,10 @@ module circular_buffer #(
         if(rst) begin
             reorder_tag_out <= 0;
             packet_output_word_idx <= 0;
-        end else if(CIRCULAR_BUFFER_SIZE==reorder_tag_out) begin
+        end else if(refresh_buffer) begin
             reorder_tag_out <= 0;
         end else begin
-            buffer_TVALID_out <= 0;
             if(packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out]) begin
-                buffer_TVALID_out <= 1;
                 if (buffer_TREADY_out) begin
                     if(packet_output_word_idx < buffer_packet_word_count[reorder_tag_out]) begin
                         packet_output_word_idx <= packet_output_word_idx + 1;
@@ -144,6 +142,12 @@ module circular_buffer #(
             end
         end
     end
+
+    assign buffer_TVALID_out =
+        !refresh_buffer &&
+        packet_status == 2'b11 &&
+        buffer_packet_valid[reorder_tag_out] &&
+        ((packet_output_word_idx < buffer_packet_word_count[reorder_tag_out]) || buffer_TLAST_out);
 
     // TODO - simplify?
     // TODO - is the ready condition necessary? can TLAST be valid for multiple cycles?
