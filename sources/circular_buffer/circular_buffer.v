@@ -154,9 +154,11 @@ module circular_buffer #(
     assign buffer_TLAST_out =
         (packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out]) &&
         buffer_TREADY_out &&
-        (packet_output_word_idx == buffer_packet_word_count[reorder_tag_out]);
+        (packet_output_word_idx + 1 == buffer_packet_word_count[reorder_tag_out]);
 
-    assign rd_addr = packet_output_word_idx;
+    // If the data word presented on the AXI output during the current cycle will be accepted,
+    // need to fetch the next data word (add 1 to the read address) so it will be ready next cycle
+    assign rd_addr = packet_output_word_idx + (buffer_TVALID_out && buffer_TREADY_out);
 
     assign buffer_TDATA_out = rd_data[reorder_tag_out];
     assign refresh_buffer = (CIRCULAR_BUFFER_SIZE==reorder_tag_out);
