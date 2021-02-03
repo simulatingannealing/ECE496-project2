@@ -134,7 +134,7 @@ module circular_buffer #(
         end else if(refresh_buffer) begin
             reorder_tag_out <= 0;
         end else begin
-            if(packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out]) begin
+            if(packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out] && !new_output_packet_delay) begin
                 if (buffer_TREADY_out) begin
                     if(packet_output_word_idx + 1 < buffer_packet_word_count[reorder_tag_out]) begin
                         packet_output_word_idx <= packet_output_word_idx + 1;
