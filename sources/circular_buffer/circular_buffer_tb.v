@@ -194,16 +194,18 @@ module circular_buffer_tb;
         // TODO - need to reset to pending
     end
 
-    always begin
-        if (($urandom() % 100) < 60) begin
-            buffer_TREADY_out = 1;
+    initial begin
+        #0.001;
+        while (1) begin
+            if (($urandom() % 100) < 60) begin
+                buffer_TREADY_out = 1;
+            end
+            else begin
+                buffer_TREADY_out = 0;
+            end
+            #10;
         end
-        else begin
-            buffer_TREADY_out = 0;
-        end
-        #10;
     end
-    
     
     // always @(posedge clk) begin
     //     if ($feof(fd)) begin

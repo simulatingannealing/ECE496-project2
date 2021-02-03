@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Tue Feb  2 18:00:40 2021
+[*] Wed Feb  3 16:23:42 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.vcd"
-[dumpfile_mtime] "Tue Feb  2 17:59:46 2021"
-[dumpfile_size] 32272
+[dumpfile_mtime] "Wed Feb  3 16:22:34 2021"
+[dumpfile_size] 33047
 [savefile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.gtkw"
-[timestart] 89900
-[size] 1797 1060
-[pos] -841 0
-*-14.739454 100400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 97100
+[size] 1846 1060
+[pos] -890 0
+*-14.739454 101300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] circular_buffer_tb.
 [treeopen] circular_buffer_tb.DUT.
 [sst_width] 213
-[signals_width] 698
+[signals_width] 644
 [sst_expanded] 1
 [sst_vpaned_height] 220
 @28
@@ -39,6 +39,7 @@ circular_buffer_tb.DUT.reorder_tag_out[5:0]
 circular_buffer_tb.DUT.buffer_TLAST_out
 circular_buffer_tb.DUT.buffer_TVALID_out
 circular_buffer_tb.DUT.buffer_TREADY_out
+circular_buffer_tb.DUT.new_output_packet_delay
 @1000200
 -AXI Output
 @800200

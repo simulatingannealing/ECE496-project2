@@ -52,6 +52,10 @@ module circular_buffer #(
     wire [7:0] TDATA_current;
     assign TDATA_current = buffer_packet_word_count[reorder_tag_in];
 
+    // If this is set to 1, delay for one cycle before outputting a new packet
+    // TODO - see if it's possible to get rid of this delay
+    reg new_output_packet_delay;
+
     // Just for viewing arrays in GTKWave
     reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] buffer_packet_word_count_dump;
     reg [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_data_dump;
@@ -73,6 +77,7 @@ module circular_buffer #(
             buffer_packet_word_count[i] <= 0;
         end
         reorder_tag_out <= 6'b0;
+        new_output_packet_delay <= 0;
     end
 
     // input
@@ -125,20 +130,27 @@ module circular_buffer #(
         if(rst) begin
             reorder_tag_out <= 0;
             packet_output_word_idx <= 0;
+            new_output_packet_delay <= 0;
         end else if(refresh_buffer) begin
             reorder_tag_out <= 0;
         end else begin
             if(packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out]) begin
                 if (buffer_TREADY_out) begin
-                    if(packet_output_word_idx < buffer_packet_word_count[reorder_tag_out]) begin
+                    if(packet_output_word_idx + 1 < buffer_packet_word_count[reorder_tag_out]) begin
                         packet_output_word_idx <= packet_output_word_idx + 1;
                     end else begin
                         reorder_tag_out<=reorder_tag_out+1;
                         packet_output_word_idx <= 0;
+                        new_output_packet_delay <= 1;
                     end
                 end
             end else if (packet_status == 2'b01) begin //packet rejected, skip
                 reorder_tag_out <= reorder_tag_out + 1;
+            end
+
+            // This signal should only be 1 for one cycle
+            if (new_output_packet_delay) begin
+                new_output_packet_delay <= 0;
             end
         end
     end
@@ -147,6 +159,7 @@ module circular_buffer #(
         !refresh_buffer &&
         packet_status == 2'b11 &&
         buffer_packet_valid[reorder_tag_out] &&
+        !new_output_packet_delay &&
         ((packet_output_word_idx < buffer_packet_word_count[reorder_tag_out]) || buffer_TLAST_out);
 
     // TODO - simplify?
