@@ -71,6 +71,13 @@ module circular_buffer_tb;
     integer total_packet_reorder_tags [`TOTAL_NUM_INPUT_PACKETS];
 
     reg[20*8-1:0] file_name;
+
+    // Kill the testbench if it runs too long
+    initial begin
+        #1000;
+        $display("Timeout - ending testbench!");
+        $finish;
+    end
     
     initial begin
         $dumpfile("circular_buffer.vcd");
@@ -147,6 +154,8 @@ module circular_buffer_tb;
         // where changes in buffer_TVALID are detected on the previous clock edge
         #100.001
 
+        $display("Sending packets into buffer...");
+
         i_packet = $urandom(seed);    // seed random generator
         for (i_total_packet = 0; i_total_packet < `TOTAL_NUM_INPUT_PACKETS; i_total_packet = i_total_packet + 1) begin
             $display("Total packet %0d", i_total_packet);
@@ -157,23 +166,30 @@ module circular_buffer_tb;
 
             reorder_tag_in = total_packet_reorder_tags[i_total_packet];
 
-            for (i_word = 0; i_word < input_packet_lengths[i_packet*32 +: 32]; i_word += 1) begin
+            // Can't leave the third statement in the for loop blank, so need to put something there
+            for (i_word = 0; i_word < input_packet_lengths[i_packet*32 +: 32]; i_word = i_word ) begin
+                buffer_TVALID = 0;
+                buffer_TLAST = 0;
+
                 $display("Word %0d", i_word);
                 buffer_TDATA = input_packets[(i_packet*`MAX_BITS_PER_PACKET) + (i_word*`DATA_WIDTH) +: `DATA_WIDTH];
-                buffer_TLAST = 0;
+
                 if (($urandom() % 100) < 60) begin
+                    // Assert this word is valid
                     buffer_TVALID = 1;
+
+                    // If this is the last word of the packet, assert last
                     if (i_word == input_packet_lengths[i_packet*32 +: 32] - 1) begin
                         buffer_TLAST = 1;
                     end
-                end
-                else begin
-                    buffer_TVALID = 0;
-                    i_word -= 1;
+
+                    // Only go to the next word if the buffer accepts this one
+                    if (buffer_TREADY) begin
+                        i_word += 1;
+                    end
                 end
                 #10;
             end
-            buffer_TVALID = 0;
         end
         $display("Done all file packets");
         $finish;
