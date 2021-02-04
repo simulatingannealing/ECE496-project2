@@ -35,7 +35,6 @@ module circular_buffer #(
 
     localparam ADDR_WIDTH = $clog2(MAX_TDATA_PER_PACKET);
 
-    //reg [DATA_WIDTH-1:0] circular_buffer_data [CIRCULAR_BUFFER_SIZE-1:0];
     reg [CIRCULAR_BUFFER_SIZE-1:0] packet_valid;
     reg [ADDR_WIDTH-1:0] packet_word_count [CIRCULAR_BUFFER_SIZE-1:0];
     reg [ADDR_WIDTH-1:0] packet_output_word_idx;
@@ -49,10 +48,9 @@ module circular_buffer #(
     reg [DATA_WIDTH-1:0] rd_data [CIRCULAR_BUFFER_SIZE-1:0];
 
     // If this is set to 1, delay for one cycle before outputting a new packet
-    // TODO - see if it's possible to get rid of this delay
     reg new_output_packet_delay;
 
-    // Just for viewing arrays in GTKWave
+    // These 1-D signals are just for viewing 2-D signals in GTKWave
     reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] packet_word_count_dump;
     reg [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_data_dump;
     generate
@@ -69,7 +67,6 @@ module circular_buffer #(
         packet_valid <= 0;
         packet_output_word_idx <= 0;
         for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
-            //circular_buffer_data[i] <= 64'b0;
             packet_word_count[i] <= 0;
         end
         reorder_tag_out <= 6'b0;
@@ -84,7 +81,6 @@ module circular_buffer #(
             packet_valid <= 0;
             
             for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
-                //circular_buffer_data[i] <= 64'b0;
                 packet_word_count[i] <= 0;
             end
         end else begin
@@ -99,7 +95,6 @@ module circular_buffer #(
                 //load the packets into memory
                 if(buffer_TLAST) begin
                     //end of packet
-                    // TODO - set something for which word to write to next?
                     packet_valid[reorder_tag_in] <= 1'b1;
                 end
                 packet_word_count[reorder_tag_in] <= packet_word_count[reorder_tag_in] + 1;
@@ -157,8 +152,6 @@ module circular_buffer #(
         !new_output_packet_delay &&
         ((packet_output_word_idx < packet_word_count[reorder_tag_out]) || buffer_TLAST_out);
 
-    // TODO - simplify?
-    // TODO - is the ready condition necessary? can TLAST be valid for multiple cycles?
     assign buffer_TLAST_out =
         (packet_status == 2'b11 && packet_valid[reorder_tag_out]) &&
         buffer_TREADY_out &&
