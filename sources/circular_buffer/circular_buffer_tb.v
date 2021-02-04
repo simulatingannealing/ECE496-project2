@@ -1,7 +1,3 @@
-//Copyright 2020 Marco Merlini. This file is part of the fpga-bpf project,
-//whose license information can be found at 
-//https://github.com/UofT-HPRC/fpga-bpf/blob/master/LICENSE
-
 `timescale 1ns / 1ps
 
 /*
@@ -37,28 +33,24 @@ module circular_buffer_tb;
     reg clk;
     reg rst;
 
-    reg [`DATA_WIDTH-1:0] buffer_TDATA;
-    reg [`TAG_WIDTH-1:0] reorder_tag_in;
-    reg buffer_TLAST;
-    reg buffer_TVALID;
-    reg buffer_TREADY;
-    reg buffer_TKEEP;
+    reg [`DATA_WIDTH-1:0] in_TDATA;
+    reg [`TAG_WIDTH-1:0] in_reorder_tag;
+    reg in_TLAST;
+    reg in_TVALID;
+    reg in_TREADY;
 
     reg [1:0] packet_status;
 
-    reg [`DATA_WIDTH-1:0] buffer_TDATA_out;
-    reg buffer_TLAST_out;
-    reg buffer_TVALID_out;
-    reg buffer_TREADY_out;
-    reg buffer_TKEEP_out;
-
-    reg [`TAG_WIDTH-1:0] reorder_tag_out;
+    reg [`DATA_WIDTH-1:0] out_TDATA;
+    reg [`TAG_WIDTH-1:0] out_reorder_tag;
+    reg out_TLAST;
+    reg out_TVALID;
+    reg out_TREADY;
 
     // Need this to be a 1-D vector instead of a 2-D vector/array
     // because GTKWave does not display 2-D vectors/arrays
     reg [2*`CIRCULAR_BUFFER_SIZE-1:0] packet_status_table;
-    assign packet_status = packet_status_table[reorder_tag_out*2 +: 2];
-
+    assign packet_status = packet_status_table[out_reorder_tag*2 +: 2];
     
     integer fd, dummy;
     integer i;
@@ -109,18 +101,10 @@ module circular_buffer_tb;
                 $display("Could not open file");
                 $finish;
             end
-            
-            // while ($fgetc(fd) != "\n") begin
-            //     if ($feof(fd)) begin
-            //         $display("Error: file is in incorrect format");
-            //         $finish;
-            //     end
-            // end
 
-            
             i_word = 0;
             loop = 1;
-            
+
             while (loop) begin
                 dummy = $fscanf(fd, "%h",
                     word
@@ -139,19 +123,21 @@ module circular_buffer_tb;
             end
         end
     end
-    
+
     always #5 clk <= ~clk;
+
     integer i_packet;
     integer i_total_packet;
     integer seed = `SEED;
+
     initial begin
-        buffer_TDATA = 0;
-        reorder_tag_in = 0;
-        buffer_TVALID = 0;
-        buffer_TLAST = 0;
+        in_TDATA = 0;
+        in_reorder_tag = 0;
+        in_TVALID = 0;
+        in_TLAST = 0;
 
         // Need to add a small fraction to the delay or else there is a timing glitch in the simulation,
-        // where changes in buffer_TVALID are detected on the previous clock edge
+        // where changes in in_TVALID are detected on the previous clock edge
         #100.001
 
         $display("Sending packets into buffer...");
@@ -159,32 +145,32 @@ module circular_buffer_tb;
         i_packet = $urandom(seed);    // seed random generator
         for (i_total_packet = 0; i_total_packet < `TOTAL_NUM_INPUT_PACKETS; i_total_packet = i_total_packet + 1) begin
             $display("Total packet %0d", i_total_packet);
-            
+
             i_packet = $urandom() % 3;  // which input file to choose
             $display("File packet %0d", i_packet);
             i_word = 0;
 
-            reorder_tag_in = total_packet_reorder_tags[i_total_packet];
+            in_reorder_tag = total_packet_reorder_tags[i_total_packet];
 
             // Can't leave the third statement in the for loop blank, so need to put something there
             for (i_word = 0; i_word < input_packet_lengths[i_packet*32 +: 32]; i_word = i_word ) begin
-                buffer_TVALID = 0;
-                buffer_TLAST = 0;
+                in_TVALID = 0;
+                in_TLAST = 0;
 
                 $display("Word %0d", i_word);
-                buffer_TDATA = input_packets[(i_packet*`MAX_BITS_PER_PACKET) + (i_word*`DATA_WIDTH) +: `DATA_WIDTH];
+                in_TDATA = input_packets[(i_packet*`MAX_BITS_PER_PACKET) + (i_word*`DATA_WIDTH) +: `DATA_WIDTH];
 
                 if (($urandom() % 100) < 60) begin
                     // Assert this word is valid
-                    buffer_TVALID = 1;
+                    in_TVALID = 1;
 
                     // If this is the last word of the packet, assert last
                     if (i_word == input_packet_lengths[i_packet*32 +: 32] - 1) begin
-                        buffer_TLAST = 1;
+                        in_TLAST = 1;
                     end
 
                     // Only go to the next word if the buffer accepts this one
-                    if (buffer_TREADY) begin
+                    if (in_TREADY) begin
                         i_word += 1;
                     end
                 end
@@ -192,15 +178,15 @@ module circular_buffer_tb;
             end
         end
 
-        buffer_TVALID = 0;
-        buffer_TLAST = 0;
+        in_TVALID = 0;
+        in_TLAST = 0;
         $display("Done sending packets into buffer");
 
         // Wait for buffer to output last 3 packets
-        @(posedge buffer_TLAST_out);
-        @(posedge buffer_TLAST_out);
-        @(posedge buffer_TLAST_out);
-        @(posedge buffer_TLAST_out);
+        @(posedge out_TLAST);
+        @(posedge out_TLAST);
+        @(posedge out_TLAST);
+        @(posedge out_TLAST);
         #100;
         $display("Done all file packets");
         $finish;
@@ -254,32 +240,14 @@ module circular_buffer_tb;
         #0.001;
         while (1) begin
             if (($urandom() % 100) < 60) begin
-                buffer_TREADY_out = 1;
+                out_TREADY = 1;
             end
             else begin
-                buffer_TREADY_out = 0;
+                out_TREADY = 0;
             end
             #10;
         end
     end
-    
-    // always @(posedge clk) begin
-    //     if ($feof(fd)) begin
-    //         $display("Reached end of drivers file");
-    //         #20
-    //         $finish;
-    //     end
-        
-    //     #0.01
-    //     dummy = $fscanf(fd, "%h%h%b%b%b%b", 
-    //         buffer_TDATA,
-    //         buffer_TKEEP,
-    //         buffer_TREADY_out,
-    //         buffer_TVALID,
-    //         buffer_TLAST,
-    //         rdy_to_send
-    //     );
-    // end
 
     circular_buffer # (
         .TAG_WIDTH(`TAG_WIDTH),
@@ -290,19 +258,19 @@ module circular_buffer_tb;
         .clk(clk),
         .rst(rst),
 
-        .buffer_TDATA(buffer_TDATA),
-        .reorder_tag_in(reorder_tag_in),
-        .buffer_TLAST(buffer_TLAST),
-        .buffer_TVALID(buffer_TVALID),
-        .buffer_TREADY(buffer_TREADY),
+        .in_TDATA(in_TDATA),
+        .in_reorder_tag(in_reorder_tag),
+        .in_TLAST(in_TLAST),
+        .in_TVALID(in_TVALID),
+        .in_TREADY(in_TREADY),
 
-        .buffer_TDATA_out(buffer_TDATA_out),
-        .buffer_TLAST_out(buffer_TLAST_out),
-        .buffer_TVALID_out(buffer_TVALID_out),
-        .buffer_TREADY_out(buffer_TREADY_out),
+        .out_TDATA(out_TDATA),
+        .out_TLAST(out_TLAST),
+        .out_TVALID(out_TVALID),
+        .out_TREADY(out_TREADY),
 
         .packet_status(packet_status),
-        .reorder_tag_out(reorder_tag_out)
+        .out_reorder_tag(out_reorder_tag)
     );
 
 endmodule

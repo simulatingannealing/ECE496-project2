@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Thu Feb  4 01:38:53 2021
+[*] Thu Feb  4 19:19:27 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.vcd"
-[dumpfile_mtime] "Thu Feb  4 01:31:40 2021"
-[dumpfile_size] 25507
+[dumpfile_mtime] "Thu Feb  4 19:17:06 2021"
+[dumpfile_size] 54222
 [savefile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.gtkw"
 [timestart] 92300
-[size] 1833 1060
-[pos] -877 0
+[size] 1864 1060
+[pos] -908 0
 *-14.739454 101100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] circular_buffer_tb.
 [treeopen] circular_buffer_tb.DUT.
 [sst_width] 213
-[signals_width] 644
+[signals_width] 640
 [sst_expanded] 1
 [sst_vpaned_height] 220
 @28
@@ -22,23 +22,23 @@ circular_buffer_tb.DUT.rst
 @800200
 -AXI Input
 @22
-circular_buffer_tb.DUT.buffer_TDATA[63:0]
-circular_buffer_tb.DUT.reorder_tag_in[5:0]
+circular_buffer_tb.DUT.in_TDATA[63:0]
+circular_buffer_tb.DUT.in_reorder_tag[5:0]
 @28
-circular_buffer_tb.DUT.buffer_TLAST
-circular_buffer_tb.DUT.buffer_TVALID
-circular_buffer_tb.DUT.buffer_TREADY
+circular_buffer_tb.DUT.in_TLAST
+circular_buffer_tb.DUT.in_TVALID
+circular_buffer_tb.DUT.in_TREADY
 @1000200
 -AXI Input
 @800200
 -AXI Output
 @22
-circular_buffer_tb.DUT.buffer_TDATA_out[63:0]
-circular_buffer_tb.DUT.reorder_tag_out[5:0]
+circular_buffer_tb.DUT.out_TDATA[63:0]
+circular_buffer_tb.DUT.out_reorder_tag[5:0]
 @28
-circular_buffer_tb.DUT.buffer_TLAST_out
-circular_buffer_tb.DUT.buffer_TVALID_out
-circular_buffer_tb.DUT.buffer_TREADY_out
+circular_buffer_tb.DUT.out_TLAST
+circular_buffer_tb.DUT.out_TVALID
+circular_buffer_tb.DUT.out_TREADY
 circular_buffer_tb.DUT.new_output_packet_delay
 @1000200
 -AXI Output
