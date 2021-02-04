@@ -74,7 +74,7 @@ module circular_buffer_tb;
 
     // Kill the testbench if it runs too long
     initial begin
-        #1000;
+        #2000;
         $display("Timeout - ending testbench!");
         $finish;
     end
@@ -191,6 +191,17 @@ module circular_buffer_tb;
                 #10;
             end
         end
+
+        buffer_TVALID = 0;
+        buffer_TLAST = 0;
+        $display("Done sending packets into buffer");
+
+        // Wait for buffer to output last 3 packets
+        @(posedge buffer_TLAST_out);
+        @(posedge buffer_TLAST_out);
+        @(posedge buffer_TLAST_out);
+        @(posedge buffer_TLAST_out);
+        #100;
         $display("Done all file packets");
         $finish;
     end
@@ -207,7 +218,36 @@ module circular_buffer_tb;
         packet_status_table[3:2] = ACCEPTED;
         #140;   // 240 ns
         packet_status_table[5:4] = ACCEPTED;
-        // TODO - need to reset to pending
+        #150;   // 390 ns
+        packet_status_table = 0;
+        #10;    // 400 ns
+        packet_status_table[5:4] = ACCEPTED;
+        #10;    // 410 ns
+        packet_status_table[3:2] = REJECTED;
+        packet_status_table[1:0] = REJECTED;
+        #80;    // 490 ns
+        packet_status_table = 0;
+        #10;    // 500 ns
+        packet_status_table[5:4] = REJECTED;
+        packet_status_table[3:2] = ACCEPTED;
+        packet_status_table[1:0] = REJECTED;
+        #100;   // 600 ns
+        packet_status_table = 0;
+        packet_status_table[5:4] = ACCEPTED;
+        packet_status_table[3:2] = ACCEPTED;
+        packet_status_table[1:0] = REJECTED;
+        #110;   // 710 ns
+        packet_status_table[5:4] = PENDING;
+        packet_status_table[1:0] = PENDING;
+        #110;   // 820 ns
+        packet_status_table[5:4] = REJECTED;
+        packet_status_table[3:2] = PENDING;
+        #10;    // 830 ns
+        packet_status_table[5:4] = PENDING;
+        #220;   // 1050 ns
+        packet_status_table[5:4] = ACCEPTED;
+        packet_status_table[3:2] = ACCEPTED;
+        packet_status_table[1:0] = ACCEPTED;
     end
 
     initial begin
