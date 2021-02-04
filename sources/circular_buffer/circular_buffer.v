@@ -36,9 +36,8 @@ module circular_buffer #(
     localparam ADDR_WIDTH = $clog2(MAX_TDATA_PER_PACKET);
 
     //reg [DATA_WIDTH-1:0] circular_buffer_data [CIRCULAR_BUFFER_SIZE-1:0];
-    reg [CIRCULAR_BUFFER_SIZE-1:0] buffer_packet_valid;
-    reg refresh_buffer;
-    reg [ADDR_WIDTH-1:0] buffer_packet_word_count [CIRCULAR_BUFFER_SIZE-1:0];
+    reg [CIRCULAR_BUFFER_SIZE-1:0] packet_valid;
+    reg [ADDR_WIDTH-1:0] packet_word_count [CIRCULAR_BUFFER_SIZE-1:0];
     reg [ADDR_WIDTH-1:0] packet_output_word_idx;
 
     //ram param for packets
@@ -49,20 +48,17 @@ module circular_buffer #(
     reg [ADDR_WIDTH-1:0] rd_addr;
     reg [DATA_WIDTH-1:0] rd_data [CIRCULAR_BUFFER_SIZE-1:0];
 
-    wire [7:0] TDATA_current;
-    assign TDATA_current = buffer_packet_word_count[reorder_tag_in];
-
     // If this is set to 1, delay for one cycle before outputting a new packet
     // TODO - see if it's possible to get rid of this delay
     reg new_output_packet_delay;
 
     // Just for viewing arrays in GTKWave
-    reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] buffer_packet_word_count_dump;
+    reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] packet_word_count_dump;
     reg [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_data_dump;
     generate
         genvar i_gen;
         for (i_gen = 0; i_gen < CIRCULAR_BUFFER_SIZE; i_gen = i_gen + 1) begin
-            assign buffer_packet_word_count_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = buffer_packet_word_count[i_gen];
+            assign packet_word_count_dump[i_gen*ADDR_WIDTH +: ADDR_WIDTH] = packet_word_count[i_gen];
             assign rd_data_dump[i_gen*DATA_WIDTH +: DATA_WIDTH] = rd_data[i_gen];
         end
     endgenerate
@@ -70,11 +66,11 @@ module circular_buffer #(
     //initialization or testing
     integer i;
     initial begin
-        buffer_packet_valid <= 0;
+        packet_valid <= 0;
         packet_output_word_idx <= 0;
         for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
             //circular_buffer_data[i] <= 64'b0;
-            buffer_packet_word_count[i] <= 0;
+            packet_word_count[i] <= 0;
         end
         reorder_tag_out <= 6'b0;
         new_output_packet_delay <= 0;
@@ -85,17 +81,18 @@ module circular_buffer #(
     always @(posedge clk) begin
         if (rst) begin
             //initialization of the buffer
-            buffer_packet_valid <= 0;
+            packet_valid <= 0;
             
             for (i=0; i<CIRCULAR_BUFFER_SIZE; i=i+1) begin
                 //circular_buffer_data[i] <= 64'b0;
-                buffer_packet_word_count[i] <= 0;
+                packet_word_count[i] <= 0;
             end
         end else begin
             // If the buffer is done outputting a packet, invalidate that packet data in the buffer
             // TODO - does the buffer need to notify the packet status table to set the status back to pending?
             if (buffer_TLAST_out) begin
-                buffer_packet_valid[reorder_tag_out] <= 1'b0;
+                packet_valid[reorder_tag_out] <= 1'b0;
+                packet_word_count[reorder_tag_out] <= 0;
             end
 
             if(buffer_TVALID && buffer_TREADY) begin
@@ -103,9 +100,9 @@ module circular_buffer #(
                 if(buffer_TLAST) begin
                     //end of packet
                     // TODO - set something for which word to write to next?
-                    buffer_packet_valid[reorder_tag_in] <= 1'b1;
+                    packet_valid[reorder_tag_in] <= 1'b1;
                 end
-                buffer_packet_word_count[reorder_tag_in] <= buffer_packet_word_count[reorder_tag_in] + 1;
+                packet_word_count[reorder_tag_in] <= packet_word_count[reorder_tag_in] + 1;
             end
         end
     end
@@ -123,7 +120,7 @@ module circular_buffer #(
 
     end
 
-    assign wr_addr = buffer_packet_word_count[reorder_tag_in];
+    assign wr_addr = packet_word_count[reorder_tag_in];
 
     //a counter for the pointer when status table gets back to us
     //output when packet is accepted & AXI ready 
@@ -132,21 +129,19 @@ module circular_buffer #(
             reorder_tag_out <= 0;
             packet_output_word_idx <= 0;
             new_output_packet_delay <= 0;
-        end else if(refresh_buffer) begin
-            reorder_tag_out <= 0;
         end else begin
-            if(packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out] && !new_output_packet_delay) begin
+            if(packet_status == 2'b11 && packet_valid[reorder_tag_out] && !new_output_packet_delay) begin
                 if (buffer_TREADY_out) begin
-                    if(packet_output_word_idx + 1 < buffer_packet_word_count[reorder_tag_out]) begin
+                    if(packet_output_word_idx + 1 < packet_word_count[reorder_tag_out]) begin
                         packet_output_word_idx <= packet_output_word_idx + 1;
                     end else begin
-                        reorder_tag_out<=reorder_tag_out+1;
+                        reorder_tag_out <= (reorder_tag_out == CIRCULAR_BUFFER_SIZE-1) ? 0 : reorder_tag_out+1;
                         packet_output_word_idx <= 0;
                         new_output_packet_delay <= 1;
                     end
                 end
             end else if (packet_status == 2'b01) begin //packet rejected, skip
-                reorder_tag_out <= reorder_tag_out + 1;
+                reorder_tag_out <= (reorder_tag_out == CIRCULAR_BUFFER_SIZE-1) ? 0 : reorder_tag_out+1;
             end
 
             // This signal should only be 1 for one cycle
@@ -157,26 +152,24 @@ module circular_buffer #(
     end
 
     assign buffer_TVALID_out =
-        !refresh_buffer &&
         packet_status == 2'b11 &&
-        buffer_packet_valid[reorder_tag_out] &&
+        packet_valid[reorder_tag_out] &&
         !new_output_packet_delay &&
-        ((packet_output_word_idx < buffer_packet_word_count[reorder_tag_out]) || buffer_TLAST_out);
+        ((packet_output_word_idx < packet_word_count[reorder_tag_out]) || buffer_TLAST_out);
 
     // TODO - simplify?
     // TODO - is the ready condition necessary? can TLAST be valid for multiple cycles?
     assign buffer_TLAST_out =
-        (packet_status == 2'b11 && buffer_packet_valid[reorder_tag_out]) &&
+        (packet_status == 2'b11 && packet_valid[reorder_tag_out]) &&
         buffer_TREADY_out &&
-        (packet_output_word_idx + 1 == buffer_packet_word_count[reorder_tag_out]);
+        (packet_output_word_idx + 1 == packet_word_count[reorder_tag_out]);
 
     // If the data word presented on the AXI output during the current cycle will be accepted,
     // need to fetch the next data word (add 1 to the read address) so it will be ready next cycle
     assign rd_addr = packet_output_word_idx + (buffer_TVALID_out && buffer_TREADY_out);
 
     assign buffer_TDATA_out = rd_data[reorder_tag_out];
-    assign refresh_buffer = (CIRCULAR_BUFFER_SIZE==reorder_tag_out);
-    assign buffer_TREADY = !refresh_buffer && !buffer_packet_valid[reorder_tag_in];
+    assign buffer_TREADY = !packet_valid[reorder_tag_in];
 
     //ram
     genvar j;

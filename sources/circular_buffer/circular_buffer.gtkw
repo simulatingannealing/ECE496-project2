@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Wed Feb  3 16:23:42 2021
+[*] Thu Feb  4 01:27:47 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.vcd"
-[dumpfile_mtime] "Wed Feb  3 16:22:34 2021"
-[dumpfile_size] 33047
+[dumpfile_mtime] "Thu Feb  4 01:23:25 2021"
+[dumpfile_size] 25522
 [savefile] "/home/bruno/work/ECE496-project2/sources/circular_buffer/circular_buffer.gtkw"
-[timestart] 97100
-[size] 1846 1060
-[pos] -890 0
-*-14.739454 101300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 88600
+[size] 1859 1060
+[pos] -903 0
+*-14.739454 100700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] circular_buffer_tb.
 [treeopen] circular_buffer_tb.DUT.
 [sst_width] 213
@@ -69,9 +69,8 @@ circular_buffer_tb.DUT.rd_data_dump[191:0]
 @800200
 -Buffer Control
 @28
-circular_buffer_tb.DUT.refresh_buffer
-circular_buffer_tb.DUT.buffer_packet_valid[2:0]
-circular_buffer_tb.DUT.buffer_packet_word_count_dump[8:0]
+circular_buffer_tb.DUT.packet_valid[2:0]
+circular_buffer_tb.DUT.packet_word_count_dump[8:0]
 circular_buffer_tb.DUT.packet_output_word_idx[2:0]
 @1000200
 -Buffer Control
