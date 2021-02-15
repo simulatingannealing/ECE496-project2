@@ -67,11 +67,11 @@ module axistream_packetfilt_tb;
     wire [15:0] num_packets_dropped;
 
     //AXI Stream forwarder interface
-    wire [`SN_FWD_DATA_WIDTH-1:0] fwd_TDATA;
-    wire [`KEEP_WIDTH-1:0] fwd_TKEEP;
-    wire fwd_TLAST;
-    wire fwd_TVALID;
-    reg fwd_TREADY = 0;
+    wire [`SN_FWD_DATA_WIDTH-1:0] cb_TDATA;
+    wire [`KEEP_WIDTH-1:0] cb_TKEEP;
+    wire cb_TLAST;
+    wire cb_TVALID;
+    reg cb_TREADY = 0;
 
     reg [`CODE_ADDR_WIDTH-1:0] inst_wr_addr = 0;
     reg [`CODE_DATA_WIDTH-1:0] inst_wr_data = 0;
@@ -118,7 +118,7 @@ module axistream_packetfilt_tb;
             sn_TREADY,
             sn_TVALID,
             sn_TLAST,
-            fwd_TREADY,
+            cb_TREADY,
             inst_wr_addr,
             inst_wr_data,
             inst_wr_en
@@ -155,11 +155,11 @@ module axistream_packetfilt_tb;
 
 
         //AXI Stream forwarder interface
-        .fwd_TDATA(fwd_TDATA),
-        .fwd_TKEEP(fwd_TKEEP),
-        .fwd_TLAST(fwd_TLAST),
-        .fwd_TVALID(fwd_TVALID),
-        .fwd_TREADY(fwd_TREADY),
+        .cb_TDATA(cb_TDATA),
+        .cb_TKEEP(cb_TKEEP),
+        .cb_TLAST(cb_TLAST),
+        .cb_TVALID(cb_TVALID),
+        .cb_TREADY(cb_TREADY),
         
         //Debug outputs
         .num_packets_dropped(num_packets_dropped)

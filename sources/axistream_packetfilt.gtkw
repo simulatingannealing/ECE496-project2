@@ -1,28 +1,19 @@
 [*]
-[*] GTKWave Analyzer v3.3.102 (w)1999-2019 BSI
-[*] Wed Dec 11 19:55:31 2019
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Mon Feb 15 16:41:51 2021
 [*]
-[dumpfile] "/home/mahkoe/research/fpga-bpf/sources/axistream_packetfilt.vcd"
-[dumpfile_mtime] "Wed Dec 11 19:54:55 2019"
-[dumpfile_size] 1171193
-[savefile] "/home/mahkoe/research/fpga-bpf/sources/axistream_packetfilt.gtkw"
+[dumpfile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.vcd"
+[dumpfile_mtime] "Mon Feb 15 16:37:41 2021"
+[dumpfile_size] 1533318
+[savefile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.gtkw"
 [timestart] 0
-[size] 1916 1060
-[pos] -1 -1
+[size] 961 1060
+[pos] -6 -1
 *-18.079184 5000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] axistream_packetfilt_tb.
 [treeopen] axistream_packetfilt_tb.DUT.
-[treeopen] axistream_packetfilt_tb.DUT.the_actual_filter.
-[treeopen] axistream_packetfilt_tb.DUT.the_actual_filter.genblk1[0].
-[treeopen] axistream_packetfilt_tb.DUT.the_actual_filter.genblk1[0].filt.
-[treeopen] axistream_packetfilt_tb.DUT.the_actual_filter.genblk1[0].filt.the_cpu.
-[treeopen] axistream_packetfilt_tb.DUT.the_actual_filter.genblk1[0].filt.the_cpu.ctrl.
-[treeopen] axistream_packetfilt_tb.DUT.the_actual_filter.genblk1[0].filt.the_p3_system.
-[treeopen] axistream_packetfilt_tb.DUT.the_actual_filter.snooper_arbiter.
-[treeopen] axistream_packetfilt_tb.DUT.the_actual_filter.snooper_arbiter.genblk1.
-[treeopen] axistream_packetfilt_tb.DUT.the_actual_filter.snooper_arbiter.genblk1.the_tag_tree.
-[sst_width] 299
-[signals_width] 182
+[sst_width] 216
+[signals_width] 306
 [sst_expanded] 1
 [sst_vpaned_height] 610
 @28
@@ -45,16 +36,16 @@ axistream_packetfilt_tb.sn_TVALID
 @1000200
 -snooper
 @800200
--forwarder
+-circular buffer
 @22
-axistream_packetfilt_tb.fwd_TDATA[63:0]
-axistream_packetfilt_tb.fwd_TKEEP[7:0]
+axistream_packetfilt_tb.cb_TDATA[63:0]
+axistream_packetfilt_tb.cb_TKEEP[7:0]
 @28
-axistream_packetfilt_tb.fwd_TLAST
-axistream_packetfilt_tb.fwd_TREADY
-axistream_packetfilt_tb.fwd_TVALID
+axistream_packetfilt_tb.cb_TLAST
+axistream_packetfilt_tb.cb_TREADY
+axistream_packetfilt_tb.cb_TVALID
 @1000200
--forwarder
+-circular buffer
 @22
 axistream_packetfilt_tb.DUT.dropped_cnt[15:0]
 [pattern_trace] 1

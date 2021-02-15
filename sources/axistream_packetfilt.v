@@ -32,6 +32,7 @@ TODO: Update rest of code to do this
 `include "snoopers/axistream_snooper/axistream_snooper.v"
 `include "forwarders/axistream_forwarder/axistream_forwarder.v"
 `include "parallel_cores/packetfilter_core/packetfilter_core.v"
+`include "circular_buffer/circular_buffer.v"
 `define localparam parameter
 `else /*For Vivado*/
 `define localparam localparam
@@ -94,13 +95,13 @@ module axistream_packetfilt # (
         input wire sn_TLAST,
     
     
-        //AXI Stream forwarder interface
-        output wire [SN_FWD_DATA_WIDTH-1:0] fwd_TDATA,
-        output wire [TAG_WIDTH-1:0] fwd_reorder_tag,
-        output wire [`KEEP_WIDTH-1:0] fwd_TKEEP,
-        output wire fwd_TLAST,
-        output wire fwd_TVALID,
-        input wire fwd_TREADY,
+        //AXI Stream circular buffer output
+        output wire [SN_FWD_DATA_WIDTH-1:0] cb_TDATA,
+        output wire [TAG_WIDTH-1:0] cb_reorder_tag,
+        output wire [`KEEP_WIDTH-1:0] cb_TKEEP,
+        output wire cb_TLAST,
+        output wire cb_TVALID,
+        input wire cb_TREADY,
         
         //Debug outputs
         output wire [15:0] num_packets_dropped,
@@ -207,7 +208,15 @@ module axistream_packetfilt # (
     wire fwd_done;
     wire rdy_for_fwd;
     wire rdy_for_fwd_ack;
-    
+
+    // Interface from forwarder to circular buffer
+    wire [SN_FWD_DATA_WIDTH-1:0] fwd_TDATA;
+    wire [TAG_WIDTH-1:0] fwd_reorder_tag;
+    wire [`KEEP_WIDTH-1:0] fwd_TKEEP;
+    wire fwd_TLAST;
+    wire fwd_TVALID;
+    wire fwd_TREADY;
+
 `ifndef DISABLE_AXILITE
     //from axilite_regs <=> regstrb2mem
     wire status_strobe; // Strobe logic for register 'Status' (pulsed when the register is read from the bus)
@@ -485,6 +494,34 @@ end endgenerate
         .fwd_done(fwd_done),
         .rdy_for_fwd(rdy_for_fwd),
         .rdy_for_fwd_ack(rdy_for_fwd_ack)
+    );
+
+    circular_buffer # (
+        .TAG_WIDTH(TAG_WIDTH),
+        .CIRCULAR_BUFFER_SIZE(CIRCULAR_BUFFER_SIZE),
+        .DATA_WIDTH(SN_FWD_DATA_WIDTH),
+        .MAX_TDATA_PER_PACKET(PACKET_MEM_BYTES*8/SN_FWD_DATA_WIDTH)
+    ) the_circular_buffer (
+        .clk(clk),
+        .rst(!control_start),
+
+        .in_TDATA(fwd_TDATA),
+        .in_reorder_tag(fwd_reorder_tag),
+        // TODO - do we need a TKEEP? is it required by Vivado?
+        .in_TLAST(fwd_TLAST),
+        .in_TVALID(fwd_TVALID),
+        .in_TREADY(fwd_TREADY),
+
+        .out_TDATA(cb_TDATA),
+        // TODO - connect to memory table
+        .out_reorder_tag(cb_reorder_tag),
+        // TODO - do we need a TKEEP? is it required by Vivado?
+        .out_TLAST(cb_TLAST),
+        .out_TVALID(cb_TVALID),
+        .out_TREADY(cb_TREADY),
+
+        // TODO - connect to memory table
+        .packet_status()
     );
 endmodule
 
