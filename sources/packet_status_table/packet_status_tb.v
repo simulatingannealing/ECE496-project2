@@ -145,6 +145,7 @@ module packet_status_tb;
     
     
     packet_status # (
+        .NUM_CORES(1),
         .TAG_WIDTH(TAG_WIDTH),
         .CIRCULAR_BUFFER_SIZE(CIRCULAR_BUFFER_SIZE),
         .STATUS_TABLE_SIZE(STATUS_TABLE_SIZE)
@@ -152,9 +153,9 @@ module packet_status_tb;
         .clk(clk),
         .rst(rst),
         // from BPF cores
-        .BPF_reorder_tag(BPF_reorder_tag), 
-        .BPF_wr_valid(BPF_wr_valid),
-        .BPF_wr_packet_status(BPF_wr_packet_status),
+        .parallel_BPF_reorder_tags(BPF_reorder_tag), 
+        .BPF_wr_valids(BPF_wr_valid),
+        .BPF_wr_packets_status(BPF_wr_packet_status),
         // from the circular buffer
         .cb_reorder_tag(cb_reorder_tag),
         // to the circular buffer
