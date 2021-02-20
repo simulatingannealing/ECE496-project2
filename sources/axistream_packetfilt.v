@@ -103,8 +103,11 @@ module axistream_packetfilt # (
         output wire cb_TVALID,
         input wire cb_TREADY,
         
+        //Packet status Table output
+        output wire [CIRCULAR_BUFFER_SIZE * 2-1:0] status_table, //debug wire
+
         //Debug outputs
-        output wire [15:0] num_packets_dropped,
+        /*output wire [15:0] num_packets_dropped,
         output wire [BYTE_ADDR_WIDTH -1 :0] cpu0_byte_rd_addr,
         output wire cpu0_rd_en,
         output wire [31:0] cpu0_resized_mem_data,
@@ -113,7 +116,20 @@ module axistream_packetfilt # (
         output wire cpu0_rej,
         output wire [CODE_ADDR_WIDTH -1:0] cpu0_inst_rd_addr,
         output wire cpu0_inst_rd_en,
-        output wire [CODE_DATA_WIDTH -1:0] cpu0_inst_rd_data
+        output wire [CODE_DATA_WIDTH -1:0] cpu0_inst_rd_data*/
+        
+        //Debug outputs, including packet status
+        output wire [15:0] num_packets_dropped,
+        output wire [N*BYTE_ADDR_WIDTH-1:0] cpu_byte_rd_addr,
+        output wire [N-1:0] cpu_rd_en,
+        output wire [N*32-1:0] cpu_resized_mem_data,
+        output wire [N-1:0] cpu_resized_mem_data_valid,
+        output wire [N-1:0] cpu_acc,
+        output wire [N-1:0] cpu_rej,
+        output wire [N*CODE_ADDR_WIDTH-1:0] cpu_inst_rd_addr,
+        output wire [N-1:0] cpu_inst_rd_en,
+        output wire [N*CODE_DATA_WIDTH-1:0] cpu_inst_rd_data
+        
     
 `ifndef DISABLE_AXILITE
         , //yes, this comma needs to be here
@@ -216,6 +232,11 @@ module axistream_packetfilt # (
     wire fwd_TLAST;
     wire fwd_TVALID;
     wire fwd_TREADY;
+    
+    // Interface from packet status table to circular buffer
+    wire [1:0] cb_rd_packet_status;
+    wire [N*TAG_WIDTH-1:0] parallel_BPF_reorder_tags;
+
 
 `ifndef DISABLE_AXILITE
     //from axilite_regs <=> regstrb2mem
@@ -400,6 +421,8 @@ generate if (N > 1) begin
         .inst_wr_data(inst_wr_data),
         .inst_wr_en(inst_wr_en),
         
+        //Interface to packet status table
+        .status_table_parallel_reorder_tags(parallel_BPF_reorder_tags),
         //Debug probes
         .dbg_info(dbg_info)
     );
@@ -451,19 +474,24 @@ end else begin
 
 end endgenerate
 	
-	//Assign debug probes
+    //Assign debug probes
+    genvar i;
+    for (i = 0; i < N; i = i + 1) begin
+    
 	assign {
-        cpu0_byte_rd_addr,
-        cpu0_rd_en,
-        cpu0_resized_mem_data,
-        cpu0_resized_mem_data_valid,
-        cpu0_acc,
-        cpu0_rej,
-        cpu0_inst_rd_addr,
-        cpu0_inst_rd_en,
-        cpu0_inst_rd_data
-    } = dbg_info[DBG_INFO_WIDTH -1:0];
-	
+        cpu_byte_rd_addr[(i+1)*BYTE_ADDR_WIDTH-1-:BYTE_ADDR_WIDTH],
+        cpu_rd_en[i],
+        cpu_resized_mem_data[(i+1)*32-1-:32],
+        cpu_resized_mem_data_valid[i],
+        cpu_acc[i],
+        cpu_rej[i],
+        cpu_inst_rd_addr[(i+1)*CODE_ADDR_WIDTH-1-:CODE_ADDR_WIDTH],
+        cpu_inst_rd_en[i],
+        cpu_inst_rd_data[(i+1)*CODE_DATA_WIDTH-1-:CODE_DATA_WIDTH]
+    } = dbg_info[(i+1)*DBG_INFO_WIDTH-1 -: DBG_INFO_WIDTH];   
+ 
+    end
+    
     axistream_forwarder # (
         .SN_FWD_ADDR_WIDTH(SN_FWD_ADDR_WIDTH),
         .SN_FWD_DATA_WIDTH(SN_FWD_DATA_WIDTH),
@@ -513,16 +541,35 @@ end endgenerate
         .in_TREADY(fwd_TREADY),
 
         .out_TDATA(cb_TDATA),
-        // TODO - connect to memory table
         .out_reorder_tag(cb_reorder_tag),
         // TODO - do we need a TKEEP? is it required by Vivado?
         .out_TLAST(cb_TLAST),
         .out_TVALID(cb_TVALID),
         .out_TREADY(cb_TREADY),
-
-        // TODO - connect to memory table
-        .packet_status()
+        .packet_status(cb_rd_packet_status)
     );
+        
+    
+    packet_status # (
+        .NUM_CORES(N),
+        .TAG_WIDTH(TAG_WIDTH),
+        .CIRCULAR_BUFFER_SIZE(CIRCULAR_BUFFER_SIZE),
+        .STATUS_TABLE_SIZE(CIRCULAR_BUFFER_SIZE * 2)
+    ) the_packet_status_table (
+        .clk(clk),
+        .rst(!control_start),
+        // from BPF cores
+        .parallel_BPF_reorder_tags(parallel_BPF_reorder_tags), 
+        .BPF_wr_valids(cpu_acc | cpu_rej),
+        .BPF_wr_packets_status(cpu_acc & (~cpu_rej)),
+        // from the circular buffer
+        .cb_reorder_tag(cb_reorder_tag),
+        // to the circular buffer
+        .cb_rd_packet_status(cb_rd_packet_status),
+        // for simulation demo
+        .status_table(status_table)
+    );
+    
 endmodule
 
 `undef KEEP_WIDTH

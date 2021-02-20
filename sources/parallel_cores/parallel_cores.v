@@ -99,6 +99,8 @@ module parallel_cores # (
     output wire rdy_for_sn,
     input wire rdy_for_sn_ack, //Yeah, I'm ready for a snack
     
+    
+    
     //Interface to forwarder
     input wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
     input wire fwd_rd_en,
@@ -115,6 +117,8 @@ module parallel_cores # (
     input wire [CODE_DATA_WIDTH-1:0] inst_wr_data,
     input wire inst_wr_en,
     
+    //Interface to packet status table
+    output wire [N*TAG_WIDTH-1:0] status_table_parallel_reorder_tags,
     //Debug probes
     output wire [N*DBG_INFO_WIDTH -1:0] dbg_info
 );
@@ -268,6 +272,10 @@ module parallel_cores # (
         .rdy_for_fwd(rdy_for_fwd_i),
         .rdy_for_fwd_ack(rdy_for_fwd_ack_i)
     );
+    
+    // Send the tags to the packet status table in parallel
+    assign status_table_parallel_reorder_tags = fwd_rd_reorder_tag_i;
+
 endmodule
 
 `undef CLOG2
