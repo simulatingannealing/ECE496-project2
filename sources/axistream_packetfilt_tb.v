@@ -44,6 +44,7 @@ a simulation of AXI Lite
 `define BUF_OUT             1
 `define PESS                1
 `define ENABLE_BACKPRESSURE 1
+`define CIRCULAR_BUFFER_SIZE 50
 
 
 `define KEEP_WIDTH (`SN_FWD_DATA_WIDTH/8)
@@ -65,6 +66,7 @@ module axistream_packetfilt_tb;
     reg sn_TLAST = 0;
     
     wire [15:0] num_packets_dropped;
+    wire [CIRCULAR_BUFFER_SIZE * 2-1:0] status_table;
 
     //AXI Stream forwarder interface
     wire [`SN_FWD_DATA_WIDTH-1:0] cb_TDATA;
@@ -162,6 +164,7 @@ module axistream_packetfilt_tb;
         .cb_TREADY(cb_TREADY),
         
         //Debug outputs
+        .status_table(status_table),
         .num_packets_dropped(num_packets_dropped)
     );
 
