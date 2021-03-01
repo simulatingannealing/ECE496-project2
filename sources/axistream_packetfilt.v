@@ -32,6 +32,7 @@ TODO: Update rest of code to do this
 `include "snoopers/axistream_snooper/axistream_snooper.v"
 `include "forwarders/axistream_forwarder/axistream_forwarder.v"
 `include "parallel_cores/packetfilter_core/packetfilter_core.v"
+`include "packet_status_table/packet_status.v"
 `include "circular_buffer/circular_buffer.v"
 `define localparam parameter
 `else /*For Vivado*/

@@ -66,7 +66,7 @@ module axistream_packetfilt_tb;
     reg sn_TLAST = 0;
     
     wire [15:0] num_packets_dropped;
-    wire [CIRCULAR_BUFFER_SIZE * 2-1:0] status_table;
+    wire [`CIRCULAR_BUFFER_SIZE * 2-1:0] status_table;
 
     //AXI Stream forwarder interface
     wire [`SN_FWD_DATA_WIDTH-1:0] cb_TDATA;
@@ -141,7 +141,8 @@ module axistream_packetfilt_tb;
             .BUF_IN             (`BUF_IN            ),
             .BUF_OUT            (`BUF_OUT           ),
             .PESS               (`PESS              ),
-            .ENABLE_BACKPRESSURE(`ENABLE_BACKPRESSURE)
+            .ENABLE_BACKPRESSURE(`ENABLE_BACKPRESSURE),
+            .CIRCULAR_BUFFER_SIZE(`CIRCULAR_BUFFER_SIZE)
     ) DUT (
         .clk(clk),
         .rst(rst),
