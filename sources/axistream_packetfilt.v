@@ -536,14 +536,14 @@ end endgenerate
 
         .in_TDATA(fwd_TDATA),
         .in_reorder_tag(fwd_reorder_tag),
-        // TODO - do we need a TKEEP? is it required by Vivado?
+        .in_TKEEP(fwd_TKEEP),
         .in_TLAST(fwd_TLAST),
         .in_TVALID(fwd_TVALID),
         .in_TREADY(fwd_TREADY),
 
         .out_TDATA(cb_TDATA),
         .out_reorder_tag(cb_reorder_tag),
-        // TODO - do we need a TKEEP? is it required by Vivado?
+        .out_TKEEP(cb_TKEEP),
         .out_TLAST(cb_TLAST),
         .out_TVALID(cb_TVALID),
         .out_TREADY(cb_TREADY),

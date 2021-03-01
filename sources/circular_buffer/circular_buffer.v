@@ -16,6 +16,7 @@ module circular_buffer #(
     //from forwarder
     input wire [DATA_WIDTH-1:0] in_TDATA,
     input wire [TAG_WIDTH-1:0] in_reorder_tag,
+    input wire [DATA_WIDTH/8-1:0] in_TKEEP,  // unused
     input wire in_TLAST,
     input wire in_TVALID,
     output wire in_TREADY,
@@ -23,6 +24,7 @@ module circular_buffer #(
     //to AXI output of packet filter IP
     output wire [DATA_WIDTH-1:0] out_TDATA,
     output reg [TAG_WIDTH-1:0] out_reorder_tag, // also goes to memory table
+    output wire [DATA_WIDTH/8-1:0] out_TKEEP,
     output reg out_TLAST,
     output reg out_TVALID,
     input wire out_TREADY,
@@ -149,6 +151,8 @@ module circular_buffer #(
         packet_valid[out_reorder_tag] &&
         !new_output_packet_delay &&
         ((packet_output_word_idx < packet_word_count[out_reorder_tag]) || out_TLAST);
+    // Assign TKEEP so that all bits are the same as the TVALID bit
+    assign out_TKEEP = { (DATA_WIDTH/8) {out_TVALID} };
 
     assign out_TLAST =
         (packet_status == 2'b11 && packet_valid[out_reorder_tag]) &&
