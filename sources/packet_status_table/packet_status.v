@@ -46,7 +46,13 @@ module packet_status # (
     //00: pending
     //01: rejected
     //11: accepted
-    
+
+    //initialization for testing
+    initial begin
+        status_table <= 0;
+        status_reset_iterator <= 0;
+    end
+
     integer i;
     always @(posedge clk) begin
         if (! rst) begin
