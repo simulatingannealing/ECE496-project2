@@ -1,18 +1,26 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Mon Mar  1 19:57:30 2021
+[*] Mon Mar  1 21:19:41 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.vcd"
-[dumpfile_mtime] "Mon Mar  1 19:55:33 2021"
+[dumpfile_mtime] "Mon Mar  1 21:13:12 2021"
 [dumpfile_size] 1555888
 [savefile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.gtkw"
 [timestart] 0
-[size] 1857 1060
-[pos] -902 -1
-*-18.387356 329000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1872 1060
+[pos] -917 -1
+*-18.487631 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] axistream_packetfilt_tb.
 [treeopen] axistream_packetfilt_tb.DUT.
-[sst_width] 213
+[treeopen] axistream_packetfilt_tb.DUT.genblk1.
+[treeopen] axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.
+[treeopen] axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].
+[treeopen] axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.
+[treeopen] axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[1].
+[treeopen] axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[2].
+[treeopen] axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[3].
+[treeopen] axistream_packetfilt_tb.DUT.the_packet_status_table.
+[sst_width] 294
 [signals_width] 484
 [sst_expanded] 1
 [sst_vpaned_height] 432
@@ -74,5 +82,65 @@ axistream_packetfilt_tb.DUT.the_packet_status_table.status_reset_iterator[5:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.status_table[99:0]
 @1000200
 -packet status table
+@22
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.fwd_rd_reorder_tag_i[23:0]
+@800200
+-core 0
+@28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.cpu_acc
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.cpu_rej
+@22
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.fwd_rd_data[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.fwd_rd_reorder_tag[5:0]
+@28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.fwd_rd_en
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_cpu.state
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_cpu.start_sig
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_cpu.done_sig
+@22
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_cpu.resized_mem_data[31:0]
+@28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_cpu.resized_mem_data_vld
+@1000200
+-core 0
+@800200
+-core 1
+@28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[1].filt.cpu_acc
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[1].filt.cpu_rej
+@22
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[1].filt.fwd_rd_data[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[1].filt.fwd_rd_reorder_tag[5:0]
+@28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[1].filt.fwd_rd_en
+@1000200
+-core 1
+@800200
+-core 2
+@28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[2].filt.cpu_acc
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[2].filt.cpu_rej
+@22
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[2].filt.fwd_rd_data[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[2].filt.fwd_rd_reorder_tag[5:0]
+@28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[2].filt.fwd_rd_en
+@1000200
+-core 2
+@800200
+-core 3
+@28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[3].filt.cpu_acc
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[3].filt.cpu_rej
+@22
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[3].filt.fwd_rd_data[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[3].filt.fwd_rd_reorder_tag[5:0]
+@28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[3].filt.fwd_rd_en
+@1000200
+-core 3
+@22
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.sn_wr_reorder_tag_i[5:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.sn_wr_en_i[3:0]
 [pattern_trace] 1
 [pattern_trace] 0
