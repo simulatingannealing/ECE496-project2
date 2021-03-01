@@ -44,6 +44,8 @@ a simulation of AXI Lite
 `define BUF_OUT             1
 `define PESS                1
 `define ENABLE_BACKPRESSURE 1
+
+`define TAG_WIDTH            6
 `define CIRCULAR_BUFFER_SIZE 50
 
 
@@ -70,6 +72,7 @@ module axistream_packetfilt_tb;
 
     //AXI Stream forwarder interface
     wire [`SN_FWD_DATA_WIDTH-1:0] cb_TDATA;
+    wire [`TAG_WIDTH-1:0] cb_reorder_tag;
     wire [`KEEP_WIDTH-1:0] cb_TKEEP;
     wire cb_TLAST;
     wire cb_TVALID;
@@ -142,6 +145,7 @@ module axistream_packetfilt_tb;
             .BUF_OUT            (`BUF_OUT           ),
             .PESS               (`PESS              ),
             .ENABLE_BACKPRESSURE(`ENABLE_BACKPRESSURE),
+            .TAG_WIDTH          (`TAG_WIDTH),
             .CIRCULAR_BUFFER_SIZE(`CIRCULAR_BUFFER_SIZE)
     ) DUT (
         .clk(clk),
@@ -159,6 +163,7 @@ module axistream_packetfilt_tb;
 
         //AXI Stream forwarder interface
         .cb_TDATA(cb_TDATA),
+        .cb_reorder_tag(cb_reorder_tag),
         .cb_TKEEP(cb_TKEEP),
         .cb_TLAST(cb_TLAST),
         .cb_TVALID(cb_TVALID),

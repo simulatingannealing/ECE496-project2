@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Mon Mar  1 19:34:28 2021
+[*] Mon Mar  1 19:57:30 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.vcd"
-[dumpfile_mtime] "Mon Mar  1 19:26:42 2021"
-[dumpfile_size] 1555875
+[dumpfile_mtime] "Mon Mar  1 19:55:33 2021"
+[dumpfile_size] 1555888
 [savefile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.gtkw"
 [timestart] 0
-[size] 1853 1060
-[pos] -898 -1
-*-18.244812 439000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1857 1060
+[pos] -902 -1
+*-18.387356 329000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] axistream_packetfilt_tb.
 [treeopen] axistream_packetfilt_tb.DUT.
-[sst_width] 275
-[signals_width] 413
+[sst_width] 213
+[signals_width] 484
 [sst_expanded] 1
 [sst_vpaned_height] 432
 @28
@@ -28,6 +28,7 @@ axistream_packetfilt_tb.inst_wr_en
 -snooper
 @22
 axistream_packetfilt_tb.sn_TDATA[63:0]
+axistream_packetfilt_tb.DUT.the_snooper.sn_wr_reorder_tag[5:0]
 axistream_packetfilt_tb.sn_TKEEP[7:0]
 @28
 axistream_packetfilt_tb.sn_TLAST
@@ -41,6 +42,7 @@ axistream_packetfilt_tb.DUT.dropped_cnt[15:0]
 -circular buffer
 @22
 axistream_packetfilt_tb.cb_TDATA[63:0]
+axistream_packetfilt_tb.cb_reorder_tag[5:0]
 axistream_packetfilt_tb.cb_TKEEP[7:0]
 @28
 axistream_packetfilt_tb.cb_TLAST
@@ -57,22 +59,17 @@ axistream_packetfilt_tb.DUT.the_circular_buffer.packet_output_word_idx[7:0]
 -circular buffer
 @800200
 -packet status table
+@28
+axistream_packetfilt_tb.DUT.the_packet_status_table.clk
+axistream_packetfilt_tb.DUT.the_packet_status_table.rst
 @22
 axistream_packetfilt_tb.DUT.the_packet_status_table.BPF_wr_packets_status[3:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.BPF_wr_valids[3:0]
+axistream_packetfilt_tb.DUT.the_packet_status_table.cb_reorder_tag[5:0]
 @28
 axistream_packetfilt_tb.DUT.the_packet_status_table.cb_rd_packet_status[1:0]
 @22
-axistream_packetfilt_tb.DUT.the_packet_status_table.cb_reorder_tag[5:0]
-@28
-axistream_packetfilt_tb.DUT.the_packet_status_table.clk
-@420
-axistream_packetfilt_tb.DUT.the_packet_status_table.i
-@22
 axistream_packetfilt_tb.DUT.the_packet_status_table.parallel_BPF_reorder_tags[23:0]
-@28
-axistream_packetfilt_tb.DUT.the_packet_status_table.rst
-@22
 axistream_packetfilt_tb.DUT.the_packet_status_table.status_reset_iterator[5:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.status_table[99:0]
 @1000200
