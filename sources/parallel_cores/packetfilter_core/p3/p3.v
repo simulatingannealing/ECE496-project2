@@ -81,6 +81,7 @@ module p3 # (
     output wire [31:0] resized_mem_data,
     output wire resized_mem_data_vld,
     output wire [PLEN_WIDTH-1:0] cpu_byte_len,
+    output wire [TAG_WIDTH-1:0] cpu_rd_reorder_tag,
     
     input wire cpu_acc,
     input wire cpu_rej,
@@ -143,6 +144,7 @@ module p3 # (
     wire [PACKMEM_DATA_WIDTH-1:0] cpu_bigword_i;
     wire cpu_bigword_vld_i;
     wire [PLEN_WIDTH-1:0] cpu_byte_len_i;
+    wire [TAG_WIDTH-1:0] cpu_rd_reorder_tag_i;
     
     //Forwarder adapter ports    
     wire [INTERNAL_ADDR_WIDTH-1:0] fwd_addr_i;
@@ -290,7 +292,9 @@ module p3 # (
         .rd_data_vld(fwd_rd_data_vld_i),
         .bytes(fwd_byte_len_i)
     ); 
-    // Tag does not go through adapter
+
+    // Tags do not go through adapter
+    assign cpu_rd_reorder_tag = cpu_rd_reorder_tag_i;
     assign fwd_rd_reorder_tag = fwd_rd_reorder_tag_i;
 
     p3ctrl ctrlr (
@@ -340,6 +344,7 @@ module p3 # (
         //Nothing to output to snooper
         //Format is {rd_data, rd_data_vld, packet_len}
         .to_cpu({cpu_bigword_i, cpu_bigword_vld_i, cpu_byte_len_i}),
+        .reorder_tag_to_cpu(cpu_rd_reorder_tag_i),
         .to_fwd({fwd_rd_data_i, fwd_rd_data_vld_i, fwd_byte_len_i}),
         .reorder_tag_to_fwd(fwd_rd_reorder_tag_i),
         

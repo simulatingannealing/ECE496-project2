@@ -137,6 +137,9 @@ module parallel_cores # (
     wire [N-1:0] sn_done_i;
     wire [N-1:0] rdy_for_sn_ack_i; //Yeah, I'm ready for a snack
     
+    // For packet table
+    wire [N*TAG_WIDTH-1:0] cpu_rd_reorder_tag_i;
+
     /************************************/
     /***fwd_arb <=> packetfilter_cores***/
     /************************************/
@@ -179,6 +182,8 @@ module parallel_cores # (
             .sn_done(sn_done_i[i]),
             .rdy_for_sn(rdy_for_sn_i[i]),
             .rdy_for_sn_ack(rdy_for_sn_ack_i[i]), //Yeah, I'm ready for a snack
+
+            .cpu_rd_reorder_tag(cpu_rd_reorder_tag_i[TAG_WIDTH*(i+1)-1 -: TAG_WIDTH]),
 
             //Interface to forwarder
             .fwd_addr(fwd_addr_i),
@@ -274,7 +279,7 @@ module parallel_cores # (
     );
     
     // Send the tags to the packet status table in parallel
-    assign status_table_parallel_reorder_tags = fwd_rd_reorder_tag_i;
+    assign status_table_parallel_reorder_tags = cpu_rd_reorder_tag_i;
 
 endmodule
 

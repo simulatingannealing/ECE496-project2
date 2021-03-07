@@ -109,6 +109,8 @@ module packetfilter_core # (
     output wire rdy_for_sn,
     input wire rdy_for_sn_ack, //Yeah, I'm ready for a snack
     
+    output wire [TAG_WIDTH-1:0] cpu_rd_reorder_tag,
+
     //Interface to forwarder
     input wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr,
     input wire fwd_rd_en,
@@ -182,6 +184,7 @@ module packetfilter_core # (
         .resized_mem_data(resized_mem_data),
         .resized_mem_data_vld(resized_mem_data_vld),
         .cpu_byte_len(cpu_byte_len),
+        .cpu_rd_reorder_tag(cpu_rd_reorder_tag),
         .cpu_acc(cpu_acc),
         .cpu_rej(cpu_rej),
         .rdy_for_cpu(rdy_for_cpu),

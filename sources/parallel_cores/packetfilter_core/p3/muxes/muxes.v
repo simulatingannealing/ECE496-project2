@@ -97,6 +97,7 @@ module muxes # (
 	//Nothing to output to snooper
 	//Format is {rd_data, rd_data_vld, packet_len}
 	output wire [DATA_WIDTH + `VLD_BIT + PLEN_WIDTH -1:0] to_cpu,
+	output wire [TAG_WIDTH-1:0] reorder_tag_to_cpu,
 	output wire [DATA_WIDTH + `VLD_BIT + PLEN_WIDTH -1:0] to_fwd,
 	output wire [TAG_WIDTH-1:0] reorder_tag_to_fwd,
 	//Format here is {addr, wr_data, wr_en, bytes_inc, reset_sig, rd_en}
@@ -123,6 +124,13 @@ mux3 # (DATA_WIDTH + `VLD_BIT + PLEN_WIDTH) cpu_mux (
 	.C(from_pong),
 	.sel(cpu_sel),
 	.D(to_cpu)
+);
+mux3 # (TAG_WIDTH) reorder_tag_cpu_mux (
+	.A(reorder_tag_from_ping),
+	.B(reorder_tag_from_pang),
+	.C(reorder_tag_from_pong),
+	.sel(cpu_sel),
+	.D(reorder_tag_to_cpu)
 );
 
 mux3 # (DATA_WIDTH + `VLD_BIT + PLEN_WIDTH) fwd_mux (
