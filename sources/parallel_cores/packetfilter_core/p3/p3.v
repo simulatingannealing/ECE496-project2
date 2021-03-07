@@ -384,10 +384,6 @@ module p3 # (
         .odata_vld(ping_odata_vld), //@1 + BUF_IN + BUF_OUT
         .byte_length(ping_byte_length)
     );
-    // TODO - should this be combined with the main ping buffer with an increased bus width?
-    // TODO - should the enable signals be changed to only assert once per packet?
-    // TODO - address and data widths?
-    // TODO - don't drive odata_vld and byte_length signals from two different modules
     p_ng # (
         .ADDR_WIDTH(INTERNAL_ADDR_WIDTH),
         .DATA_WIDTH(TAG_WIDTH),

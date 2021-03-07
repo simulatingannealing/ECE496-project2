@@ -1,14 +1,14 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Sun Mar  7 20:33:44 2021
+[*] Sun Mar  7 21:06:58 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.vcd"
-[dumpfile_mtime] "Sun Mar  7 20:17:38 2021"
+[dumpfile_mtime] "Sun Mar  7 21:02:45 2021"
 [dumpfile_size] 1567671
 [savefile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.gtkw"
 [timestart] 0
-[size] 1852 1060
-[pos] -897 -1
+[size] 1839 1060
+[pos] -884 -1
 *-17.548429 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] axistream_packetfilt_tb.
 [treeopen] axistream_packetfilt_tb.DUT.
@@ -26,9 +26,8 @@
 [signals_width] 485
 [sst_expanded] 1
 [sst_vpaned_height] 432
-@29
-axistream_packetfilt_tb.clk
 @28
+axistream_packetfilt_tb.clk
 axistream_packetfilt_tb.rst
 @22
 axistream_packetfilt_tb.inst_wr_addr[8:0]
@@ -41,11 +40,12 @@ axistream_packetfilt_tb.DUT.dropped_cnt[15:0]
 -TB input
 @22
 axistream_packetfilt_tb.sn_TDATA[63:0]
-axistream_packetfilt_tb.sn_TKEEP[7:0]
 @28
 axistream_packetfilt_tb.sn_TLAST
-axistream_packetfilt_tb.sn_TREADY
 axistream_packetfilt_tb.sn_TVALID
+axistream_packetfilt_tb.sn_TREADY
+@22
+axistream_packetfilt_tb.sn_TKEEP[7:0]
 @1000200
 -TB input
 @800200
@@ -53,11 +53,12 @@ axistream_packetfilt_tb.sn_TVALID
 @22
 axistream_packetfilt_tb.cb_TDATA[63:0]
 axistream_packetfilt_tb.cb_reorder_tag[5:0]
-axistream_packetfilt_tb.cb_TKEEP[7:0]
 @28
 axistream_packetfilt_tb.cb_TLAST
-axistream_packetfilt_tb.cb_TREADY
 axistream_packetfilt_tb.cb_TVALID
+axistream_packetfilt_tb.cb_TREADY
+@22
+axistream_packetfilt_tb.cb_TKEEP[7:0]
 @1000200
 -TB output
 @800200
@@ -65,19 +66,20 @@ axistream_packetfilt_tb.cb_TVALID
 @22
 axistream_packetfilt_tb.DUT.the_snooper.sn_TDATA_i[63:0]
 axistream_packetfilt_tb.DUT.the_snooper.sn_wr_reorder_tag[5:0]
-axistream_packetfilt_tb.DUT.the_snooper.sn_TKEEP_i[7:0]
 @28
-axistream_packetfilt_tb.DUT.the_snooper.sn_TREADY_i
-axistream_packetfilt_tb.DUT.the_snooper.sn_TVALID_i
 axistream_packetfilt_tb.DUT.the_snooper.sn_TLAST_i
+axistream_packetfilt_tb.DUT.the_snooper.sn_TVALID_i
+axistream_packetfilt_tb.DUT.the_snooper.sn_TREADY_i
+@22
+axistream_packetfilt_tb.DUT.the_snooper.sn_TKEEP_i[7:0]
 @1000200
 -snooper
 @800200
 -packet status table
 @22
 axistream_packetfilt_tb.DUT.the_packet_status_table.BPF_wr_valids[3:0]
-axistream_packetfilt_tb.DUT.the_packet_status_table.parallel_BPF_reorder_tags[23:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.BPF_wr_packets_status[3:0]
+axistream_packetfilt_tb.DUT.the_packet_status_table.parallel_BPF_reorder_tags[23:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.status_table[99:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.status_reset_iterator[5:0]
 @1000200

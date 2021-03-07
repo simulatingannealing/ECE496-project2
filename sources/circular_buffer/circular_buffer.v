@@ -85,7 +85,6 @@ module circular_buffer #(
             end
         end else begin
             // If the buffer is done outputting a packet, invalidate that packet data in the buffer
-            // TODO - does the buffer need to notify the packet status table to set the status back to pending?
             if (out_TLAST) begin
                 packet_valid[out_reorder_tag] <= 1'b0;
                 packet_word_count[out_reorder_tag] <= 0;

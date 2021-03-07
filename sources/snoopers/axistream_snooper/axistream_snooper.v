@@ -159,7 +159,6 @@ end else begin
     assign sn_TLAST_i = sn_TLAST;
 `endgen
 
-    // TODO - is this only valid in simulation?
     initial sn_wr_reorder_tag <= 0;
 
     //reorder tag counter

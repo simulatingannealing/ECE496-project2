@@ -174,7 +174,7 @@ mux3 # (ADDR_WIDTH + DATA_WIDTH + `ENABLE_BIT + INC_WIDTH + `RESET_SIG + `ENABLE
 	.sel(ping_sel),
 	.D(to_ping)
 );
-// TODO - is there data from cpu/fwd?
+// Assuming there is no tag from cpu/fwd
 mux3 # (TAG_WIDTH) reorder_tag_ping_mux (
 	.A(reorder_tag_from_sn),
 	.B({TAG_WIDTH{1'b0}}),
