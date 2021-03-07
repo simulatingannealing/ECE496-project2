@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Sat Mar  6 22:17:05 2021
+[*] Sun Mar  7 18:18:20 2021
 [*]
 [dumpfile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.vcd"
-[dumpfile_mtime] "Sat Mar  6 18:13:57 2021"
-[dumpfile_size] 1555888
+[dumpfile_mtime] "Sun Mar  7 18:15:29 2021"
+[dumpfile_size] 1523664
 [savefile] "/home/bruno/work/ECE496-project2/sources/axistream_packetfilt.gtkw"
-[timestart] 26000
-[size] 1845 1060
-[pos] -890 -1
-*-17.487631 141100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 0
+[size] 1858 1060
+[pos] -903 -1
+*-17.487631 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] axistream_packetfilt_tb.
 [treeopen] axistream_packetfilt_tb.DUT.
 [treeopen] axistream_packetfilt_tb.DUT.genblk1.
@@ -21,12 +21,14 @@
 [treeopen] axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[2].
 [treeopen] axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[3].
 [treeopen] axistream_packetfilt_tb.DUT.the_packet_status_table.
+[treeopen] axistream_packetfilt_tb.DUT.the_snooper.
 [sst_width] 213
 [signals_width] 484
 [sst_expanded] 1
 [sst_vpaned_height] 432
-@28
+@29
 axistream_packetfilt_tb.clk
+@28
 axistream_packetfilt_tb.rst
 @22
 axistream_packetfilt_tb.inst_wr_addr[8:0]
@@ -37,7 +39,6 @@ axistream_packetfilt_tb.inst_wr_en
 -snooper
 @22
 axistream_packetfilt_tb.sn_TDATA[63:0]
-axistream_packetfilt_tb.DUT.the_snooper.sn_wr_reorder_tag[5:0]
 axistream_packetfilt_tb.sn_TKEEP[7:0]
 @28
 axistream_packetfilt_tb.sn_TLAST
@@ -45,6 +46,19 @@ axistream_packetfilt_tb.sn_TREADY
 axistream_packetfilt_tb.sn_TVALID
 @1000200
 -snooper
+@800200
+-snooper module
+@22
+axistream_packetfilt_tb.DUT.the_snooper.sn_TDATA_i[63:0]
+axistream_packetfilt_tb.DUT.the_snooper.sn_TKEEP_i[7:0]
+@28
+axistream_packetfilt_tb.DUT.the_snooper.sn_TREADY_i
+axistream_packetfilt_tb.DUT.the_snooper.sn_TVALID_i
+axistream_packetfilt_tb.DUT.the_snooper.sn_TLAST_i
+@22
+axistream_packetfilt_tb.DUT.the_snooper.sn_wr_reorder_tag[5:0]
+@1000200
+-snooper module
 @22
 axistream_packetfilt_tb.DUT.dropped_cnt[15:0]
 @800200
@@ -68,22 +82,14 @@ axistream_packetfilt_tb.DUT.the_circular_buffer.packet_output_word_idx[7:0]
 -circular buffer
 @800200
 -packet status table
-@28
-axistream_packetfilt_tb.DUT.the_packet_status_table.clk
-axistream_packetfilt_tb.DUT.the_packet_status_table.rst
 @22
 axistream_packetfilt_tb.DUT.the_packet_status_table.BPF_wr_valids[3:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.parallel_BPF_reorder_tags[23:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.BPF_wr_packets_status[3:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.status_table[99:0]
 axistream_packetfilt_tb.DUT.the_packet_status_table.status_reset_iterator[5:0]
-axistream_packetfilt_tb.DUT.the_packet_status_table.cb_reorder_tag[5:0]
-@28
-axistream_packetfilt_tb.DUT.the_packet_status_table.cb_rd_packet_status[1:0]
 @1000200
 -packet status table
-@22
-axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.fwd_rd_reorder_tag_i[23:0]
 @800200
 -core 0
 @28
@@ -102,29 +108,36 @@ axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_cpu.re
 @28
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_cpu.resized_mem_data_vld
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.clk
-axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_reset_len
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_rd_en
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_wr_en
 @22
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_addr[8:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_idata[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_odata[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_reorder_tag_in[5:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_reorder_tag_out[5:0]
 @28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_odata_vld
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pang_rd_en
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pang_wr_en
 @22
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pang_addr[8:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pang_idata[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pang_odata[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pang_reorder_tag_in[5:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pang_reorder_tag_out[5:0]
 @28
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pang_odata_vld
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pong_rd_en
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pong_wr_en
-@23
+@22
 axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pong_addr[8:0]
-@22
-axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_reorder_tag_in[5:0]
-axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_byte_inc[3:0]
-axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_reorder_tag_out[5:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pong_idata[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pong_odata[63:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pong_reorder_tag_in[5:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pong_reorder_tag_out[5:0]
 @28
-axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_odata_vld
-@22
-axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.ping_byte_length[31:0]
+axistream_packetfilt_tb.DUT.genblk1.the_actual_filter.genblk1[0].filt.the_p3_system.pong_odata_vld
 @1000200
 -core 0
 @800200

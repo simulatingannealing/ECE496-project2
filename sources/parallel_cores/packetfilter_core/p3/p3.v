@@ -382,6 +382,7 @@ module p3 # (
     // TODO - should this be combined with the main ping buffer with an increased bus width?
     // TODO - should the enable signals be changed to only assert once per packet?
     // TODO - address and data widths?
+    // TODO - don't drive odata_vld and byte_length signals from two different modules
     p_ng # (
         .ADDR_WIDTH(INTERNAL_ADDR_WIDTH),
         .DATA_WIDTH(TAG_WIDTH),
@@ -394,12 +395,16 @@ module p3 # (
         .rst(rst || ping_reset_len), //Note: does not actually change the stored memory
         .rd_en(ping_rd_en), //@0
         .wr_en(ping_wr_en), //@0
-        .addr(ping_addr), //@0
+        // Make address zero so we always write to/read from the same location
+        // When this is set to ping_addr, the CPU often does reads from
+        // addresses that are not a multiple of 2, causing the data (tag) to be
+        // shifted by 3 bits either left or right
+        .addr(0), //@0
         .idata(ping_reorder_tag_in), //@0
         .byte_inc(ping_byte_inc), //@0
         .odata(ping_reorder_tag_out), //@1 + BUF_IN + BUF_OUT
-        .odata_vld(ping_odata_vld), //@1 + BUF_IN + BUF_OUT
-        .byte_length(ping_byte_length)
+        .odata_vld(), //@1 + BUF_IN + BUF_OUT
+        .byte_length()
     );
 
     p_ng # (
@@ -433,12 +438,12 @@ module p3 # (
         .rst(rst || pang_reset_len), //Note: does not actually change the stored memory
         .rd_en(pang_rd_en), //@0
         .wr_en(pang_wr_en), //@0
-        .addr(pang_addr), //@0
+        .addr(0), //@0
         .idata(pang_reorder_tag_in), //@0
         .byte_inc(pang_byte_inc), //@0
         .odata(pang_reorder_tag_out), //@1 + BUF_IN + BUF_OUT
-        .odata_vld(pang_odata_vld), //@1 + BUF_IN + BUF_OUT
-        .byte_length(pang_byte_length)
+        .odata_vld(), //@1 + BUF_IN + BUF_OUT
+        .byte_length()
     );
 
     p_ng # (
@@ -472,12 +477,12 @@ module p3 # (
         .rst(rst || pong_reset_len), //Note: does not actually change the stored memory
         .rd_en(pong_rd_en), //@0
         .wr_en(pong_wr_en), //@0
-        .addr(pong_addr), //@0
+        .addr(0), //@0
         .idata(pong_reorder_tag_in), //@0
         .byte_inc(pong_byte_inc), //@0
         .odata(pong_reorder_tag_out), //@1 + BUF_IN + BUF_OUT
-        .odata_vld(pong_odata_vld), //@1 + BUF_IN + BUF_OUT
-        .byte_length(pong_byte_length)
+        .odata_vld(), //@1 + BUF_IN + BUF_OUT
+        .byte_length()
     );
 
 endmodule
