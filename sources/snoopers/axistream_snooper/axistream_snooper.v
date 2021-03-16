@@ -159,7 +159,6 @@ end else begin
     assign sn_TLAST_i = sn_TLAST;
 `endgen
 
-    // TODO - is this only valid in simulation?
     initial sn_wr_reorder_tag <= 0;
 
     //reorder tag counter
@@ -167,7 +166,12 @@ end else begin
     always @(posedge clk) begin
         if (rst) begin
             sn_wr_reorder_tag <= 0;
-        end else if (sn_TLAST) begin
+        end
+        // IMPORTANT: Need to use sn_TLAST_i here instead of sn_TLAST
+        // If we have PESS turned on, the _i signals are delayed by one clock
+        // cycle before being sent to the rest of the system, so we need the
+        // reorder tag logic to be delayed one cycle as well to match
+        else if (sn_TLAST_i) begin
             if (CIRCULAR_BUFFER_SIZE - 1 == sn_wr_reorder_tag) begin
                 sn_wr_reorder_tag <= 0;
             end else begin

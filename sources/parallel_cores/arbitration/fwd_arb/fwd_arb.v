@@ -187,7 +187,7 @@ module fwd_arb # (
         .clk(clk),
         .rst(rst),
         
-        .sel(selection), //TODO: delay this input by MEM_LAT cycles, then remove WAITING state from forwarder
+        .sel(selection),
         .ins(fwd_rd_reorder_tag),
         .result(rd_reorder_tag)
     );

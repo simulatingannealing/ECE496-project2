@@ -45,6 +45,9 @@ a simulation of AXI Lite
 `define PESS                1
 `define ENABLE_BACKPRESSURE 1
 
+`define TAG_WIDTH            6
+`define CIRCULAR_BUFFER_SIZE 50
+
 
 `define KEEP_WIDTH (`SN_FWD_DATA_WIDTH/8)
 `define CODE_ADDR_WIDTH (`CLOG2(`INST_MEM_DEPTH))
@@ -65,13 +68,15 @@ module axistream_packetfilt_tb;
     reg sn_TLAST = 0;
     
     wire [15:0] num_packets_dropped;
+    wire [`CIRCULAR_BUFFER_SIZE * 2-1:0] status_table;
 
     //AXI Stream forwarder interface
-    wire [`SN_FWD_DATA_WIDTH-1:0] fwd_TDATA;
-    wire [`KEEP_WIDTH-1:0] fwd_TKEEP;
-    wire fwd_TLAST;
-    wire fwd_TVALID;
-    reg fwd_TREADY = 0;
+    wire [`SN_FWD_DATA_WIDTH-1:0] cb_TDATA;
+    wire [`TAG_WIDTH-1:0] cb_reorder_tag;
+    wire [`KEEP_WIDTH-1:0] cb_TKEEP;
+    wire cb_TLAST;
+    wire cb_TVALID;
+    reg cb_TREADY = 0;
 
     reg [`CODE_ADDR_WIDTH-1:0] inst_wr_addr = 0;
     reg [`CODE_DATA_WIDTH-1:0] inst_wr_data = 0;
@@ -118,7 +123,7 @@ module axistream_packetfilt_tb;
             sn_TREADY,
             sn_TVALID,
             sn_TLAST,
-            fwd_TREADY,
+            cb_TREADY,
             inst_wr_addr,
             inst_wr_data,
             inst_wr_en
@@ -139,7 +144,9 @@ module axistream_packetfilt_tb;
             .BUF_IN             (`BUF_IN            ),
             .BUF_OUT            (`BUF_OUT           ),
             .PESS               (`PESS              ),
-            .ENABLE_BACKPRESSURE(`ENABLE_BACKPRESSURE)
+            .ENABLE_BACKPRESSURE(`ENABLE_BACKPRESSURE),
+            .TAG_WIDTH          (`TAG_WIDTH),
+            .CIRCULAR_BUFFER_SIZE(`CIRCULAR_BUFFER_SIZE)
     ) DUT (
         .clk(clk),
         .rst(rst),
@@ -155,13 +162,15 @@ module axistream_packetfilt_tb;
 
 
         //AXI Stream forwarder interface
-        .fwd_TDATA(fwd_TDATA),
-        .fwd_TKEEP(fwd_TKEEP),
-        .fwd_TLAST(fwd_TLAST),
-        .fwd_TVALID(fwd_TVALID),
-        .fwd_TREADY(fwd_TREADY),
+        .cb_TDATA(cb_TDATA),
+        .cb_reorder_tag(cb_reorder_tag),
+        .cb_TKEEP(cb_TKEEP),
+        .cb_TLAST(cb_TLAST),
+        .cb_TVALID(cb_TVALID),
+        .cb_TREADY(cb_TREADY),
         
         //Debug outputs
+        .status_table(status_table),
         .num_packets_dropped(num_packets_dropped)
     );
 
