@@ -25,8 +25,8 @@ module circular_buffer #(
     output wire [DATA_WIDTH-1:0] out_TDATA,
     output reg [TAG_WIDTH-1:0] out_reorder_tag, // also goes to memory table
     output wire [DATA_WIDTH/8-1:0] out_TKEEP,
-    output reg out_TLAST,
-    output reg out_TVALID,
+    output wire out_TLAST,
+    output wire out_TVALID,
     input wire out_TREADY,
 
     //from memory table
@@ -41,18 +41,18 @@ module circular_buffer #(
 
     //ram param for packets
     reg wr_en_global;
-    reg [CIRCULAR_BUFFER_SIZE-1:0] wr_en;
-    reg [ADDR_WIDTH-1:0] wr_addr;
+    wire [CIRCULAR_BUFFER_SIZE-1:0] wr_en;
+    wire [ADDR_WIDTH-1:0] wr_addr;
     reg [DATA_WIDTH-1:0] wr_data;
-    reg [ADDR_WIDTH-1:0] rd_addr;
+    wire [ADDR_WIDTH-1:0] rd_addr;
     reg [DATA_WIDTH-1:0] rd_data [CIRCULAR_BUFFER_SIZE-1:0];
 
     // If this is set to 1, delay for one cycle before outputting a new packet
     reg new_output_packet_delay;
 
     // These 1-D signals are just for viewing 2-D signals in GTKWave
-    reg [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] packet_word_count_dump;
-    reg [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_data_dump;
+    wire [ADDR_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] packet_word_count_dump;
+    wire [DATA_WIDTH*CIRCULAR_BUFFER_SIZE-1:0] rd_data_dump;
     generate
         genvar i_gen;
         for (i_gen = 0; i_gen < CIRCULAR_BUFFER_SIZE; i_gen = i_gen + 1) begin
