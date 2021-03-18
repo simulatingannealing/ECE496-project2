@@ -45,7 +45,7 @@ module circular_buffer #(
     wire [ADDR_WIDTH-1:0] wr_addr;
     reg [DATA_WIDTH-1:0] wr_data;
     wire [ADDR_WIDTH-1:0] rd_addr;
-    reg [DATA_WIDTH-1:0] rd_data [CIRCULAR_BUFFER_SIZE-1:0];
+    wire [DATA_WIDTH-1:0] rd_data [CIRCULAR_BUFFER_SIZE-1:0];
 
     // If this is set to 1, delay for one cycle before outputting a new packet
     reg new_output_packet_delay;
