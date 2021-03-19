@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Wed Mar 17 02:48:48 2021
+# Process ID: 26133
+# Current directory: /home/tianyi/capstone
+# Command line: vivado
+# Log file: /home/tianyi/capstone/vivado.log
+# Journal file: /home/tianyi/capstone/vivado.jou
+#-----------------------------------------------------------
+start_gui
+create_project managed_ip_project /home/tianyi/ip_repo/managed_ip_project -part xczu19eg-ffvc1760-2-i -ip
+set_property target_simulator XSim [current_project]

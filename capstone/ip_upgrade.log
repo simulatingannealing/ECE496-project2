@@ -1,0 +1,69 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Fri Mar 19 01:38:37 2021
+| Host         : capstone running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xczu19eg-ffvc1760-2-i
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'capstone_axistream_packetfilt_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the conversion of capstone_axistream_packetfilt_0_0 (Marco_Merlini:fpga_bpf:axistream_packetfilt:1.0 (Rev. 1)) to Vivado generation flows.
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading 'capstone_axistream_packetfilt_0_0'. These changes may impact your design.
+
+
+-Upgrade has added port 'control_start_debug'
+
+
+
+
+
+
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Thu Mar 18 21:43:27 2021
+| Host         : capstone running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xczu19eg-ffvc1760-2-i
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'capstone_axistream_packetfilt_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the conversion of capstone_axistream_packetfilt_0_0 (Marco_Merlini:fpga_bpf:axistream_packetfilt:1.0 (Rev. 1)) to Vivado generation flows.
+
+
+
+
+
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Thu Mar 18 21:09:58 2021
+| Host         : capstone running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xczu19eg-ffvc1760-2-i
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'capstone_axistream_packetfilt_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the conversion of capstone_axistream_packetfilt_0_0 (Marco_Merlini:fpga_bpf:axistream_packetfilt:1.0 (Rev. 1)) to Vivado generation flows.
+

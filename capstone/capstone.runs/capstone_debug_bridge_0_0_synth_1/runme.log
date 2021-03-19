@@ -1,0 +1,295 @@
+
+*** Running vivado
+    with args -log capstone_debug_bridge_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source capstone_debug_bridge_0_0.tcl
+
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source capstone_debug_bridge_0_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/capstone/input_packets_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/ARM_control_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/input_test_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ECE496-project2/vivado_scripts/axistream_packetfilt'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/mnt/Xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1357.195 ; gain = 0.000 ; free physical = 52340 ; free virtual = 54055
+Command: synth_design -top capstone_debug_bridge_0_0 -part xczu19eg-ffvc1760-2-i -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-1540] The version limit for your license is '2020.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 18575 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1514.797 ; gain = 78.000 ; free physical = 51934 ; free virtual = 53649
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'capstone_debug_bridge_0_0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/synth/capstone_debug_bridge_0_0.v:59]
+INFO: [Synth 8-6157] synthesizing module 'bd_43ca' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/bd_0/synth/bd_43ca.v:10]
+INFO: [Synth 8-6157] synthesizing module 'bd_43ca_axi_jtag_0' [/home/tianyi/capstone/capstone.runs/capstone_debug_bridge_0_0_synth_1/.Xil/Vivado-18518-capstone/realtime/bd_43ca_axi_jtag_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bd_43ca_axi_jtag_0' (1#1) [/home/tianyi/capstone/capstone.runs/capstone_debug_bridge_0_0_synth_1/.Xil/Vivado-18518-capstone/realtime/bd_43ca_axi_jtag_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bd_43ca_bsip_0' [/home/tianyi/capstone/capstone.runs/capstone_debug_bridge_0_0_synth_1/.Xil/Vivado-18518-capstone/realtime/bd_43ca_bsip_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bd_43ca_bsip_0' (2#1) [/home/tianyi/capstone/capstone.runs/capstone_debug_bridge_0_0_synth_1/.Xil/Vivado-18518-capstone/realtime/bd_43ca_bsip_0_stub.v:6]
+WARNING: [Synth 8-350] instance 'bsip' of module 'bd_43ca_bsip_0' requires 15 connections, but only 5 given [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/bd_0/synth/bd_43ca.v:127]
+INFO: [Synth 8-6155] done synthesizing module 'bd_43ca' (3#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/bd_0/synth/bd_43ca.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_debug_bridge_0_0' (4#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/synth/capstone_debug_bridge_0_0.v:59]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1561.547 ; gain = 124.750 ; free physical = 51840 ; free virtual = 53556
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1561.547 ; gain = 124.750 ; free physical = 51818 ; free virtual = 53534
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1561.547 ; gain = 124.750 ; free physical = 51818 ; free virtual = 53534
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xczu19eg-ffvc1760-2-i
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/bd_0/ip/ip_0/bd_43ca_axi_jtag_0/bd_43ca_axi_jtag_0_in_context.xdc] for cell 'inst/axi_jtag'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/bd_0/ip/ip_0/bd_43ca_axi_jtag_0/bd_43ca_axi_jtag_0_in_context.xdc] for cell 'inst/axi_jtag'
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/bd_0/ip/ip_1/bd_43ca_bsip_0/bd_43ca_bsip_0_in_context.xdc] for cell 'inst/bsip'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/bd_0/ip/ip_1/bd_43ca_bsip_0/bd_43ca_bsip_0_in_context.xdc] for cell 'inst/bsip'
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/capstone_debug_bridge_0_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/capstone_debug_bridge_0_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/tianyi/capstone/capstone.runs/capstone_debug_bridge_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.runs/capstone_debug_bridge_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2723.906 ; gain = 0.000 ; free physical = 49572 ; free virtual = 51287
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2723.906 ; gain = 0.000 ; free physical = 49572 ; free virtual = 51287
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2723.906 ; gain = 0.000 ; free physical = 49570 ; free virtual = 51286
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:50 . Memory (MB): peak = 2723.906 ; gain = 1287.109 ; free physical = 49622 ; free virtual = 51337
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu19eg-ffvc1760-2-i
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:50 . Memory (MB): peak = 2723.906 ; gain = 1287.109 ; free physical = 49621 ; free virtual = 51337
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for inst. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for inst/axi_jtag. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for inst/bsip. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:50 . Memory (MB): peak = 2723.906 ; gain = 1287.109 ; free physical = 49620 ; free virtual = 51336
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:24 ; elapsed = 00:00:50 . Memory (MB): peak = 2723.906 ; gain = 1287.109 ; free physical = 49620 ; free virtual = 51335
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1968 (col length:264)
+BRAMs: 1968 (col length: RAMB18 264 RAMB36 132)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:51 . Memory (MB): peak = 2723.906 ; gain = 1287.109 ; free physical = 49605 ; free virtual = 51320
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'inst/axi_jtag/tck' to pin 'inst/axi_jtag/bbstub_tck/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'inst/bsip/drck' to pin 'inst/bsip/bbstub_drck/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'inst/bsip/tck' to pin 'inst/bsip/bbstub_tck/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'inst/bsip/update' to pin 'inst/bsip/bbstub_update/O'
+INFO: [Synth 8-5783] Moving clock source from hierarchical pin 'inst/bsip/tap_tck' to 'inst/axi_jtag/bbstub_tck/O'
+INFO: [Synth 8-5819] Moved 5 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:53 ; elapsed = 00:02:03 . Memory (MB): peak = 2990.898 ; gain = 1554.102 ; free physical = 47957 ; free virtual = 49673
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:02:03 . Memory (MB): peak = 2990.898 ; gain = 1554.102 ; free physical = 47957 ; free virtual = 49673
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:53 ; elapsed = 00:02:03 . Memory (MB): peak = 3000.914 ; gain = 1564.117 ; free physical = 47958 ; free virtual = 49674
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:54 ; elapsed = 00:02:04 . Memory (MB): peak = 3000.914 ; gain = 1564.117 ; free physical = 47964 ; free virtual = 49679
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:54 ; elapsed = 00:02:04 . Memory (MB): peak = 3000.914 ; gain = 1564.117 ; free physical = 47960 ; free virtual = 49676
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:54 ; elapsed = 00:02:04 . Memory (MB): peak = 3000.914 ; gain = 1564.117 ; free physical = 47960 ; free virtual = 49676
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:54 ; elapsed = 00:02:04 . Memory (MB): peak = 3000.914 ; gain = 1564.117 ; free physical = 47960 ; free virtual = 49676
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:54 ; elapsed = 00:02:04 . Memory (MB): peak = 3000.914 ; gain = 1564.117 ; free physical = 47960 ; free virtual = 49676
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:54 ; elapsed = 00:02:04 . Memory (MB): peak = 3000.914 ; gain = 1564.117 ; free physical = 47960 ; free virtual = 49676
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+-------------------+----------+
+|      |BlackBox name      |Instances |
++------+-------------------+----------+
+|1     |bd_43ca_axi_jtag_0 |         1|
+|2     |bd_43ca_bsip_0     |         1|
++------+-------------------+----------+
+
+Report Cell Usage: 
++------+-------------------+------+
+|      |Cell               |Count |
++------+-------------------+------+
+|1     |bd_43ca_axi_jtag_0 |     1|
+|2     |bd_43ca_bsip_0     |     1|
++------+-------------------+------+
+
+Report Instance Areas: 
++------+---------+--------+------+
+|      |Instance |Module  |Cells |
++------+---------+--------+------+
+|1     |top      |        |    55|
+|2     |  inst   |bd_43ca |    55|
++------+---------+--------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:54 ; elapsed = 00:02:04 . Memory (MB): peak = 3000.914 ; gain = 1564.117 ; free physical = 47960 ; free virtual = 49675
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:01:22 . Memory (MB): peak = 3000.914 ; gain = 401.758 ; free physical = 48000 ; free virtual = 49715
+Synthesis Optimization Complete : Time (s): cpu = 00:00:54 ; elapsed = 00:02:04 . Memory (MB): peak = 3000.922 ; gain = 1564.117 ; free physical = 48000 ; free virtual = 49715
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3040.836 ; gain = 0.000 ; free physical = 47907 ; free virtual = 49622
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+31 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:57 ; elapsed = 00:02:06 . Memory (MB): peak = 3052.836 ; gain = 1686.633 ; free physical = 47945 ; free virtual = 49660
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3052.836 ; gain = 0.000 ; free physical = 47945 ; free virtual = 49660
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/capstone/capstone.runs/capstone_debug_bridge_0_0_synth_1/capstone_debug_bridge_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP capstone_debug_bridge_0_0, cache-ID = 4e18fa36466060e2
+INFO: [Coretcl 2-1174] Renamed 3 cell refs.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3052.836 ; gain = 0.000 ; free physical = 47928 ; free virtual = 49643
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/capstone/capstone.runs/capstone_debug_bridge_0_0_synth_1/capstone_debug_bridge_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file capstone_debug_bridge_0_0_utilization_synth.rpt -pb capstone_debug_bridge_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 18 19:32:11 2021...

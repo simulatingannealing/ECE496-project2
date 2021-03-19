@@ -1,0 +1,21 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Wed Mar 17 02:48:48 2021
+# Process ID: 26133
+# Current directory: /home/tianyi/capstone
+# Command line: vivado
+# Log file: /home/tianyi/capstone/vivado.log
+# Journal file: /home/tianyi/capstone/vivado.jou
+#-----------------------------------------------------------
+start_gui
+create_project managed_ip_project /home/tianyi/ip_repo/managed_ip_project -part xczu19eg-ffvc1760-2-i -ip
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/mnt/Xilinx/Vivado/2018.3/data/ip'.
+create_project: Time (s): cpu = 00:00:20 ; elapsed = 00:00:12 . Memory (MB): peak = 6578.082 ; gain = 138.531 ; free physical = 60945 ; free virtual = 62560
+set_property target_simulator XSim [current_project]
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Mar 17 02:51:43 2021...

@@ -1,0 +1,1774 @@
+
+*** Running vivado
+    with args -log capstone_axistream_packetfilt_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source capstone_axistream_packetfilt_0_0.tcl
+
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source capstone_axistream_packetfilt_0_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/input_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/capstone/input_packets_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/ARM_control_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ECE496-project2/vivado_scripts/axistream_packetfilt'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/mnt/Xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 1357.195 ; gain = 0.000 ; free physical = 56649 ; free virtual = 58461
+Command: synth_design -top capstone_axistream_packetfilt_0_0 -part xczu19eg-ffvc1760-2-i -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-1540] The version limit for your license is '2020.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 17710 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1513.789 ; gain = 79.000 ; free physical = 56424 ; free virtual = 58235
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'capstone_axistream_packetfilt_0_0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_axistream_packetfilt_0_0/synth/capstone_axistream_packetfilt_0_0.sv:57]
+INFO: [Synth 8-6157] synthesizing module 'axistream_packetfilt' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_packetfilt.v:63]
+	Parameter N bound to: 4 - type: integer 
+	Parameter PACKET_MEM_BYTES bound to: 2048 - type: integer 
+	Parameter INST_MEM_DEPTH bound to: 512 - type: integer 
+	Parameter SN_FWD_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter BUF_IN bound to: 0 - type: integer 
+	Parameter BUF_OUT bound to: 0 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+	Parameter ENABLE_BACKPRESSURE bound to: 1 - type: integer 
+	Parameter CODE_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter CODE_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter BYTE_ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter CIRCULAR_BUFFER_SIZE bound to: 50 - type: integer 
+	Parameter AXI_ADDR_WIDTH bound to: 12 - type: integer 
+	Parameter SN_FWD_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter MEM_LAT bound to: 1 - type: integer 
+	Parameter PACKMEM_INC_WIDTH bound to: 4 - type: integer 
+	Parameter DBG_INFO_WIDTH bound to: 121 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'parallel_cores' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/parallel_cores.v:46]
+	Parameter N bound to: 4 - type: integer 
+	Parameter PACKET_MEM_BYTES bound to: 2048 - type: integer 
+	Parameter INST_MEM_DEPTH bound to: 512 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter BUF_IN bound to: 0 - type: integer 
+	Parameter BUF_OUT bound to: 0 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+	Parameter DELAY_CONF bound to: 0 - type: integer 
+	Parameter TAG_SZ bound to: 2 - type: integer 
+	Parameter CODE_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter CODE_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter BYTE_ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter INC_WIDTH bound to: 4 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter CIRCULAR_BUFFER_SIZE bound to: 50 - type: integer 
+	Parameter DBG_INFO_WIDTH bound to: 121 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'packetfilter_core' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packetfilter_core.v:61]
+	Parameter PACKET_MEM_BYTES bound to: 2048 - type: integer 
+	Parameter INST_MEM_DEPTH bound to: 512 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter BUF_IN bound to: 0 - type: integer 
+	Parameter BUF_OUT bound to: 0 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+	Parameter CODE_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter CODE_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter BYTE_ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter INC_WIDTH bound to: 4 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter CIRCULAR_BUFFER_SIZE bound to: 50 - type: integer 
+	Parameter DBG_INFO_WIDTH bound to: 121 - type: integer 
+	Parameter P_NG_ADDR_WIDTH bound to: 9 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'p3' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/p3.v:48]
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter INTERNAL_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter BYTE_ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter INC_WIDTH bound to: 4 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter BUF_IN bound to: 0 - type: integer 
+	Parameter BUF_OUT bound to: 0 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'sn_adapter' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/sn_adapter.v:13]
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter INC_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sn_adapter' (1#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/sn_adapter.v:13]
+INFO: [Synth 8-6157] synthesizing module 'cpu_adapter' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/cpu_adapter.v:56]
+	Parameter BYTE_ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter BUF_IN bound to: 0 - type: integer 
+	Parameter BUF_OUT bound to: 0 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+	Parameter MEM_LAT bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cpu_adapter' (2#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/cpu_adapter.v:56]
+INFO: [Synth 8-6157] synthesizing module 'fwd_adapter' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/fwd_adapter.v:24]
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter BUF_IN bound to: 0 - type: integer 
+	Parameter BUF_OUT bound to: 0 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fwd_adapter' (3#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/fwd_adapter.v:24]
+INFO: [Synth 8-6157] synthesizing module 'p3ctrl' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/p3ctrl.v:53]
+INFO: [Synth 8-6157] synthesizing module 'muxselinvert' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxselinvert.v:16]
+INFO: [Synth 8-6155] done synthesizing module 'muxselinvert' (4#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxselinvert.v:16]
+INFO: [Synth 8-6157] synthesizing module 'snqueue' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/snqueue.v:17]
+INFO: [Synth 8-6155] done synthesizing module 'snqueue' (5#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/snqueue.v:17]
+INFO: [Synth 8-6157] synthesizing module 'cpuqueue' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/cpuqueue.v:17]
+INFO: [Synth 8-6155] done synthesizing module 'cpuqueue' (6#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/cpuqueue.v:17]
+INFO: [Synth 8-6157] synthesizing module 'fwdqueue' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/fwdqueue.v:17]
+INFO: [Synth 8-6155] done synthesizing module 'fwdqueue' (7#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/fwdqueue.v:17]
+INFO: [Synth 8-6155] done synthesizing module 'p3ctrl' (8#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/p3ctrl.v:53]
+INFO: [Synth 8-6157] synthesizing module 'muxes' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxes.v:72]
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter DATA_WIDTH bound to: 64 - type: integer 
+	Parameter INC_WIDTH bound to: 4 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter no_wr_data bound to: 64'b0000000000000000000000000000000000000000000000000000000000000000 
+	Parameter no_enable_bit bound to: 1'b0 
+	Parameter no_byte_inc bound to: 4'b0000 
+	Parameter no_reset_sig bound to: 1'b0 
+INFO: [Synth 8-6157] synthesizing module 'mux3' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxes.v:21]
+	Parameter WIDTH bound to: 97 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux3' (9#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxes.v:21]
+INFO: [Synth 8-6157] synthesizing module 'mux3__parameterized0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxes.v:21]
+	Parameter WIDTH bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux3__parameterized0' (9#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxes.v:21]
+INFO: [Synth 8-6157] synthesizing module 'mux3__parameterized1' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxes.v:21]
+	Parameter WIDTH bound to: 80 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux3__parameterized1' (9#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxes.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'muxes' (10#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/muxes.v:72]
+INFO: [Synth 8-6157] synthesizing module 'p_ng' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/p_ng.v:46]
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter DATA_WIDTH bound to: 64 - type: integer 
+	Parameter INC_WIDTH bound to: 4 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter BUF_IN bound to: 0 - type: integer 
+	Parameter BUF_OUT bound to: 0 - type: integer 
+	Parameter PORT_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/p_ng.v:75]
+INFO: [Synth 8-6157] synthesizing module 'dp_bram' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/dp_bram.v:5]
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter PORT_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'dp_bram' (11#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/dp_bram.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'p_ng' (12#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/p_ng.v:46]
+INFO: [Synth 8-6157] synthesizing module 'p_ng__parameterized0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/p_ng.v:46]
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter INC_WIDTH bound to: 4 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter BUF_IN bound to: 0 - type: integer 
+	Parameter BUF_OUT bound to: 0 - type: integer 
+	Parameter PORT_WIDTH bound to: 3 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'dp_bram__parameterized0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/dp_bram.v:5]
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter PORT_WIDTH bound to: 3 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'dp_bram__parameterized0' (12#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/dp_bram.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'p_ng__parameterized0' (12#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/p_ng.v:46]
+INFO: [Synth 8-6155] done synthesizing module 'p3' (13#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/p3.v:48]
+INFO: [Synth 8-6157] synthesizing module 'inst_mem' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/inst_mem.v:94]
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter DATA_WIDTH bound to: 64 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'sdpram' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/inst_mem.v:39]
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter DATA_WIDTH bound to: 64 - type: integer 
+	Parameter DEPTH bound to: 512 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sdpram' (14#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/inst_mem.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'inst_mem' (15#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/inst_mem.v:94]
+INFO: [Synth 8-6157] synthesizing module 'bpfcpu' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bpfcpu.v:34]
+	Parameter BYTE_ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter CODE_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter CODE_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+	Parameter STOPPED bound to: 0 - type: integer 
+	Parameter STARTED bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'controller' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/controller.v:51]
+	Parameter CODE_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'stage0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/stage0.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'stage0' (16#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/stage0.v:13]
+INFO: [Synth 8-6157] synthesizing module 'stage1' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/stage1.v:52]
+INFO: [Synth 8-6157] synthesizing module 'bhand' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:20]
+	Parameter DATA_WIDTH bound to: 64 - type: integer 
+	Parameter ENABLE_COUNT bound to: 1 - type: integer 
+	Parameter COUNT_WIDTH bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'bhand' (17#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'stage1' (18#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/stage1.v:52]
+INFO: [Synth 8-6157] synthesizing module 'stage2' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/stage2.v:55]
+	Parameter CODE_ADDR_WIDTH bound to: 9 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'stage2' (19#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/stage2.v:55]
+INFO: [Synth 8-6155] done synthesizing module 'controller' (20#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/controller.v:51]
+INFO: [Synth 8-6157] synthesizing module 'datapath' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/datapath.v:64]
+	Parameter BYTE_ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter CODE_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'alu' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/alu.v:23]
+	Parameter PESS bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'alu' (21#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/alu.v:23]
+INFO: [Synth 8-6157] synthesizing module 'regfile' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/regfile.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'regfile' (22#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/regfile.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'datapath' (23#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/datapath.v:64]
+INFO: [Synth 8-6155] done synthesizing module 'bpfcpu' (24#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bpfcpu.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'packetfilter_core' (25#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packetfilter_core.v:61]
+INFO: [Synth 8-6157] synthesizing module 'snoop_arb' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/snoop_arb.v:38]
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter INC_WIDTH bound to: 4 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+	Parameter TAG_SZ bound to: 2 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+	Parameter DELAY_CONF bound to: 0 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'tag_tree' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/tag_tree.v:49]
+	Parameter N bound to: 4 - type: integer 
+	Parameter DELAY_CONF bound to: 0 - type: integer 
+	Parameter CUSTOM_TAGS bound to: 0 - type: integer 
+	Parameter TAG_SZ bound to: 2 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'tree_node' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/tree_node.v:30]
+	Parameter TAG_SZ bound to: 2 - type: integer 
+	Parameter ENABLE_DELAY bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'tree_node' (26#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/tree_node.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'tag_tree' (27#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/tag_tree.v:49]
+INFO: [Synth 8-6155] done synthesizing module 'snoop_arb' (28#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/snoop_arb.v:38]
+INFO: [Synth 8-6157] synthesizing module 'fwd_arb' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/fwd_arb.v:55]
+	Parameter N bound to: 4 - type: integer 
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter DELAY_CONF bound to: 0 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter PADDED bound to: 4 - type: integer 
+	Parameter TAG_SZ bound to: 2 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'tag_gen' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/tag_gen.v:47]
+	Parameter N bound to: 4 - type: integer 
+	Parameter PADDED bound to: 4 - type: integer 
+	Parameter TAG_SZ bound to: 2 - type: integer 
+	Parameter MAX_H bound to: 1 - type: integer 
+	Parameter NUM_NODES bound to: 5 - type: integer 
+	Parameter X_C bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'tag_gen' (29#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/tag_gen.v:47]
+INFO: [Synth 8-6157] synthesizing module 'tag_tree__parameterized0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/tag_tree.v:49]
+	Parameter N bound to: 4 - type: integer 
+	Parameter DELAY_CONF bound to: 0 - type: integer 
+	Parameter CUSTOM_TAGS bound to: 1 - type: integer 
+	Parameter TAG_SZ bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'tag_tree__parameterized0' (29#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/tag_tree.v:49]
+INFO: [Synth 8-6157] synthesizing module 'mux_tree' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/mux_tree.v:67]
+	Parameter N bound to: 4 - type: integer 
+	Parameter WIDTH bound to: 97 - type: integer 
+	Parameter PADDED bound to: 4 - type: integer 
+	Parameter TAG_SZ bound to: 2 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter NUM_NODES bound to: 5 - type: integer 
+	Parameter MAX_H bound to: 1 - type: integer 
+	Parameter X_C bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'mux_tree_node' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/mux_tree_node.v:25]
+	Parameter WIDTH bound to: 97 - type: integer 
+	Parameter ENABLE_DELAY bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux_tree_node' (30#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/mux_tree_node.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'mux_tree' (31#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/mux_tree.v:67]
+INFO: [Synth 8-6157] synthesizing module 'mux_tree__parameterized0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/mux_tree.v:67]
+	Parameter N bound to: 4 - type: integer 
+	Parameter WIDTH bound to: 6 - type: integer 
+	Parameter PADDED bound to: 4 - type: integer 
+	Parameter TAG_SZ bound to: 2 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter NUM_NODES bound to: 5 - type: integer 
+	Parameter MAX_H bound to: 1 - type: integer 
+	Parameter X_C bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'mux_tree_node__parameterized0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/mux_tree_node.v:25]
+	Parameter WIDTH bound to: 6 - type: integer 
+	Parameter ENABLE_DELAY bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux_tree_node__parameterized0' (31#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/mux_tree_node.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'mux_tree__parameterized0' (31#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/mux_tree.v:67]
+INFO: [Synth 8-6155] done synthesizing module 'fwd_arb' (32#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/fwd_arb.v:55]
+INFO: [Synth 8-6155] done synthesizing module 'parallel_cores' (33#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/parallel_cores.v:46]
+INFO: [Synth 8-6157] synthesizing module 'packet_filter_regs' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packet_filter_regs.sv:24]
+	Parameter AXI_ADDR_WIDTH bound to: 12 - type: integer 
+	Parameter BASEADDR bound to: 0 - type: integer 
+	Parameter AXI_OKAY bound to: 2'b00 
+	Parameter AXI_DECERR bound to: 2'b11 
+	Parameter MEM_WAIT_COUNT bound to: 2 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packet_filter_regs.sv:143]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packet_filter_regs.sv:272]
+WARNING: [Synth 8-6014] Unused sequential element v_addr_hit_reg was removed.  [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packet_filter_regs.sv:159]
+WARNING: [Synth 8-6014] Unused sequential element v_addr_hit_reg was removed.  [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packet_filter_regs.sv:270]
+INFO: [Synth 8-6155] done synthesizing module 'packet_filter_regs' (34#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packet_filter_regs.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'regstrb2mem' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/regstrb2mem.v:47]
+	Parameter CODE_ADDR_WIDTH bound to: 9 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'regstrb2mem' (35#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/regstrb2mem.v:47]
+INFO: [Synth 8-6157] synthesizing module 'axistream_snooper' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_snooper.v:47]
+	Parameter SN_FWD_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter SN_FWD_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter SN_INC_WIDTH bound to: 3 - type: integer 
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter PACKMEM_INC_WIDTH bound to: 4 - type: integer 
+	Parameter PESS bound to: 0 - type: integer 
+	Parameter ENABLE_BACKPRESSURE bound to: 1 - type: integer 
+	Parameter KEEP_WIDTH bound to: 4 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter CIRCULAR_BUFFER_SIZE bound to: 50 - type: integer 
+	Parameter NOT_STARTED bound to: 2'b00 
+	Parameter WAITING bound to: 2'b01 
+	Parameter STARTED bound to: 2'b11 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_snooper.v:230]
+INFO: [Synth 8-6157] synthesizing module 'sn_width_adapter' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/sn_width_adapter.v:45]
+	Parameter OUT_WIDTH bound to: 64 - type: integer 
+	Parameter IN_WIDTH bound to: 32 - type: integer 
+	Parameter OUT_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter IN_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter OUT_INC_WIDTH bound to: 4 - type: integer 
+	Parameter IN_INC_WIDTH bound to: 3 - type: integer 
+	Parameter N bound to: 1 - type: integer 
+	Parameter RATIO bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sn_width_adapter' (36#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/sn_width_adapter.v:45]
+INFO: [Synth 8-6155] done synthesizing module 'axistream_snooper' (37#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_snooper.v:47]
+INFO: [Synth 8-6157] synthesizing module 'axistream_forwarder' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_forwarder.v:51]
+	Parameter SN_FWD_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter SN_FWD_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter PACKMEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter PACKMEM_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter MEM_LAT bound to: 1 - type: integer 
+	Parameter PLEN_WIDTH bound to: 32 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter CIRCULAR_BUFFER_SIZE bound to: 50 - type: integer 
+	Parameter FIFO_ORDER bound to: 4 - type: integer 
+	Parameter FIFO_DEPTH bound to: 16 - type: integer 
+	Parameter ADDR_SHIFT bound to: 2 - type: integer 
+	Parameter IDLE bound to: 2'b00 
+	Parameter NORMAL bound to: 2'b01 
+	Parameter WAITING bound to: 2'b11 
+INFO: [Synth 8-6157] synthesizing module 'fwd_width_adapter' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/fwd_width_adapter.v:28]
+	Parameter MEM_WIDTH bound to: 64 - type: integer 
+	Parameter FWD_WIDTH bound to: 32 - type: integer 
+	Parameter MEM_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter FWD_ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter MEM_LAT bound to: 1 - type: integer 
+	Parameter N bound to: 1 - type: integer 
+	Parameter RATIO bound to: 2 - type: integer 
+	Parameter THISISFALSE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fwd_width_adapter' (38#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/fwd_width_adapter.v:28]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_forwarder.v:173]
+INFO: [Synth 8-6155] done synthesizing module 'axistream_forwarder' (39#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_forwarder.v:51]
+INFO: [Synth 8-6157] synthesizing module 'circular_buffer' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/circular_buffer.v:5]
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter CIRCULAR_BUFFER_SIZE bound to: 50 - type: integer 
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter MAX_TDATA_PER_PACKET bound to: 512 - type: integer 
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'sdpram__parameterized0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/inst_mem.v:39]
+	Parameter ADDR_WIDTH bound to: 9 - type: integer 
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter DEPTH bound to: 512 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sdpram__parameterized0' (39#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/inst_mem.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'circular_buffer' (40#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/circular_buffer.v:5]
+INFO: [Synth 8-6157] synthesizing module 'packet_status' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packet_status.v:23]
+	Parameter NUM_CORES bound to: 4 - type: integer 
+	Parameter TAG_WIDTH bound to: 6 - type: integer 
+	Parameter CIRCULAR_BUFFER_SIZE bound to: 50 - type: integer 
+	Parameter STATUS_TABLE_SIZE bound to: 100 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'packet_status' (41#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/packet_status.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'axistream_packetfilt' (42#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_packetfilt.v:63]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_axistream_packetfilt_0_0' (43#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_axistream_packetfilt_0_0/synth/capstone_axistream_packetfilt_0_0.sv:57]
+WARNING: [Synth 8-3331] design circular_buffer has unconnected port in_TKEEP[3]
+WARNING: [Synth 8-3331] design circular_buffer has unconnected port in_TKEEP[2]
+WARNING: [Synth 8-3331] design circular_buffer has unconnected port in_TKEEP[1]
+WARNING: [Synth 8-3331] design circular_buffer has unconnected port in_TKEEP[0]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[31]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[30]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[29]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[28]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[27]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[26]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[25]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[24]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[23]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[22]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[21]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[20]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[19]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[18]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[17]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[16]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[15]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[14]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[13]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[12]
+WARNING: [Synth 8-3331] design axistream_forwarder has unconnected port fwd_byte_len[11]
+WARNING: [Synth 8-3331] design axistream_snooper has unconnected port sn_TKEEP[3]
+WARNING: [Synth 8-3331] design axistream_snooper has unconnected port sn_TKEEP[2]
+WARNING: [Synth 8-3331] design axistream_snooper has unconnected port sn_TKEEP[1]
+WARNING: [Synth 8-3331] design axistream_snooper has unconnected port sn_TKEEP[0]
+WARNING: [Synth 8-3331] design packet_filter_regs has unconnected port s_axi_awprot[2]
+WARNING: [Synth 8-3331] design packet_filter_regs has unconnected port s_axi_awprot[1]
+WARNING: [Synth 8-3331] design packet_filter_regs has unconnected port s_axi_awprot[0]
+WARNING: [Synth 8-3331] design packet_filter_regs has unconnected port s_axi_arprot[2]
+WARNING: [Synth 8-3331] design packet_filter_regs has unconnected port s_axi_arprot[1]
+WARNING: [Synth 8-3331] design packet_filter_regs has unconnected port s_axi_arprot[0]
+WARNING: [Synth 8-3331] design stage2 has unconnected port clk
+WARNING: [Synth 8-3331] design stage2 has unconnected port instr_in[63]
+WARNING: [Synth 8-3331] design stage2 has unconnected port instr_in[62]
+WARNING: [Synth 8-3331] design stage2 has unconnected port instr_in[61]
+WARNING: [Synth 8-3331] design stage2 has unconnected port instr_in[60]
+WARNING: [Synth 8-3331] design stage2 has unconnected port instr_in[59]
+WARNING: [Synth 8-3331] design stage2 has unconnected port instr_in[58]
+WARNING: [Synth 8-3331] design stage2 has unconnected port instr_in[57]
+WARNING: [Synth 8-3331] design stage2 has unconnected port instr_in[56]
+WARNING: [Synth 8-3331] design stage2 has unconnected port PC_en
+WARNING: [Synth 8-3331] design muxes has unconnected port sn_sel[1]
+WARNING: [Synth 8-3331] design muxes has unconnected port sn_sel[0]
+WARNING: [Synth 8-3331] design fwd_adapter has unconnected port clk
+WARNING: [Synth 8-3331] design fwd_adapter has unconnected port rst
+WARNING: [Synth 8-3331] design cpu_adapter has unconnected port rst
+WARNING: [Synth 8-3331] design sn_adapter has unconnected port clk
+WARNING: [Synth 8-3331] design sn_adapter has unconnected port rst
+WARNING: [Synth 8-3331] design tree_node has unconnected port clk
+WARNING: [Synth 8-3331] design tree_node has unconnected port rst
+WARNING: [Synth 8-3331] design tag_tree has unconnected port custom_tags[7]
+WARNING: [Synth 8-3331] design tag_tree has unconnected port custom_tags[6]
+WARNING: [Synth 8-3331] design tag_tree has unconnected port custom_tags[5]
+WARNING: [Synth 8-3331] design tag_tree has unconnected port custom_tags[4]
+WARNING: [Synth 8-3331] design tag_tree has unconnected port custom_tags[3]
+WARNING: [Synth 8-3331] design tag_tree has unconnected port custom_tags[2]
+WARNING: [Synth 8-3331] design tag_tree has unconnected port custom_tags[1]
+WARNING: [Synth 8-3331] design tag_tree has unconnected port custom_tags[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1577.539 ; gain = 142.750 ; free physical = 56387 ; free virtual = 58199
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1577.539 ; gain = 142.750 ; free physical = 56391 ; free virtual = 58202
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1577.539 ; gain = 142.750 ; free physical = 56391 ; free virtual = 58202
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xczu19eg-ffvc1760-2-i
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2761.266 ; gain = 0.000 ; free physical = 54756 ; free virtual = 56568
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2761.266 ; gain = 0.000 ; free physical = 54756 ; free virtual = 56568
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.72 ; elapsed = 00:00:00.33 . Memory (MB): peak = 2761.266 ; gain = 0.000 ; free physical = 54744 ; free virtual = 56555
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:27 ; elapsed = 00:00:50 . Memory (MB): peak = 2761.266 ; gain = 1326.477 ; free physical = 54819 ; free virtual = 56630
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu19eg-ffvc1760-2-i
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:50 . Memory (MB): peak = 2761.266 ; gain = 1326.477 ; free physical = 54819 ; free virtual = 56630
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:50 . Memory (MB): peak = 2761.266 ; gain = 1326.477 ; free physical = 54818 ; free virtual = 56630
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5544] ROM "addr_sel_i" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "regfile_sel_i" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "A_sel_i" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "X_sel_i" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/alu.v:67]
+INFO: [Synth 8-5544] ROM "scratch_reg[0]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[1]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[2]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[3]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[4]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[5]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[6]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[7]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[8]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[9]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[10]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[11]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[12]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[13]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[14]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "scratch_reg[15]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/datapath.v:174]
+INFO: [Synth 8-802] inferred FSM for state register 'v_state_r_reg' in module 'packet_filter_regs'
+INFO: [Synth 8-802] inferred FSM for state register 'v_state_r_reg' in module 'packet_filter_regs'
+INFO: [Synth 8-5546] ROM "v_addr_hit" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "v_state_r" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "v_mem_wait_count_r" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "v_addr_hit" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "s_inst_low_strobe_r" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "s_inst_high_strobe_r" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "v_rdata_r" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "s_axi_rresp_r" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "s_axi_bresp_r" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "v_state_r" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axistream_snooper'
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state0" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axistream_forwarder'
+WARNING: [Synth 8-6014] Unused sequential element rd_ptr_reg_rep was removed.  [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_forwarder.v:215]
+WARNING: [Synth 8-6014] Unused sequential element rd_ptr_reg_rep was removed.  [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_forwarder.v:215]
+WARNING: [Synth 8-6014] Unused sequential element rd_ptr_reg_rep was removed.  [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/axistream_forwarder.v:215]
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[49]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[48]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[47]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[46]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[45]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[44]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[43]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[42]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[41]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[40]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[39]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[38]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[37]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[36]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[35]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[34]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[33]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[32]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[31]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[30]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[29]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[28]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[27]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[26]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[25]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[24]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[23]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[22]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[21]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[20]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[19]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[18]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[17]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[16]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[15]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[14]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[13]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[12]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[11]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[10]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[9]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[8]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[7]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[6]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[5]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[4]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[3]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[2]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[1]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "packet_word_count_reg[0]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "out_reorder_tag" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-3971] The signal data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal data_reg was recognized as a true dual port RAM template.
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+              WRITE_IDLE |                              000 | 00000000000000000000000000000000
+        WRITE_ADDR_FIRST |                              001 | 00000000000000000000000000000001
+        WRITE_DATA_FIRST |                              010 | 00000000000000000000000000000010
+   WRITE_UPDATE_REGISTER |                              011 | 00000000000000000000000000000011
+              WRITE_DONE |                              100 | 00000000000000000000000000000100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'v_state_r_reg' using encoding 'sequential' in module 'packet_filter_regs'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               READ_IDLE |                               00 | 00000000000000000000000000000000
+           READ_REGISTER |                               01 | 00000000000000000000000000000001
+           READ_RESPONSE |                               10 | 00000000000000000000000000000011
+               READ_DONE |                               11 | 00000000000000000000000000000100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'v_state_r_reg' using encoding 'sequential' in module 'packet_filter_regs'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 STARTED |                                0 |                               11
+             NOT_STARTED |                                1 |                               00
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'axistream_snooper'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              100 |                               00
+                  NORMAL |                              010 |                               01
+                 WAITING |                              001 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'axistream_forwarder'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:30 ; elapsed = 00:00:54 . Memory (MB): peak = 2761.266 ; gain = 1326.477 ; free physical = 54768 ; free virtual = 56579
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 4     
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input     16 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 5     
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 30    
+	   4 Input      9 Bit       Adders := 4     
+	   2 Input      6 Bit       Adders := 14    
+	   2 Input      4 Bit       Adders := 6     
+	   4 Input      4 Bit       Adders := 2     
+	   5 Input      2 Bit       Adders := 4     
+	   4 Input      2 Bit       Adders := 8     
++---XORs : 
+	   2 Input     32 Bit         XORs := 4     
++---Registers : 
+	              100 Bit    Registers := 1     
+	               97 Bit    Registers := 1     
+	               64 Bit    Registers := 12    
+	               50 Bit    Registers := 1     
+	               32 Bit    Registers := 182   
+	               16 Bit    Registers := 1     
+	               12 Bit    Registers := 2     
+	                9 Bit    Registers := 58    
+	                6 Bit    Registers := 12    
+	                4 Bit    Registers := 7     
+	                3 Bit    Registers := 24    
+	                2 Bit    Registers := 61    
+	                1 Bit    Registers := 75    
++---RAMs : 
+	              32K Bit         RAMs := 4     
+	              16K Bit         RAMs := 62    
+	               1K Bit         RAMs := 12    
+	              512 Bit         RAMs := 1     
+	               96 Bit         RAMs := 1     
+	               64 Bit         RAMs := 1     
+	               16 Bit         RAMs := 1     
++---Muxes : 
+	   2 Input    100 Bit        Muxes := 10    
+	   4 Input     97 Bit        Muxes := 1     
+	   2 Input     97 Bit        Muxes := 24    
+	   2 Input     80 Bit        Muxes := 36    
+	   2 Input     64 Bit        Muxes := 4     
+	   2 Input     50 Bit        Muxes := 4     
+	   4 Input     32 Bit        Muxes := 5     
+	  12 Input     32 Bit        Muxes := 4     
+	   2 Input     32 Bit        Muxes := 15    
+	   5 Input     32 Bit        Muxes := 2     
+	   3 Input     32 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 4     
+	   2 Input     11 Bit        Muxes := 4     
+	   4 Input      9 Bit        Muxes := 8     
+	   2 Input      9 Bit        Muxes := 56    
+	   2 Input      8 Bit        Muxes := 16    
+	   4 Input      6 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 75    
+	   2 Input      4 Bit        Muxes := 28    
+	   7 Input      3 Bit        Muxes := 8     
+	   5 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 6     
+	   3 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 122   
+	   4 Input      2 Bit        Muxes := 9     
+	   2 Input      1 Bit        Muxes := 357   
+	   3 Input      1 Bit        Muxes := 7     
+	   5 Input      1 Bit        Muxes := 12    
+	   4 Input      1 Bit        Muxes := 11    
+	   6 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module tree_node 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      2 Bit        Muxes := 1     
+Module snoop_arb 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      2 Bit        Muxes := 2     
+Module mux_tree_node 
+Detailed RTL Component Info : 
++---Registers : 
+	               97 Bit    Registers := 1     
++---Muxes : 
+	   4 Input     97 Bit        Muxes := 1     
+Module mux_tree_node__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	                6 Bit    Registers := 1     
++---Muxes : 
+	   4 Input      6 Bit        Muxes := 1     
+Module fwd_arb 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+Module cpu_adapter 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 2     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 4     
+Module snqueue 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 3     
++---Muxes : 
+	   2 Input      2 Bit        Muxes := 9     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 6     
+Module cpuqueue 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 3     
++---Muxes : 
+	   2 Input      2 Bit        Muxes := 9     
+	   2 Input      1 Bit        Muxes := 6     
+Module fwdqueue 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 3     
++---Muxes : 
+	   2 Input      2 Bit        Muxes := 9     
+	   2 Input      1 Bit        Muxes := 6     
+Module p3ctrl 
+Detailed RTL Component Info : 
++---Adders : 
+	   5 Input      2 Bit       Adders := 1     
+	   4 Input      2 Bit       Adders := 2     
++---Registers : 
+	                2 Bit    Registers := 3     
+Module mux3 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     97 Bit        Muxes := 3     
+Module mux3__parameterized0 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      6 Bit        Muxes := 3     
+Module mux3__parameterized1 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     80 Bit        Muxes := 3     
+Module dp_bram 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
++---RAMs : 
+	              16K Bit         RAMs := 1     
+Module p_ng 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      9 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module dp_bram__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	                3 Bit    Registers := 2     
++---RAMs : 
+	               1K Bit         RAMs := 1     
+Module p_ng__parameterized0 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      9 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module sdpram 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 1     
++---RAMs : 
+	              32K Bit         RAMs := 1     
+Module stage0 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module bhand 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      6 Bit       Adders := 3     
++---Registers : 
+	               64 Bit    Registers := 2     
+	                6 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 2     
+Module stage1 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module stage2 
+Detailed RTL Component Info : 
++---Muxes : 
+	   7 Input      3 Bit        Muxes := 2     
+	   4 Input      2 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+Module controller 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+Module alu 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	  12 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module regfile 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 16    
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 16    
+Module datapath 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     11 Bit       Adders := 1     
+	   4 Input      9 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                9 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+	   2 Input     11 Bit        Muxes := 1     
+	   4 Input      9 Bit        Muxes := 2     
+Module bpfcpu 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module packet_filter_regs 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 6     
+	               12 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 10    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 3     
+	   5 Input     32 Bit        Muxes := 2     
+	   3 Input     32 Bit        Muxes := 1     
+	   4 Input     32 Bit        Muxes := 1     
+	   5 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 16    
+	   5 Input      1 Bit        Muxes := 12    
+	   4 Input      1 Bit        Muxes := 11    
+	   6 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+Module regstrb2mem 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      9 Bit       Adders := 1     
++---Registers : 
+	                9 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
+Module sn_width_adapter 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+Module axistream_snooper 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      9 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
++---Registers : 
+	                9 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+Module fwd_width_adapter 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+Module axistream_forwarder 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     11 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 4     
+	   4 Input      4 Bit       Adders := 2     
++---Registers : 
+	                9 Bit    Registers := 1     
+	                4 Bit    Registers := 5     
++---RAMs : 
+	              512 Bit         RAMs := 1     
+	               96 Bit         RAMs := 1     
+	               64 Bit         RAMs := 1     
+	               16 Bit         RAMs := 1     
++---Muxes : 
+	   3 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+Module sdpram__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
++---RAMs : 
+	              16K Bit         RAMs := 1     
+Module circular_buffer 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 3     
+	   2 Input      6 Bit       Adders := 1     
++---Registers : 
+	               50 Bit    Registers := 1     
+	                9 Bit    Registers := 51    
+	                6 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     50 Bit        Muxes := 4     
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      9 Bit        Muxes := 56    
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 152   
+	   3 Input      1 Bit        Muxes := 1     
+Module packet_status 
+Detailed RTL Component Info : 
++---Registers : 
+	              100 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
++---Muxes : 
+	   2 Input    100 Bit        Muxes := 10    
+	   2 Input      6 Bit        Muxes := 1     
+Module axistream_packetfilt 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1968 (col length:264)
+BRAMs: 1968 (col length: RAMB18 264 RAMB36 132)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+WARNING: [Synth 8-3936] Found unconnected internal register 'ctrl/no_idle_stage.decode/handshaker/mem_reg' and it is trimmed from '64' to '56' bits. [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:118]
+WARNING: [Synth 8-3936] Found unconnected internal register 'ctrl/no_idle_stage.decode/handshaker/extra_mem_reg' and it is trimmed from '64' to '56' bits. [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:85]
+WARNING: [Synth 8-3936] Found unconnected internal register 'ctrl/no_idle_stage.decode/handshaker/mem_reg' and it is trimmed from '64' to '56' bits. [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:118]
+WARNING: [Synth 8-3936] Found unconnected internal register 'ctrl/no_idle_stage.decode/handshaker/extra_mem_reg' and it is trimmed from '64' to '56' bits. [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:85]
+WARNING: [Synth 8-3936] Found unconnected internal register 'ctrl/no_idle_stage.decode/handshaker/mem_reg' and it is trimmed from '64' to '56' bits. [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:118]
+WARNING: [Synth 8-3936] Found unconnected internal register 'ctrl/no_idle_stage.decode/handshaker/extra_mem_reg' and it is trimmed from '64' to '56' bits. [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:85]
+WARNING: [Synth 8-3936] Found unconnected internal register 'ctrl/no_idle_stage.decode/handshaker/mem_reg' and it is trimmed from '64' to '56' bits. [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:118]
+WARNING: [Synth 8-3936] Found unconnected internal register 'ctrl/no_idle_stage.decode/handshaker/extra_mem_reg' and it is trimmed from '64' to '56' bits. [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/a5cf/src/bhand.v:85]
+INFO: [Synth 8-5546] ROM "inst/axilite_regs/v_addr_hit" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "inst/axilite_regs/s_inst_low_strobe_r" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "inst/axilite_regs/s_inst_high_strobe_r" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "inst/axilite_regs/v_addr_hit" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3331] design circular_buffer has unconnected port in_TKEEP[3]
+WARNING: [Synth 8-3331] design circular_buffer has unconnected port in_TKEEP[2]
+WARNING: [Synth 8-3331] design circular_buffer has unconnected port in_TKEEP[1]
+WARNING: [Synth 8-3331] design circular_buffer has unconnected port in_TKEEP[0]
+WARNING: [Synth 8-3331] design bpfcpu has unconnected port instr_in[63]
+WARNING: [Synth 8-3331] design bpfcpu has unconnected port instr_in[62]
+WARNING: [Synth 8-3331] design bpfcpu has unconnected port instr_in[61]
+WARNING: [Synth 8-3331] design bpfcpu has unconnected port instr_in[60]
+WARNING: [Synth 8-3331] design bpfcpu has unconnected port instr_in[59]
+WARNING: [Synth 8-3331] design bpfcpu has unconnected port instr_in[58]
+WARNING: [Synth 8-3331] design bpfcpu has unconnected port instr_in[57]
+WARNING: [Synth 8-3331] design bpfcpu has unconnected port instr_in[56]
+WARNING: [Synth 8-3331] design bpfcpu__3 has unconnected port instr_in[63]
+WARNING: [Synth 8-3331] design bpfcpu__3 has unconnected port instr_in[62]
+WARNING: [Synth 8-3331] design bpfcpu__3 has unconnected port instr_in[61]
+WARNING: [Synth 8-3331] design bpfcpu__3 has unconnected port instr_in[60]
+WARNING: [Synth 8-3331] design bpfcpu__3 has unconnected port instr_in[59]
+WARNING: [Synth 8-3331] design bpfcpu__3 has unconnected port instr_in[58]
+WARNING: [Synth 8-3331] design bpfcpu__3 has unconnected port instr_in[57]
+WARNING: [Synth 8-3331] design bpfcpu__3 has unconnected port instr_in[56]
+WARNING: [Synth 8-3331] design bpfcpu__2 has unconnected port instr_in[63]
+WARNING: [Synth 8-3331] design bpfcpu__2 has unconnected port instr_in[62]
+WARNING: [Synth 8-3331] design bpfcpu__2 has unconnected port instr_in[61]
+WARNING: [Synth 8-3331] design bpfcpu__2 has unconnected port instr_in[60]
+WARNING: [Synth 8-3331] design bpfcpu__2 has unconnected port instr_in[59]
+WARNING: [Synth 8-3331] design bpfcpu__2 has unconnected port instr_in[58]
+WARNING: [Synth 8-3331] design bpfcpu__2 has unconnected port instr_in[57]
+WARNING: [Synth 8-3331] design bpfcpu__2 has unconnected port instr_in[56]
+WARNING: [Synth 8-3331] design bpfcpu__1 has unconnected port instr_in[63]
+WARNING: [Synth 8-3331] design bpfcpu__1 has unconnected port instr_in[62]
+WARNING: [Synth 8-3331] design bpfcpu__1 has unconnected port instr_in[61]
+WARNING: [Synth 8-3331] design bpfcpu__1 has unconnected port instr_in[60]
+WARNING: [Synth 8-3331] design bpfcpu__1 has unconnected port instr_in[59]
+WARNING: [Synth 8-3331] design bpfcpu__1 has unconnected port instr_in[58]
+WARNING: [Synth 8-3331] design bpfcpu__1 has unconnected port instr_in[57]
+WARNING: [Synth 8-3331] design bpfcpu__1 has unconnected port instr_in[56]
+WARNING: [Synth 8-3331] design snoop_arb has unconnected port rst
+WARNING: [Synth 8-3331] design capstone_axistream_packetfilt_0_0 has unconnected port sn_TKEEP[3]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3971] The signal ping/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal ping_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pang/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pang_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pong/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pong_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal ping/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal ping_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pang/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pang_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pong/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pong_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal ping/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal ping_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pang/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pang_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pong/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pong_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal ping/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal ping_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pang/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pang_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pong/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal pong_tag/mem/data_reg was recognized as a true dual port RAM template.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/the_snooper/width_adapter/out_byte_inc_inferred /\inst/the_snooper/width_adapter/inc_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/the_snooper/width_adapter/out_byte_inc_inferred /\inst/the_snooper/width_adapter/inc_reg[1] )
+INFO: [Synth 8-3886] merging instance 'inst/axilite_regs/v_rresp_r_reg[0]' (FDCE) to 'inst/axilite_regs/v_rresp_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'inst/axilite_regs/s_axi_bresp_r_reg[0]' (FDCE) to 'inst/axilite_regs/s_axi_bresp_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'inst/axilite_regs/s_axi_rresp_r_reg[0]' (FDCE) to 'inst/axilite_regs/s_axi_rresp_r_reg[1]'
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:09 ; elapsed = 00:01:35 . Memory (MB): peak = 2761.266 ; gain = 1326.477 ; free physical = 54456 ; free virtual = 56268
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping  Report (see note below)
++-------------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|Module Name              | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
++-------------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|sdpram:                  | data_reg   | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|sdpram:                  | data_reg   | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|sdpram:                  | data_reg   | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|sdpram:                  | data_reg   | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
++-------------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping  Report (see note below)
++----------------------------------+-----------------------------------------+-----------+----------------------+----------------+
+|Module Name                       | RTL Object                              | Inference | Size (Depth x Width) | Primitives     | 
++----------------------------------+-----------------------------------------+-----------+----------------------+----------------+
+|capstone_axistream_packetfilt_0_0 | inst/the_forwarder/TDATA_fifo_reg       | Implied   | 16 x 32              | RAM32M16 x 3   | 
+|capstone_axistream_packetfilt_0_0 | inst/the_forwarder/reorder_tag_fifo_reg | Implied   | 16 x 6               | RAM32M16 x 1   | 
+|capstone_axistream_packetfilt_0_0 | inst/the_forwarder/TLAST_fifo_reg       | Implied   | 16 x 1               | RAM16X1D x 1   | 
++----------------------------------+-----------------------------------------+-----------+----------------------+----------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_0/ping/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_0/ping/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_2/ping_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_2/ping_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_4/pang/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_4/pang/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_6/pang_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_6/pang_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_8/pong/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_8/pong/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_10/pong_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_p3_system/i_10/pong_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[0].filt/the_inst_mem/i_0/myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_0/ping/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_0/ping/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_2/ping_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_2/ping_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_4/pang/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_4/pang/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_6/pang_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_6/pang_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_8/pong/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_8/pong/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_10/pong_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_p3_system/i_10/pong_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[1].filt/the_inst_mem/i_0/myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_0/ping/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_0/ping/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_2/ping_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_2/ping_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_4/pang/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_4/pang/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_6/pang_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_6/pang_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_8/pong/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_8/pong/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_10/pong_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_p3_system/i_10/pong_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[2].filt/the_inst_mem/i_0/myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_0/ping/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_0/ping/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_2/ping_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_2/ping_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_4/pang/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_4/pang/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_6/pang_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_6/pang_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_8/pong/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_8/pong/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_10/pong_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_p3_system/i_10/pong_tag/mem/data_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_actual_filter/genblk1[3].filt/the_inst_mem/i_0/myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_0/genblk2[0].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_6/genblk2[1].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_8/genblk2[2].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_10/genblk2[3].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_12/genblk2[4].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_14/genblk2[5].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_16/genblk2[6].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_18/genblk2[7].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_20/genblk2[8].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_22/genblk2[9].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_24/genblk2[10].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_26/genblk2[11].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_28/genblk2[12].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_30/genblk2[13].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_32/genblk2[14].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_34/genblk2[15].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_36/genblk2[16].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_38/genblk2[17].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_40/genblk2[18].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_42/genblk2[19].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_44/genblk2[20].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_46/genblk2[21].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_48/genblk2[22].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_50/genblk2[23].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_52/genblk2[24].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_54/genblk2[25].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_56/genblk2[26].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_58/genblk2[27].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_60/genblk2[28].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_62/genblk2[29].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_64/genblk2[30].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_66/genblk2[31].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_68/genblk2[32].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_70/genblk2[33].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_72/genblk2[34].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_74/genblk2[35].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_76/genblk2[36].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_78/genblk2[37].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_80/genblk2[38].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_82/genblk2[39].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_84/genblk2[40].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_86/genblk2[41].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_88/genblk2[42].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_90/genblk2[43].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_92/genblk2[44].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_94/genblk2[45].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_96/genblk2[46].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance inst/the_circular_buffer/i_98/genblk2[47].myram/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Common 17-14] Message 'Synth 8-6837' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:38 ; elapsed = 00:02:50 . Memory (MB): peak = 3047.266 ; gain = 1612.477 ; free physical = 53803 ; free virtual = 55615
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:43 ; elapsed = 00:02:55 . Memory (MB): peak = 3058.266 ; gain = 1623.477 ; free physical = 53766 ; free virtual = 55578
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping  Report
++-------------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|Module Name              | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
++-------------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|sdpram:                  | data_reg   | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|sdpram:                  | data_reg   | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|sdpram:                  | data_reg   | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|dp_bram:                 | data_reg   | 512 x 32(READ_FIRST)   | W | R | 512 x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      |                 | 
+|dp_bram__parameterized0: | data_reg   | 512 x 3(READ_FIRST)    | W | R | 512 x 3(READ_FIRST)    | W | R | Port A and B     | 1      | 0      |                 | 
+|sdpram:                  | data_reg   | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
+|sdpram__parameterized0:  | data_reg   | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      |                 | 
++-------------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+
+
+Distributed RAM: Final Mapping  Report
++----------------------------------+-----------------------------------------+-----------+----------------------+----------------+
+|Module Name                       | RTL Object                              | Inference | Size (Depth x Width) | Primitives     | 
++----------------------------------+-----------------------------------------+-----------+----------------------+----------------+
+|capstone_axistream_packetfilt_0_0 | inst/the_forwarder/TDATA_fifo_reg       | Implied   | 16 x 32              | RAM32M16 x 3   | 
+|capstone_axistream_packetfilt_0_0 | inst/the_forwarder/reorder_tag_fifo_reg | Implied   | 16 x 6               | RAM32M16 x 1   | 
+|capstone_axistream_packetfilt_0_0 | inst/the_forwarder/TLAST_fifo_reg       | Implied   | 16 x 1               | RAM16X1D x 1   | 
++----------------------------------+-----------------------------------------+-----------+----------------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3886] merging instance 'inst/the_forwarder/rd_ptr_reg_rep[3]' (FDR) to 'inst/the_forwarder/rd_ptr_reg[3]'
+INFO: [Synth 8-3886] merging instance 'inst/the_forwarder/rd_ptr_reg_rep[2]' (FDR) to 'inst/the_forwarder/rd_ptr_reg[2]'
+INFO: [Synth 8-3886] merging instance 'inst/the_forwarder/rd_ptr_reg_rep[1]' (FDR) to 'inst/the_forwarder/rd_ptr_reg[1]'
+INFO: [Synth 8-3886] merging instance 'inst/the_forwarder/rd_ptr_reg_rep[0]' (FDR) to 'inst/the_forwarder/rd_ptr_reg[0]'
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:53 ; elapsed = 00:03:05 . Memory (MB): peak = 3284.875 ; gain = 1850.086 ; free physical = 53707 ; free virtual = 55518
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:55 ; elapsed = 00:03:07 . Memory (MB): peak = 3284.875 ; gain = 1850.086 ; free physical = 53687 ; free virtual = 55499
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:55 ; elapsed = 00:03:07 . Memory (MB): peak = 3284.875 ; gain = 1850.086 ; free physical = 53686 ; free virtual = 55498
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:56 ; elapsed = 00:03:09 . Memory (MB): peak = 3284.875 ; gain = 1850.086 ; free physical = 53662 ; free virtual = 55473
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:57 ; elapsed = 00:03:09 . Memory (MB): peak = 3284.875 ; gain = 1850.086 ; free physical = 53660 ; free virtual = 55472
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:57 ; elapsed = 00:03:10 . Memory (MB): peak = 3284.875 ; gain = 1850.086 ; free physical = 53651 ; free virtual = 55462
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:57 ; elapsed = 00:03:10 . Memory (MB): peak = 3284.875 ; gain = 1850.086 ; free physical = 53650 ; free virtual = 55461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |CARRY8     |   148|
+|2     |LUT1       |    19|
+|3     |LUT2       |   381|
+|4     |LUT3       |   985|
+|5     |LUT4       |   719|
+|6     |LUT5       |  2806|
+|7     |LUT6       |  5019|
+|8     |MUXF7      |   612|
+|9     |MUXF8      |   189|
+|10    |RAM16X1D   |     1|
+|11    |RAM32M16   |     4|
+|12    |RAMB18E2   |    12|
+|13    |RAMB18E2_1 |    50|
+|14    |RAMB36E2   |    12|
+|15    |RAMB36E2_1 |     4|
+|16    |FDCE       |   204|
+|17    |FDRE       |  4751|
+|18    |FDSE       |     9|
++------+-----------+------+
+
+Report Instance Areas: 
++------+---------------------------------------+------------------------------+------+
+|      |Instance                               |Module                        |Cells |
++------+---------------------------------------+------------------------------+------+
+|1     |top                                    |                              | 15925|
+|2     |  inst                                 |axistream_packetfilt          | 15925|
+|3     |    axilite_regs                       |packet_filter_regs            |   319|
+|4     |    reg2mem                            |regstrb2mem                   |    21|
+|5     |    the_actual_filter                  |parallel_cores                | 12128|
+|6     |      forwarder_arbiter                |fwd_arb                       |   182|
+|7     |        reorder_tag_the_big_mux        |mux_tree__parameterized0      |    12|
+|8     |          \construct_tree[0].the_node  |mux_tree_node__parameterized0 |    12|
+|9     |        the_big_mux                    |mux_tree                      |   164|
+|10    |          \construct_tree[0].the_node  |mux_tree_node                 |   164|
+|11    |      \genblk1[0].filt                 |packetfilter_core             |  3036|
+|12    |        the_inst_mem                   |inst_mem__1                   |     2|
+|13    |          myram                        |sdpram_140                    |     2|
+|14    |        the_cpu                        |bpfcpu_114                    |  1889|
+|15    |          ctrl                         |controller_133                |   461|
+|16    |            \no_idle_stage.decode      |stage1_137                    |   460|
+|17    |              handshaker               |bhand_139                     |   460|
+|18    |            \no_idle_stage.fetch       |stage0_138                    |     1|
+|19    |          dpath                        |datapath_134                  |  1427|
+|20    |            scratch_mem                |regfile_135                   |   768|
+|21    |            the_alu                    |alu_136                       |   568|
+|22    |        the_p3_system                  |p3_115                        |  1143|
+|23    |          ctrlr                        |p3ctrl_116                    |   920|
+|24    |            cpuq                       |cpuqueue_130                  |   336|
+|25    |            fwdq                       |fwdqueue_131                  |   441|
+|26    |            snq                        |snqueue_132                   |   126|
+|27    |          pang                         |p_ng_117                      |    34|
+|28    |            mem                        |dp_bram_129                   |     1|
+|29    |          pang_tag                     |p_ng__parameterized0_118      |    33|
+|30    |            mem                        |dp_bram__parameterized0_128   |     1|
+|31    |          ping                         |p_ng_119                      |    35|
+|32    |            mem                        |dp_bram_127                   |     1|
+|33    |          ping_tag                     |p_ng__parameterized0_120      |    34|
+|34    |            mem                        |dp_bram__parameterized0_126   |     2|
+|35    |          pong                         |p_ng_121                      |    34|
+|36    |            mem                        |dp_bram_125                   |     1|
+|37    |          pong_tag                     |p_ng__parameterized0_122      |    33|
+|38    |            mem                        |dp_bram__parameterized0_124   |     1|
+|39    |          to_cpu                       |cpu_adapter_123               |    20|
+|40    |      \genblk1[1].filt                 |packetfilter_core_49          |  2993|
+|41    |        the_inst_mem                   |inst_mem__2                   |     2|
+|42    |          myram                        |sdpram_113                    |     2|
+|43    |        the_cpu                        |bpfcpu_87                     |  1889|
+|44    |          ctrl                         |controller_106                |   461|
+|45    |            \no_idle_stage.decode      |stage1_110                    |   460|
+|46    |              handshaker               |bhand_112                     |   460|
+|47    |            \no_idle_stage.fetch       |stage0_111                    |     1|
+|48    |          dpath                        |datapath_107                  |  1427|
+|49    |            scratch_mem                |regfile_108                   |   768|
+|50    |            the_alu                    |alu_109                       |   568|
+|51    |        the_p3_system                  |p3_88                         |  1100|
+|52    |          ctrlr                        |p3ctrl_89                     |   877|
+|53    |            cpuq                       |cpuqueue_103                  |   290|
+|54    |            fwdq                       |fwdqueue_104                  |   441|
+|55    |            snq                        |snqueue_105                   |   126|
+|56    |          pang                         |p_ng_90                       |    34|
+|57    |            mem                        |dp_bram_102                   |     1|
+|58    |          pang_tag                     |p_ng__parameterized0_91       |    33|
+|59    |            mem                        |dp_bram__parameterized0_101   |     1|
+|60    |          ping                         |p_ng_92                       |    35|
+|61    |            mem                        |dp_bram_100                   |     1|
+|62    |          ping_tag                     |p_ng__parameterized0_93       |    34|
+|63    |            mem                        |dp_bram__parameterized0_99    |     2|
+|64    |          pong                         |p_ng_94                       |    34|
+|65    |            mem                        |dp_bram_98                    |     1|
+|66    |          pong_tag                     |p_ng__parameterized0_95       |    33|
+|67    |            mem                        |dp_bram__parameterized0_97    |     1|
+|68    |          to_cpu                       |cpu_adapter_96                |    20|
+|69    |      \genblk1[2].filt                 |packetfilter_core_50          |  2928|
+|70    |        the_inst_mem                   |inst_mem__3                   |     2|
+|71    |          myram                        |sdpram_86                     |     2|
+|72    |        the_cpu                        |bpfcpu_60                     |  1887|
+|73    |          ctrl                         |controller_79                 |   459|
+|74    |            \no_idle_stage.decode      |stage1_83                     |   458|
+|75    |              handshaker               |bhand_85                      |   458|
+|76    |            \no_idle_stage.fetch       |stage0_84                     |     1|
+|77    |          dpath                        |datapath_80                   |  1427|
+|78    |            scratch_mem                |regfile_81                    |   768|
+|79    |            the_alu                    |alu_82                        |   568|
+|80    |        the_p3_system                  |p3_61                         |  1037|
+|81    |          ctrlr                        |p3ctrl_62                     |   814|
+|82    |            cpuq                       |cpuqueue_76                   |   233|
+|83    |            fwdq                       |fwdqueue_77                   |   441|
+|84    |            snq                        |snqueue_78                    |   126|
+|85    |          pang                         |p_ng_63                       |    34|
+|86    |            mem                        |dp_bram_75                    |     1|
+|87    |          pang_tag                     |p_ng__parameterized0_64       |    33|
+|88    |            mem                        |dp_bram__parameterized0_74    |     1|
+|89    |          ping                         |p_ng_65                       |    35|
+|90    |            mem                        |dp_bram_73                    |     1|
+|91    |          ping_tag                     |p_ng__parameterized0_66       |    34|
+|92    |            mem                        |dp_bram__parameterized0_72    |     2|
+|93    |          pong                         |p_ng_67                       |    34|
+|94    |            mem                        |dp_bram_71                    |     1|
+|95    |          pong_tag                     |p_ng__parameterized0_68       |    33|
+|96    |            mem                        |dp_bram__parameterized0_70    |     1|
+|97    |          to_cpu                       |cpu_adapter_69                |    20|
+|98    |      \genblk1[3].filt                 |packetfilter_core_51          |  2984|
+|99    |        the_inst_mem                   |inst_mem                      |     2|
+|100   |          myram                        |sdpram                        |     2|
+|101   |        the_cpu                        |bpfcpu                        |  1888|
+|102   |          ctrl                         |controller                    |   460|
+|103   |            \no_idle_stage.decode      |stage1                        |   459|
+|104   |              handshaker               |bhand                         |   459|
+|105   |            \no_idle_stage.fetch       |stage0                        |     1|
+|106   |          dpath                        |datapath                      |  1427|
+|107   |            scratch_mem                |regfile                       |   768|
+|108   |            the_alu                    |alu                           |   568|
+|109   |        the_p3_system                  |p3                            |  1092|
+|110   |          ctrlr                        |p3ctrl                        |   869|
+|111   |            cpuq                       |cpuqueue                      |   282|
+|112   |            fwdq                       |fwdqueue                      |   441|
+|113   |            snq                        |snqueue                       |   126|
+|114   |          pang                         |p_ng                          |    34|
+|115   |            mem                        |dp_bram_59                    |     1|
+|116   |          pang_tag                     |p_ng__parameterized0          |    33|
+|117   |            mem                        |dp_bram__parameterized0_58    |     1|
+|118   |          ping                         |p_ng_52                       |    35|
+|119   |            mem                        |dp_bram_57                    |     1|
+|120   |          ping_tag                     |p_ng__parameterized0_53       |    34|
+|121   |            mem                        |dp_bram__parameterized0_56    |     2|
+|122   |          pong                         |p_ng_54                       |    34|
+|123   |            mem                        |dp_bram                       |     1|
+|124   |          pong_tag                     |p_ng__parameterized0_55       |    33|
+|125   |            mem                        |dp_bram__parameterized0       |     1|
+|126   |          to_cpu                       |cpu_adapter                   |    20|
+|127   |      snooper_arbiter                  |snoop_arb                     |     5|
+|128   |    the_circular_buffer                |circular_buffer               |  1911|
+|129   |      \genblk2[0].myram                |sdpram__parameterized0        |     3|
+|130   |      \genblk2[10].myram               |sdpram__parameterized0_0      |     1|
+|131   |      \genblk2[11].myram               |sdpram__parameterized0_1      |    35|
+|132   |      \genblk2[12].myram               |sdpram__parameterized0_2      |     1|
+|133   |      \genblk2[13].myram               |sdpram__parameterized0_3      |     1|
+|134   |      \genblk2[14].myram               |sdpram__parameterized0_4      |     1|
+|135   |      \genblk2[15].myram               |sdpram__parameterized0_5      |   321|
+|136   |      \genblk2[16].myram               |sdpram__parameterized0_6      |     3|
+|137   |      \genblk2[17].myram               |sdpram__parameterized0_7      |     1|
+|138   |      \genblk2[18].myram               |sdpram__parameterized0_8      |     1|
+|139   |      \genblk2[19].myram               |sdpram__parameterized0_9      |    46|
+|140   |      \genblk2[1].myram                |sdpram__parameterized0_10     |     1|
+|141   |      \genblk2[20].myram               |sdpram__parameterized0_11     |     1|
+|142   |      \genblk2[21].myram               |sdpram__parameterized0_12     |     1|
+|143   |      \genblk2[22].myram               |sdpram__parameterized0_13     |     1|
+|144   |      \genblk2[23].myram               |sdpram__parameterized0_14     |    39|
+|145   |      \genblk2[24].myram               |sdpram__parameterized0_15     |     1|
+|146   |      \genblk2[25].myram               |sdpram__parameterized0_16     |     1|
+|147   |      \genblk2[26].myram               |sdpram__parameterized0_17     |     1|
+|148   |      \genblk2[27].myram               |sdpram__parameterized0_18     |    37|
+|149   |      \genblk2[28].myram               |sdpram__parameterized0_19     |     1|
+|150   |      \genblk2[29].myram               |sdpram__parameterized0_20     |     1|
+|151   |      \genblk2[2].myram                |sdpram__parameterized0_21     |     1|
+|152   |      \genblk2[30].myram               |sdpram__parameterized0_22     |     1|
+|153   |      \genblk2[31].myram               |sdpram__parameterized0_23     |    69|
+|154   |      \genblk2[32].myram               |sdpram__parameterized0_24     |     3|
+|155   |      \genblk2[33].myram               |sdpram__parameterized0_25     |     1|
+|156   |      \genblk2[34].myram               |sdpram__parameterized0_26     |     1|
+|157   |      \genblk2[35].myram               |sdpram__parameterized0_27     |    97|
+|158   |      \genblk2[36].myram               |sdpram__parameterized0_28     |     1|
+|159   |      \genblk2[37].myram               |sdpram__parameterized0_29     |     1|
+|160   |      \genblk2[38].myram               |sdpram__parameterized0_30     |     1|
+|161   |      \genblk2[39].myram               |sdpram__parameterized0_31     |    33|
+|162   |      \genblk2[3].myram                |sdpram__parameterized0_32     |    41|
+|163   |      \genblk2[40].myram               |sdpram__parameterized0_33     |     1|
+|164   |      \genblk2[41].myram               |sdpram__parameterized0_34     |     1|
+|165   |      \genblk2[42].myram               |sdpram__parameterized0_35     |     1|
+|166   |      \genblk2[43].myram               |sdpram__parameterized0_36     |    65|
+|167   |      \genblk2[44].myram               |sdpram__parameterized0_37     |     1|
+|168   |      \genblk2[45].myram               |sdpram__parameterized0_38     |     1|
+|169   |      \genblk2[46].myram               |sdpram__parameterized0_39     |     1|
+|170   |      \genblk2[47].myram               |sdpram__parameterized0_40     |    41|
+|171   |      \genblk2[48].myram               |sdpram__parameterized0_41     |     6|
+|172   |      \genblk2[49].myram               |sdpram__parameterized0_42     |   249|
+|173   |      \genblk2[4].myram                |sdpram__parameterized0_43     |     1|
+|174   |      \genblk2[5].myram                |sdpram__parameterized0_44     |     1|
+|175   |      \genblk2[6].myram                |sdpram__parameterized0_45     |     1|
+|176   |      \genblk2[7].myram                |sdpram__parameterized0_46     |    46|
+|177   |      \genblk2[8].myram                |sdpram__parameterized0_47     |     1|
+|178   |      \genblk2[9].myram                |sdpram__parameterized0_48     |     1|
+|179   |    the_forwarder                      |axistream_forwarder           |   810|
+|180   |      width_adapter                    |fwd_width_adapter             |    33|
+|181   |    the_packet_status_table            |packet_status                 |   263|
+|182   |    the_snooper                        |axistream_snooper             |   450|
+|183   |      width_adapter                    |sn_width_adapter              |   394|
++------+---------------------------------------+------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:57 ; elapsed = 00:03:10 . Memory (MB): peak = 3284.875 ; gain = 1850.086 ; free physical = 53649 ; free virtual = 55461
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 58 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:37 ; elapsed = 00:02:29 . Memory (MB): peak = 3284.875 ; gain = 666.359 ; free physical = 53686 ; free virtual = 55498
+Synthesis Optimization Complete : Time (s): cpu = 00:01:57 ; elapsed = 00:03:10 . Memory (MB): peak = 3284.883 ; gain = 1850.086 ; free physical = 53686 ; free virtual = 55498
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 954 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3316.891 ; gain = 0.000 ; free physical = 53528 ; free virtual = 55339
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5 instances were transformed.
+  RAM16X1D => RAM32X1D (RAMD32, RAMD32): 1 instances
+  RAM32M16 => RAM32M16 (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 4 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+360 Infos, 114 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:04 ; elapsed = 00:03:16 . Memory (MB): peak = 3316.891 ; gain = 1952.695 ; free physical = 53595 ; free virtual = 55406
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3316.891 ; gain = 0.000 ; free physical = 53595 ; free virtual = 55406
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/capstone/capstone.runs/capstone_axistream_packetfilt_0_0_synth_1/capstone_axistream_packetfilt_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 3340.902 ; gain = 24.012 ; free physical = 53521 ; free virtual = 55333
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP capstone_axistream_packetfilt_0_0, cache-ID = b24e3126f3ef4085
+INFO: [Coretcl 2-1174] Renamed 182 cell refs.
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3340.902 ; gain = 0.000 ; free physical = 53519 ; free virtual = 55330
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/capstone/capstone.runs/capstone_axistream_packetfilt_0_0_synth_1/capstone_axistream_packetfilt_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 3340.902 ; gain = 0.000 ; free physical = 53509 ; free virtual = 55321
+INFO: [runtcl-4] Executing : report_utilization -file capstone_axistream_packetfilt_0_0_utilization_synth.rpt -pb capstone_axistream_packetfilt_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 19 01:44:32 2021...

@@ -1,0 +1,5 @@
+vhdl xil_defaultlib  \
+"../../../../capstone.srcs/sources_1/bd/capstone/ip/capstone_axi_fifo_mm_s_0_0/sim/capstone_axi_fifo_mm_s_0_0.vhd" \
+"../../../../capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/bd_0/ip/ip_1/sim/bd_43ca_bsip_0.vhd" \
+
+nosort

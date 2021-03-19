@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="capstone_system_ila_0_0_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/capstone_system_ila_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="capstone_smartconnect_0_0_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/capstone_smartconnect_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="capstone_zynq_ultra_ps_e_0_0_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/capstone_zynq_ultra_ps_e_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="capstone_axi_fifo_mm_s_0_0_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/capstone_axi_fifo_mm_s_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="capstone_axistream_packetfilt_0_0_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/capstone_axistream_packetfilt_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="capstone_debug_bridge_0_0_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/capstone_debug_bridge_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="bd_43ca_axi_jtag_0_synth_1"/>
+		<Parent Id="bd_43ca_bsip_0_synth_1"/>
+	</Run>
+	<Run Id="bd_43ca_axi_jtag_0_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/bd_43ca_axi_jtag_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="bd_43ca_bsip_0_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/bd_43ca_bsip_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="capstone_input_packets_0_0_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/capstone_input_packets_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="capstone_ARM_control_0_1_synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/capstone_ARM_control_0_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="/home/tianyi/capstone/capstone.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="capstone_system_ila_0_0_synth_1"/>
+		<Parent Id="capstone_smartconnect_0_0_synth_1"/>
+		<Parent Id="capstone_zynq_ultra_ps_e_0_0_synth_1"/>
+		<Parent Id="capstone_axi_fifo_mm_s_0_0_synth_1"/>
+		<Parent Id="capstone_axistream_packetfilt_0_0_synth_1"/>
+		<Parent Id="capstone_debug_bridge_0_0_synth_1"/>
+		<Parent Id="capstone_input_packets_0_0_synth_1"/>
+		<Parent Id="capstone_ARM_control_0_1_synth_1"/>
+	</Run>
+	<Run Id="impl_1" LaunchDir="/home/tianyi/capstone/capstone.runs/impl_1" FlowId="Vivado_Implementation" FromStepId="init_design" ToStepId="write_bitstream">
+		<Parent Id="synth_1"/>
+		<Parent Id="capstone_system_ila_0_0_synth_1"/>
+		<Parent Id="capstone_smartconnect_0_0_synth_1"/>
+		<Parent Id="capstone_zynq_ultra_ps_e_0_0_synth_1"/>
+		<Parent Id="capstone_axi_fifo_mm_s_0_0_synth_1"/>
+		<Parent Id="capstone_axistream_packetfilt_0_0_synth_1"/>
+		<Parent Id="capstone_debug_bridge_0_0_synth_1"/>
+		<Parent Id="bd_43ca_axi_jtag_0_synth_1"/>
+		<Parent Id="bd_43ca_bsip_0_synth_1"/>
+		<Parent Id="capstone_input_packets_0_0_synth_1"/>
+		<Parent Id="capstone_ARM_control_0_1_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+

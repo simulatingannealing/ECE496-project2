@@ -1,0 +1,428 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Thu Mar 18 21:04:17 2021
+# Process ID: 29710
+# Current directory: /home/tianyi/capstone/capstone.runs/capstone_input_0_0_synth_1
+# Command line: vivado -log capstone_input_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source capstone_input_0_0.tcl
+# Log file: /home/tianyi/capstone/capstone.runs/capstone_input_0_0_synth_1/capstone_input_0_0.vds
+# Journal file: /home/tianyi/capstone/capstone.runs/capstone_input_0_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source capstone_input_0_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/input_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/capstone/input_packets_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/ARM_control_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ECE496-project2/vivado_scripts/axistream_packetfilt'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/mnt/Xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1357.203 ; gain = 0.000 ; free physical = 57473 ; free virtual = 59286
+Command: synth_design -top capstone_input_0_0 -part xczu19eg-ffvc1760-2-i -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-1540] The version limit for your license is '2020.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 29762 
+WARNING: [Synth 8-2507] parameter declaration becomes local in input_v1_0_M00_AXIS with formal parameter declaration list [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:64]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1521.297 ; gain = 86.500 ; free physical = 57206 ; free virtual = 59018
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'capstone_input_0_0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_input_0_0/synth/capstone_input_0_0.v:56]
+INFO: [Synth 8-6157] synthesizing module 'input_v1_0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0.v:4]
+	Parameter C_M00_AXIS_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_M00_AXIS_START_COUNT bound to: 32 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'input_v1_0_M00_AXIS' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:4]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+	Parameter C_M_AXIS_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_START_COUNT bound to: 32 - type: integer 
+	Parameter WAIT_COUNT_BITS bound to: 5 - type: integer 
+	Parameter bit_num bound to: 9 - type: integer 
+	Parameter IDLE bound to: 2'b00 
+	Parameter INIT_COUNTER bound to: 2'b01 
+	Parameter SEND_STREAM bound to: 2'b10 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:108]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6104] Input port 'bit_depth' has an internal driver [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:46]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:105]
+INFO: [Synth 8-6155] done synthesizing module 'input_v1_0_M00_AXIS' (1#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0_M00_AXIS.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'input_v1_0' (2#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/d354/hdl/input_v1_0.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_input_0_0' (3#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_input_0_0/synth/capstone_input_0_0.v:56]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1553.547 ; gain = 118.750 ; free physical = 57618 ; free virtual = 59430
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1553.547 ; gain = 118.750 ; free physical = 57618 ; free virtual = 59430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1553.547 ; gain = 118.750 ; free physical = 57618 ; free virtual = 59430
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xczu19eg-ffvc1760-2-i
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2723.914 ; gain = 0.000 ; free physical = 56820 ; free virtual = 58626
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2723.914 ; gain = 0.000 ; free physical = 56820 ; free virtual = 58626
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.16 . Memory (MB): peak = 2723.914 ; gain = 0.000 ; free physical = 56819 ; free virtual = 58625
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:47 . Memory (MB): peak = 2723.914 ; gain = 1289.117 ; free physical = 56896 ; free virtual = 58702
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu19eg-ffvc1760-2-i
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:47 . Memory (MB): peak = 2723.914 ; gain = 1289.117 ; free physical = 56896 ; free virtual = 58702
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:47 . Memory (MB): peak = 2723.914 ; gain = 1289.117 ; free physical = 56896 ; free virtual = 58702
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'mst_exec_state_reg' in module 'input_v1_0_M00_AXIS'
+INFO: [Synth 8-5544] ROM "mst_exec_state" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "mst_exec_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "mst_exec_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+            INIT_COUNTER |                               01 |                               01
+             SEND_STREAM |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'mst_exec_state_reg' using encoding 'sequential' in module 'input_v1_0_M00_AXIS'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:47 . Memory (MB): peak = 2723.914 ; gain = 1289.117 ; free physical = 56890 ; free virtual = 58696
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                9 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   8 Input     32 Bit        Muxes := 1     
+	   3 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   3 Input      6 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 4     
+	   3 Input      1 Bit        Muxes := 1     
+	   6 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module input_v1_0_M00_AXIS 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                9 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   8 Input     32 Bit        Muxes := 1     
+	   3 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   3 Input      6 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 4     
+	   3 Input      1 Bit        Muxes := 1     
+	   6 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1968 (col length:264)
+BRAMs: 1968 (col length: RAMB18 264 RAMB36 132)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-3917] design capstone_input_0_0 has port m00_axis_tstrb[3] driven by constant 1
+INFO: [Synth 8-3917] design capstone_input_0_0 has port m00_axis_tstrb[2] driven by constant 1
+INFO: [Synth 8-3917] design capstone_input_0_0 has port m00_axis_tstrb[1] driven by constant 1
+INFO: [Synth 8-3917] design capstone_input_0_0 has port m00_axis_tstrb[0] driven by constant 1
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/input_v1_0_M00_AXIS_inst/read_pointer0_inferred /\inst/input_v1_0_M00_AXIS_inst/read_pointer_reg[0] )
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[0]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/input_v1_0_M00_AXIS_inst/read_pointer0_inferred /\inst/input_v1_0_M00_AXIS_inst/read_pointer_reg[1] )
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[1]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/input_v1_0_M00_AXIS_inst/read_pointer0_inferred /\inst/input_v1_0_M00_AXIS_inst/read_pointer_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/input_v1_0_M00_AXIS_inst/read_pointer0_inferred /\inst/input_v1_0_M00_AXIS_inst/read_pointer_reg[3] )
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[3]' (FDSE) to 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[5]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/input_v1_0_M00_AXIS_inst/read_pointer0_inferred /\inst/input_v1_0_M00_AXIS_inst/read_pointer_reg[4] )
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[4]' (FDSE) to 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[7]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[5] )
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[6]' (FDSE) to 'inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[7]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[1]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[2]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[2]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[3]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[3]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[4]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[5]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[6]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[7]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[8]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[9]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[10]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[11]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[12]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[12]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[13]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[13]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[14]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[14]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[15]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[15]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[16]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[16]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[17]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[17]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[18]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[18]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[19]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[19]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[20]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[20]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[21]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[21]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[22]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[22]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[23]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[23]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[24]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[24]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[25]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[25]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[26]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[26]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[27]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[27]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[28]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[28]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[29]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[29]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[30]'
+INFO: [Synth 8-3886] merging instance 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[30]' (FDRE) to 'inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/input_v1_0_M00_AXIS_inst/stream_data_out_reg[31] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\inst/input_v1_0_M00_AXIS_inst/NUMBER_OF_OUTPUT_WORDS_reg[7] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:47 . Memory (MB): peak = 2723.914 ; gain = 1289.117 ; free physical = 56881 ; free virtual = 58687
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:51 ; elapsed = 00:01:56 . Memory (MB): peak = 2995.906 ; gain = 1561.109 ; free physical = 56313 ; free virtual = 58119
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:01:56 . Memory (MB): peak = 2995.906 ; gain = 1561.109 ; free physical = 56313 ; free virtual = 58119
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:51 ; elapsed = 00:01:56 . Memory (MB): peak = 3015.938 ; gain = 1581.141 ; free physical = 56313 ; free virtual = 58119
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:51 ; elapsed = 00:01:57 . Memory (MB): peak = 3015.938 ; gain = 1581.141 ; free physical = 56316 ; free virtual = 58122
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:51 ; elapsed = 00:01:57 . Memory (MB): peak = 3015.938 ; gain = 1581.141 ; free physical = 56316 ; free virtual = 58122
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:51 ; elapsed = 00:01:57 . Memory (MB): peak = 3015.938 ; gain = 1581.141 ; free physical = 56316 ; free virtual = 58122
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:51 ; elapsed = 00:01:57 . Memory (MB): peak = 3015.938 ; gain = 1581.141 ; free physical = 56316 ; free virtual = 58122
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:51 ; elapsed = 00:01:57 . Memory (MB): peak = 3015.938 ; gain = 1581.141 ; free physical = 56316 ; free virtual = 58122
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:51 ; elapsed = 00:01:57 . Memory (MB): peak = 3015.938 ; gain = 1581.141 ; free physical = 56316 ; free virtual = 58122
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY8 |     2|
+|2     |LUT1   |     4|
+|3     |LUT2   |     6|
+|4     |LUT3   |     4|
+|5     |LUT4   |     2|
+|6     |LUT5   |     1|
+|7     |LUT6   |     1|
+|8     |FDRE   |     7|
+|9     |FDSE   |     1|
++------+-------+------+
+
+Report Instance Areas: 
++------+-----------------------------+--------------------+------+
+|      |Instance                     |Module              |Cells |
++------+-----------------------------+--------------------+------+
+|1     |top                          |                    |    28|
+|2     |  inst                       |input_v1_0          |    28|
+|3     |    input_v1_0_M00_AXIS_inst |input_v1_0_M00_AXIS |    28|
++------+-----------------------------+--------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:51 ; elapsed = 00:01:57 . Memory (MB): peak = 3015.938 ; gain = 1581.141 ; free physical = 56316 ; free virtual = 58122
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:01:19 . Memory (MB): peak = 3015.938 ; gain = 410.773 ; free physical = 56355 ; free virtual = 58161
+Synthesis Optimization Complete : Time (s): cpu = 00:00:52 ; elapsed = 00:01:57 . Memory (MB): peak = 3015.945 ; gain = 1581.141 ; free physical = 56355 ; free virtual = 58161
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3077.586 ; gain = 0.000 ; free physical = 56280 ; free virtual = 58086
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+79 Infos, 31 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:54 ; elapsed = 00:02:00 . Memory (MB): peak = 3077.586 ; gain = 1713.383 ; free physical = 56336 ; free virtual = 58142
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3077.586 ; gain = 0.000 ; free physical = 56336 ; free virtual = 58142
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/capstone/capstone.runs/capstone_input_0_0_synth_1/capstone_input_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP capstone_input_0_0, cache-ID = aee34b468926a5a3
+INFO: [Coretcl 2-1174] Renamed 2 cell refs.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3101.598 ; gain = 0.000 ; free physical = 56338 ; free virtual = 58144
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/capstone/capstone.runs/capstone_input_0_0_synth_1/capstone_input_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file capstone_input_0_0_utilization_synth.rpt -pb capstone_input_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 18 21:06:36 2021...

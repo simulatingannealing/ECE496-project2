@@ -1,0 +1,374 @@
+
+*** Running vivado
+    with args -log capstone_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source capstone_wrapper.tcl
+
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source capstone_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/input_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/capstone/input_packets_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/ARM_control_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ECE496-project2/vivado_scripts/axistream_packetfilt'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/mnt/Xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1357.195 ; gain = 0.000 ; free physical = 59836 ; free virtual = 61254
+add_files: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1443.477 ; gain = 86.281 ; free physical = 59757 ; free virtual = 61174
+Command: synth_design -top capstone_wrapper -part xczu19eg-ffvc1760-2-i
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-1540] The version limit for your license is '2020.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 21879 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1587.617 ; gain = 85.000 ; free physical = 59641 ; free virtual = 61059
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'capstone_wrapper' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/hdl/capstone_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'capstone' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/synth/capstone.v:13]
+INFO: [Synth 8-6157] synthesizing module 'capstone_smartconnect_0_0' [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_smartconnect_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_smartconnect_0_0' (1#1) [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_smartconnect_0_0_stub.v:6]
+WARNING: [Synth 8-350] instance 'PS_to_PL' of module 'capstone_smartconnect_0_0' requires 97 connections, but only 95 given [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/synth/capstone.v:124]
+INFO: [Synth 8-6157] synthesizing module 'capstone_debug_bridge_0_0' [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_debug_bridge_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_debug_bridge_0_0' (2#1) [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_debug_bridge_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'capstone_axistream_packetfilt_0_0' [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_axistream_packetfilt_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_axistream_packetfilt_0_0' (3#1) [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_axistream_packetfilt_0_0_stub.v:6]
+WARNING: [Synth 8-350] instance 'ffshark' of module 'capstone_axistream_packetfilt_0_0' requires 45 connections, but only 32 given [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/synth/capstone.v:242]
+INFO: [Synth 8-6157] synthesizing module 'capstone_input_0_0' [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_input_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_input_0_0' (4#1) [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_input_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'capstone_axi_fifo_mm_s_0_0' [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_axi_fifo_mm_s_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_axi_fifo_mm_s_0_0' (5#1) [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_axi_fifo_mm_s_0_0_stub.v:6]
+WARNING: [Synth 8-350] instance 'packet_output' of module 'capstone_axi_fifo_mm_s_0_0' requires 30 connections, but only 24 given [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/synth/capstone.v:284]
+INFO: [Synth 8-6157] synthesizing module 'capstone_zynq_ultra_ps_e_0_0' [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_zynq_ultra_ps_e_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_zynq_ultra_ps_e_0_0' (6#1) [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_zynq_ultra_ps_e_0_0_stub.v:6]
+WARNING: [Synth 8-350] instance 'ps' of module 'capstone_zynq_ultra_ps_e_0_0' requires 83 connections, but only 71 given [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/synth/capstone.v:309]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/synth/capstone.v:381]
+INFO: [Synth 8-6157] synthesizing module 'capstone_system_ila_0_0' [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_system_ila_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_system_ila_0_0' (7#1) [/home/tianyi/capstone/capstone.runs/synth_1/.Xil/Vivado-21844-capstone/realtime/capstone_system_ila_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'capstone_xlconstant_0_0' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_xlconstant_0_0/synth/capstone_xlconstant_0_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_5_xlconstant' [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/4649/hdl/xlconstant_v1_1_vl_rfs.v:23]
+	Parameter CONST_VAL bound to: 0 - type: integer 
+	Parameter CONST_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_5_xlconstant' (8#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ipshared/4649/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_xlconstant_0_0' (9#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_xlconstant_0_0/synth/capstone_xlconstant_0_0.v:57]
+INFO: [Synth 8-6155] done synthesizing module 'capstone' (10#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/synth/capstone.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'capstone_wrapper' (11#1) [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/hdl/capstone_wrapper.v:12]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1633.367 ; gain = 130.750 ; free physical = 59651 ; free virtual = 61069
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1633.367 ; gain = 130.750 ; free physical = 59652 ; free virtual = 61070
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1633.367 ; gain = 130.750 ; free physical = 59652 ; free virtual = 61070
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xczu19eg-ffvc1760-2-i
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_axistream_packetfilt_0_0/capstone_axistream_packetfilt_0_0/capstone_axistream_packetfilt_0_0_in_context.xdc] for cell 'capstone_i/ffshark'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_axistream_packetfilt_0_0/capstone_axistream_packetfilt_0_0/capstone_axistream_packetfilt_0_0_in_context.xdc] for cell 'capstone_i/ffshark'
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_zynq_ultra_ps_e_0_0/capstone_zynq_ultra_ps_e_0_0/capstone_zynq_ultra_ps_e_0_0_in_context.xdc] for cell 'capstone_i/ps'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_zynq_ultra_ps_e_0_0/capstone_zynq_ultra_ps_e_0_0/capstone_zynq_ultra_ps_e_0_0_in_context.xdc] for cell 'capstone_i/ps'
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_smartconnect_0_0/capstone_smartconnect_0_0/capstone_smartconnect_0_0_in_context.xdc] for cell 'capstone_i/PS_to_PL'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_smartconnect_0_0/capstone_smartconnect_0_0/capstone_smartconnect_0_0_in_context.xdc] for cell 'capstone_i/PS_to_PL'
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_axi_fifo_mm_s_0_0/capstone_axi_fifo_mm_s_0_0/capstone_axi_fifo_mm_s_0_0_in_context.xdc] for cell 'capstone_i/packet_output'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_axi_fifo_mm_s_0_0/capstone_axi_fifo_mm_s_0_0/capstone_axi_fifo_mm_s_0_0_in_context.xdc] for cell 'capstone_i/packet_output'
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/capstone_debug_bridge_0_0/capstone_debug_bridge_0_0_in_context.xdc] for cell 'capstone_i/debug_bridge_0'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_debug_bridge_0_0/capstone_debug_bridge_0_0/capstone_debug_bridge_0_0_in_context.xdc] for cell 'capstone_i/debug_bridge_0'
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_system_ila_0_0/capstone_system_ila_0_0/capstone_system_ila_0_0_in_context.xdc] for cell 'capstone_i/system_ila_0'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_system_ila_0_0/capstone_system_ila_0_0/capstone_system_ila_0_0_in_context.xdc] for cell 'capstone_i/system_ila_0'
+Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_input_0_0/capstone_input_0_0/capstone_input_0_0_in_context.xdc] for cell 'capstone_i/input_0'
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/ip/capstone_input_0_0/capstone_input_0_0/capstone_input_0_0_in_context.xdc] for cell 'capstone_i/input_0'
+Parsing XDC File [/home/tianyi/capstone/capstone.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/tianyi/capstone/capstone.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2796.734 ; gain = 0.000 ; free physical = 58730 ; free virtual = 60148
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2796.734 ; gain = 0.000 ; free physical = 58730 ; free virtual = 60148
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2796.734 ; gain = 0.000 ; free physical = 58730 ; free virtual = 60148
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:46 . Memory (MB): peak = 2796.734 ; gain = 1294.117 ; free physical = 58806 ; free virtual = 60224
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu19eg-ffvc1760-2-i
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:46 . Memory (MB): peak = 2796.734 ; gain = 1294.117 ; free physical = 58806 ; free virtual = 60224
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for capstone_i. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for capstone_i/ffshark. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for capstone_i/ps. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for capstone_i/PS_to_PL. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for capstone_i/packet_output. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for capstone_i/debug_bridge_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for capstone_i/system_ila_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for capstone_i/zero. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for capstone_i/input_0. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:46 . Memory (MB): peak = 2796.734 ; gain = 1294.117 ; free physical = 58806 ; free virtual = 60224
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:46 . Memory (MB): peak = 2796.734 ; gain = 1294.117 ; free physical = 58805 ; free virtual = 60223
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1968 (col length:264)
+BRAMs: 1968 (col length: RAMB18 264 RAMB36 132)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:46 . Memory (MB): peak = 2796.734 ; gain = 1294.117 ; free physical = 58795 ; free virtual = 60213
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/ps/pl_clk0' to pin 'capstone_i/ps/bbstub_pl_clk0/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_arready' to pin 'capstone_i/debug_bridge_0/bbstub_S_AXI_arready/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_awready' to pin 'capstone_i/debug_bridge_0/bbstub_S_AXI_awready/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_bresp[0]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_bresp[0]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_bresp[1]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_bresp[1]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_bvalid' to pin 'capstone_i/debug_bridge_0/bbstub_S_AXI_bvalid/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[0]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[0]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[10]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[10]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[11]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[11]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[12]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[12]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[13]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[13]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[14]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[14]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[15]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[15]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[16]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[16]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[17]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[17]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[18]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[18]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[19]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[19]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[1]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[1]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[20]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[20]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[21]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[21]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[22]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[22]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[23]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[23]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[24]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[24]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[25]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[25]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[26]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[26]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[27]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[27]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[28]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[28]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[29]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[29]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[2]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[2]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[30]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[30]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[31]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[31]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[3]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[3]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[4]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[4]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[5]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[5]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[6]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[6]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[7]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[7]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[8]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[8]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rdata[9]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rdata[9]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rresp[0]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rresp[0]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rresp[1]' to pin '{capstone_i/debug_bridge_0/bbstub_S_AXI_rresp[1]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_rvalid' to pin 'capstone_i/debug_bridge_0/bbstub_S_AXI_rvalid/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'capstone_i/debug_bridge_0/S_AXI_wready' to pin 'capstone_i/debug_bridge_0/bbstub_S_AXI_wready/O'
+INFO: [Synth 8-5819] Moved 42 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:49 ; elapsed = 00:01:56 . Memory (MB): peak = 3063.727 ; gain = 1561.109 ; free physical = 58212 ; free virtual = 59630
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:01:56 . Memory (MB): peak = 3064.727 ; gain = 1562.109 ; free physical = 58212 ; free virtual = 59630
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:50 ; elapsed = 00:01:56 . Memory (MB): peak = 3074.742 ; gain = 1572.125 ; free physical = 58211 ; free virtual = 59629
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3295] tying undriven pin input_packets_0_M00_AXIS_TREADY_inferred:in0 to constant 0
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:50 ; elapsed = 00:01:57 . Memory (MB): peak = 3074.742 ; gain = 1572.125 ; free physical = 58211 ; free virtual = 59629
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:50 ; elapsed = 00:01:57 . Memory (MB): peak = 3074.742 ; gain = 1572.125 ; free physical = 58211 ; free virtual = 59629
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:50 ; elapsed = 00:01:57 . Memory (MB): peak = 3074.742 ; gain = 1572.125 ; free physical = 58211 ; free virtual = 59629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:50 ; elapsed = 00:01:57 . Memory (MB): peak = 3074.742 ; gain = 1572.125 ; free physical = 58211 ; free virtual = 59629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:50 ; elapsed = 00:01:57 . Memory (MB): peak = 3074.742 ; gain = 1572.125 ; free physical = 58211 ; free virtual = 59629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:50 ; elapsed = 00:01:57 . Memory (MB): peak = 3074.742 ; gain = 1572.125 ; free physical = 58211 ; free virtual = 59629
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------------------------+----------+
+|      |BlackBox name                     |Instances |
++------+----------------------------------+----------+
+|1     |capstone_smartconnect_0_0         |         1|
+|2     |capstone_debug_bridge_0_0         |         1|
+|3     |capstone_axistream_packetfilt_0_0 |         1|
+|4     |capstone_input_0_0                |         1|
+|5     |capstone_axi_fifo_mm_s_0_0        |         1|
+|6     |capstone_zynq_ultra_ps_e_0_0      |         1|
+|7     |capstone_system_ila_0_0           |         1|
++------+----------------------------------+----------+
+
+Report Cell Usage: 
++------+----------------------------------+------+
+|      |Cell                              |Count |
++------+----------------------------------+------+
+|1     |capstone_axi_fifo_mm_s_0_0        |     1|
+|2     |capstone_axistream_packetfilt_0_0 |     1|
+|3     |capstone_debug_bridge_0_0         |     1|
+|4     |capstone_input_0_0                |     1|
+|5     |capstone_smartconnect_0_0         |     1|
+|6     |capstone_system_ila_0_0           |     1|
+|7     |capstone_zynq_ultra_ps_e_0_0      |     1|
+|8     |LUT1                              |     1|
++------+----------------------------------+------+
+
+Report Instance Areas: 
++------+-------------+------------------------+------+
+|      |Instance     |Module                  |Cells |
++------+-------------+------------------------+------+
+|1     |top          |                        |  1773|
+|2     |  capstone_i |capstone                |  1773|
+|3     |    zero     |capstone_xlconstant_0_0 |     0|
++------+-------------+------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:50 ; elapsed = 00:01:57 . Memory (MB): peak = 3074.742 ; gain = 1572.125 ; free physical = 58211 ; free virtual = 59629
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:34 ; elapsed = 00:01:19 . Memory (MB): peak = 3074.742 ; gain = 408.758 ; free physical = 58251 ; free virtual = 59669
+Synthesis Optimization Complete : Time (s): cpu = 00:00:50 ; elapsed = 00:01:57 . Memory (MB): peak = 3074.750 ; gain = 1572.125 ; free physical = 58257 ; free virtual = 59675
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3113.375 ; gain = 0.000 ; free physical = 58174 ; free virtual = 59592
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+82 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:53 ; elapsed = 00:01:59 . Memory (MB): peak = 3113.375 ; gain = 1669.898 ; free physical = 58222 ; free virtual = 59640
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3113.375 ; gain = 0.000 ; free physical = 58222 ; free virtual = 59640
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/capstone/capstone.runs/synth_1/capstone_wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file capstone_wrapper_utilization_synth.rpt -pb capstone_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 19 03:48:30 2021...

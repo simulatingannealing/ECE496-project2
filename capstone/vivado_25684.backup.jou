@@ -1,0 +1,106 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Wed Mar 17 02:46:28 2021
+# Process ID: 25684
+# Current directory: /home/tianyi/capstone
+# Command line: vivado
+# Log file: /home/tianyi/capstone/vivado.log
+# Journal file: /home/tianyi/capstone/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/tianyi/capstone/capstone.xpr
+update_compile_order -fileset sources_1
+ipx::edit_ip_in_project -upgrade true -name input_test_v1_0_project -directory /home/tianyi/capstone/capstone.tmp/input_test_v1_0_project /home/tianyi/ip_repo/input_test_1.0/component.xml
+update_compile_order -fileset sources_1
+close_project
+ipx::edit_ip_in_project -upgrade true -name input_test_v1_0_project -directory /home/tianyi/capstone/capstone.tmp/input_test_v1_0_project /home/tianyi/ip_repo/input_test_1.0/component.xml
+update_compile_order -fileset sources_1
+add_files -norecurse -copy_to /home/tianyi/ip_repo/input_test_1.0/src /home/tianyi/ip_repo/input_test_1.0/hdl/input_test_v1_0_M00_AXIS.v
+update_compile_order -fileset sources_1
+add_files -norecurse -copy_to /home/tianyi/ip_repo/input_test_1.0/src /home/tianyi/ip_repo/input_test_1.0/hdl/input_test_v1_0_M00_AXIS.v
+export_ip_user_files -of_objects  [get_files /home/tianyi/ip_repo/input_test_1.0/src/input_test_v1_0_M00_AXIS.v] -no_script -reset -force -quiet
+remove_files  /home/tianyi/ip_repo/input_test_1.0/src/input_test_v1_0_M00_AXIS.v
+close_project
+ipx::edit_ip_in_project -upgrade true -name input_test_v1_0_project -directory /home/tianyi/ip_repo/input_test_1.0/input_test_v1_0_project /home/tianyi/ip_repo/input_test_1.0/component.xml
+update_compile_order -fileset sources_1
+close_project
+create_peripheral user.org user input_packets 1.0 -dir /home/tianyi/capstone
+add_peripheral_interface M00_AXIS -interface_mode master -axi_type stream [ipx::find_open_core user.org:user:input_packets:1.0]
+generate_peripheral [ipx::find_open_core user.org:user:input_packets:1.0]
+write_peripheral [ipx::find_open_core user.org:user:input_packets:1.0]
+set_property  ip_repo_paths  {/home/tianyi/capstone/input_packets_1.0 /home/tianyi/ip_repo/ARM_control_1.0 /home/tianyi/ip_repo/input_test_1.0 /home/tianyi/ECE496-project2/vivado_scripts/axistream_packetfilt} [current_project]
+update_ip_catalog -rebuild
+ipx::edit_ip_in_project -upgrade true -name input_packets_v1_0_project -directory /home/tianyi/capstone/capstone.tmp/input_packets_v1_0_project /home/tianyi/capstone/input_packets_1.0/component.xml
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+ipx::merge_project_changes files [ipx::current_core]
+ipx::merge_project_changes hdl_parameters [ipx::current_core]
+set_property core_revision 2 [ipx::current_core]
+ipx::update_source_project_archive -component [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+ipx::move_temp_component_back -component [ipx::current_core]
+close_project -delete
+update_ip_catalog -rebuild -repo_path /home/tianyi/capstone/input_packets_1.0
+open_bd_design {/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/capstone.bd}
+delete_bd_objs [get_bd_cells input_test_0]
+delete_bd_objs [get_bd_cells ARM_control_0]
+ipx::edit_ip_in_project -upgrade true -name ARM_control_v1_0_project -directory /home/tianyi/ip_repo/ARM_control_1.0/ARM_control_v1_0_project /home/tianyi/ip_repo/ARM_control_1.0/component.xml
+update_compile_order -fileset sources_1
+ipx::merge_project_changes files [ipx::current_core]
+ipx::merge_project_changes hdl_parameters [ipx::current_core]
+set_property core_revision 3 [ipx::current_core]
+ipx::update_source_project_archive -component [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+ipx::move_temp_component_back -component [ipx::current_core]
+close_project -delete
+update_ip_catalog -rebuild -repo_path /home/tianyi/ip_repo/ARM_control_1.0
+open_bd_design {/home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/capstone.bd}
+startgroup
+create_bd_cell -type ip -vlnv user.org:user:ARM_control:1.0 ARM_control_0
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv user.org:user:input_packets:1.0 input_packets_0
+endgroup
+set_property location {1 224 20} [get_bd_cells ARM_control_0]
+set_property location {2 649 35} [get_bd_cells input_packets_0]
+connect_bd_net [get_bd_pins ARM_control_0/input_enable_ffshark] [get_bd_pins input_packets_0/input_enable_ffshark]
+connect_bd_intf_net [get_bd_intf_pins PS_to_PL/M03_AXI] [get_bd_intf_pins ARM_control_0/S00_AXI]
+delete_bd_objs [get_bd_nets Net] [get_bd_intf_nets axi_dma_0_M_AXI_MM2S] [get_bd_intf_nets axi_dma_0_M_AXIS_MM2S] [get_bd_cells axi_dma_0]
+delete_bd_objs [get_bd_intf_nets axi_bram_ctrl_0_BRAM_PORTA] [get_bd_cells axi_bram_ctrl_0]
+delete_bd_objs [get_bd_cells blk_mem_gen_0]
+connect_bd_intf_net [get_bd_intf_pins input_packets_0/M00_AXIS] [get_bd_intf_pins ffshark/sn]
+validate_bd_design
+regenerate_bd_layout
+startgroup
+apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config {Clk "/ps/pl_clk0 (99 MHz)" }  [get_bd_pins packet_output/s_axi_aclk]
+apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config {Clk "/ps/pl_clk0 (99 MHz)" }  [get_bd_pins debug_bridge_0/s_axi_aclk]
+apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config {Clk "/ps/pl_clk0 (99 MHz)" }  [get_bd_pins ARM_control_0/s00_axi_aclk]
+apply_bd_automation -rule xilinx.com:bd_rule:clkrst -config {Clk "/ps/pl_clk0 (99 MHz)" }  [get_bd_pins input_packets_0/m00_axis_aclk]
+endgroup
+connect_bd_net [get_bd_pins debug_bridge_0/s_axi_aresetn] [get_bd_pins rst_ps_99M/peripheral_aresetn]
+connect_bd_net [get_bd_pins system_ila_0/resetn] [get_bd_pins rst_ps_99M/peripheral_aresetn]
+connect_bd_net [get_bd_pins system_ila_0/clk] [get_bd_pins ps/pl_clk0]
+connect_bd_intf_net [get_bd_intf_pins system_ila_0/SLOT_0_AXIS] [get_bd_intf_pins ffshark/sn]
+delete_bd_objs [get_bd_nets ps_pl_resetn0] [get_bd_cells rst_ps_99M]
+delete_bd_objs [get_bd_nets zero_dout]
+connect_bd_net [get_bd_pins ffshark/rst] [get_bd_pins packet_output/s_axi_aresetn]
+connect_bd_net [get_bd_pins zero/dout] [get_bd_pins packet_output/s_axi_aresetn]
+save_bd_design
+assign_bd_address
+validate_bd_design
+validate_bd_design
+validate_bd_design
+connect_bd_net [get_bd_pins ps/saxihp0_fpd_aclk] [get_bd_pins ps/pl_clk0]
+validate_bd_design
+make_wrapper -files [get_files /home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/capstone.bd] -top
+add_files -norecurse /home/tianyi/capstone/capstone.srcs/sources_1/bd/capstone/hdl/capstone_wrapper.v
+launch_runs impl_1 -to_step write_bitstream -jobs 24
+wait_on_run impl_1
+ipx::edit_ip_in_project -upgrade true -name input_packets_v1_0_project -directory /home/tianyi/capstone/capstone.tmp/input_packets_v1_0_project /home/tianyi/capstone/input_packets_1.0/component.xml
+update_compile_order -fileset sources_1

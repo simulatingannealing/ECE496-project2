@@ -1,0 +1,13 @@
+#
+# An unexpected error has occurred (11)
+#
+Stack:
+/opt/mnt/Xilinx/Vivado/2018.3/tps/lnx64/jre9.0.4/lib//server/libjvm.so(+0xb6aadb) [0x7f1a0eb6dadb]
+/opt/mnt/Xilinx/Vivado/2018.3/tps/lnx64/jre9.0.4/lib//server/libjvm.so(JVM_handle_linux_signal+0xbb) [0x7f1a0eb72e1b]
+/opt/mnt/Xilinx/Vivado/2018.3/tps/lnx64/jre9.0.4/lib//server/libjvm.so(+0xb647b8) [0x7f1a0eb677b8]
+/lib/x86_64-linux-gnu/libc.so.6(+0x3efd0) [0x7f1a52c0cfd0]
+/opt/mnt/Xilinx/Vivado/2018.3/lib/lnx64.o/librdi_rsb.so(HRSBEnEngineMgr::getCurrentDesign() const+0) [0x7f1a20d4cb30]
+/opt/mnt/Xilinx/Vivado/2018.3/lib/lnx64.o/librdi_rsbtasks.so(HRSBTcUtils::currentDesign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0x50) [0x7f19e3c7e350]
+/opt/mnt/Xilinx/Vivado/2018.3/lib/lnx64.o/librdi_rsbtasks.so(HRSBTcCommands::getTclAnyObjectsOfType(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<hdi::tcltasks::tclany, std::allocator<hdi::tcltasks::tclany> >&)+0x5f) [0x7f19e3a3f54f]
+/opt/mnt/Xilinx/Vivado/2018.3/lib/lnx64.o/librdi_rsbtasks.so(Java_ui_frmwork_rsbcmdi_HRSBTcCommands_1getTclAnyObjectsOfType+0x170) [0x7f19e3c7d4c0]
+[0x7f19f6e9cdb5]

@@ -32,6 +32,8 @@ TODO: Update rest of code to do this
 `include "snoopers/axistream_snooper/axistream_snooper.v"
 `include "forwarders/axistream_forwarder/axistream_forwarder.v"
 `include "parallel_cores/packetfilter_core/packetfilter_core.v"
+`include "packet_status_table/packet_status.v"
+`include "circular_buffer/circular_buffer.v"
 `define localparam parameter
 `else /*For Vivado*/
 `define localparam localparam
@@ -71,7 +73,11 @@ module axistream_packetfilt # (
         //Not to be set manually
         parameter CODE_ADDR_WIDTH = `CLOG2(INST_MEM_DEPTH),
         parameter CODE_DATA_WIDTH = 64,
-		parameter BYTE_ADDR_WIDTH = `CLOG2(PACKET_MEM_BYTES)
+		parameter BYTE_ADDR_WIDTH = `CLOG2(PACKET_MEM_BYTES),
+        //tag parameters
+        parameter TAG_WIDTH = 6,
+        parameter CIRCULAR_BUFFER_SIZE = 50
+
 `ifndef DISABLE_AXILITE
         , //yes, this comma needs to be here
         parameter AXI_ADDR_WIDTH = 12 // width of the AXI address bus
@@ -90,15 +96,20 @@ module axistream_packetfilt # (
         input wire sn_TLAST,
     
     
-        //AXI Stream forwarder interface
-        output wire [SN_FWD_DATA_WIDTH-1:0] fwd_TDATA,
-        output wire [`KEEP_WIDTH-1:0] fwd_TKEEP,
-        output wire fwd_TLAST,
-        output wire fwd_TVALID,
-        input wire fwd_TREADY,
+        //AXI Stream circular buffer output
+        output wire [SN_FWD_DATA_WIDTH-1:0] cb_TDATA,
+        output wire [TAG_WIDTH-1:0] cb_reorder_tag,
+        output wire [`KEEP_WIDTH-1:0] cb_TKEEP,
+        output wire cb_TLAST,
+        output wire cb_TVALID,
+        input wire cb_TREADY,
         
+        //Packet status Table output
+        output wire [CIRCULAR_BUFFER_SIZE * 2-1:0] status_table, //debug wire
+        output wire control_start_debug,
+
         //Debug outputs
-        output wire [15:0] num_packets_dropped,
+        /*output wire [15:0] num_packets_dropped,
         output wire [BYTE_ADDR_WIDTH -1 :0] cpu0_byte_rd_addr,
         output wire cpu0_rd_en,
         output wire [31:0] cpu0_resized_mem_data,
@@ -107,7 +118,20 @@ module axistream_packetfilt # (
         output wire cpu0_rej,
         output wire [CODE_ADDR_WIDTH -1:0] cpu0_inst_rd_addr,
         output wire cpu0_inst_rd_en,
-        output wire [CODE_DATA_WIDTH -1:0] cpu0_inst_rd_data
+        output wire [CODE_DATA_WIDTH -1:0] cpu0_inst_rd_data*/
+        
+        //Debug outputs, including packet status
+        output wire [15:0] num_packets_dropped,
+        output wire [N*BYTE_ADDR_WIDTH-1:0] cpu_byte_rd_addr,
+        output wire [N-1:0] cpu_rd_en,
+        output wire [N*32-1:0] cpu_resized_mem_data,
+        output wire [N-1:0] cpu_resized_mem_data_valid,
+        output wire [N-1:0] cpu_acc,
+        output wire [N-1:0] cpu_rej,
+        output wire [N*CODE_ADDR_WIDTH-1:0] cpu_inst_rd_addr,
+        output wire [N-1:0] cpu_inst_rd_en,
+        output wire [N*CODE_DATA_WIDTH-1:0] cpu_inst_rd_data
+        
     
 `ifndef DISABLE_AXILITE
         , //yes, this comma needs to be here
@@ -185,6 +209,7 @@ module axistream_packetfilt # (
     //Interface from packet mem to snooper
     wire [PACKMEM_ADDR_WIDTH-1:0] sn_addr;
     wire [PACKMEM_DATA_WIDTH-1:0] sn_wr_data;
+    wire [TAG_WIDTH-1:0] sn_wr_reorder_tag;
     wire sn_wr_en;
     wire [PACKMEM_INC_WIDTH-1:0] sn_byte_inc;
     wire sn_done;
@@ -195,12 +220,26 @@ module axistream_packetfilt # (
     wire [PACKMEM_ADDR_WIDTH-1:0] fwd_addr;
     wire fwd_rd_en;
     wire [PACKMEM_DATA_WIDTH-1:0] fwd_rd_data;
+    wire [TAG_WIDTH-1:0] fwd_rd_reorder_tag;
     wire fwd_rd_data_vld;
     wire [PLEN_WIDTH-1:0] fwd_byte_len;
     wire fwd_done;
     wire rdy_for_fwd;
     wire rdy_for_fwd_ack;
+
+    // Interface from forwarder to circular buffer
+    wire [SN_FWD_DATA_WIDTH-1:0] fwd_TDATA;
+    wire [TAG_WIDTH-1:0] fwd_reorder_tag;
+    wire [`KEEP_WIDTH-1:0] fwd_TKEEP;
+    wire fwd_TLAST;
+    wire fwd_TVALID;
+    wire fwd_TREADY;
     
+    // Interface from packet status table to circular buffer
+    wire [1:0] cb_rd_packet_status;
+    wire [N*TAG_WIDTH-1:0] parallel_BPF_reorder_tags;
+
+
 `ifndef DISABLE_AXILITE
     //from axilite_regs <=> regstrb2mem
     wire status_strobe; // Strobe logic for register 'Status' (pulsed when the register is read from the bus)
@@ -326,6 +365,7 @@ module axistream_packetfilt # (
         //Interface to parallel_cores
         .sn_addr(sn_addr),
         .sn_wr_data(sn_wr_data),
+        .sn_wr_reorder_tag(sn_wr_reorder_tag),
         .sn_wr_en(sn_wr_en),
         .sn_byte_inc(sn_byte_inc),
         .sn_done(sn_done),
@@ -350,7 +390,8 @@ generate if (N > 1) begin
         .PACKMEM_DATA_WIDTH(PACKMEM_DATA_WIDTH),
         .BUF_IN(BUF_IN),
         .BUF_OUT(BUF_OUT),
-        .PESS(PESS)
+        .PESS(PESS),
+        .TAG_WIDTH(TAG_WIDTH)
     ) the_actual_filter (
         .clk(clk),
         .rst(!control_start),
@@ -359,6 +400,7 @@ generate if (N > 1) begin
         //Interface to snooper
         .sn_addr(sn_addr),
         .sn_wr_data(sn_wr_data),
+        .sn_wr_reorder_tag(sn_wr_reorder_tag), //reorder tag input from snooper
         .sn_wr_en(sn_wr_en),
         .sn_byte_inc(sn_byte_inc),
         .sn_done(sn_done),
@@ -369,6 +411,7 @@ generate if (N > 1) begin
         .fwd_addr(fwd_addr),
         .fwd_rd_en(fwd_rd_en),
         .fwd_rd_data(fwd_rd_data),
+        .fwd_rd_reorder_tag(fwd_rd_reorder_tag), //reorder tag output to forwarder
         .fwd_rd_data_vld(fwd_rd_data_vld),
         .fwd_byte_len(fwd_byte_len),
         .fwd_done(fwd_done),
@@ -380,6 +423,8 @@ generate if (N > 1) begin
         .inst_wr_data(inst_wr_data),
         .inst_wr_en(inst_wr_en),
         
+        //Interface to packet status table
+        .status_table_parallel_reorder_tags(parallel_BPF_reorder_tags),
         //Debug probes
         .dbg_info(dbg_info)
     );
@@ -402,6 +447,7 @@ end else begin
         //Interface to snooper
         .sn_addr(sn_addr),
         .sn_wr_data(sn_wr_data),
+        .sn_wr_reorder_tag(sn_wr_reorder_tag),
         .sn_wr_en(sn_wr_en),
         .sn_byte_inc(sn_byte_inc),
         .sn_done(sn_done),
@@ -412,6 +458,7 @@ end else begin
         .fwd_addr(fwd_addr),
         .fwd_rd_en(fwd_rd_en),
         .fwd_rd_data(fwd_rd_data),
+        .fwd_rd_reorder_tag(fwd_rd_reorder_tag),
         .fwd_rd_data_vld(fwd_rd_data_vld),
         .fwd_byte_len(fwd_byte_len),
         .fwd_done(fwd_done),
@@ -429,19 +476,24 @@ end else begin
 
 end endgenerate
 	
-	//Assign debug probes
+    //Assign debug probes
+    genvar i;
+    for (i = 0; i < N; i = i + 1) begin
+    
 	assign {
-        cpu0_byte_rd_addr,
-        cpu0_rd_en,
-        cpu0_resized_mem_data,
-        cpu0_resized_mem_data_valid,
-        cpu0_acc,
-        cpu0_rej,
-        cpu0_inst_rd_addr,
-        cpu0_inst_rd_en,
-        cpu0_inst_rd_data
-    } = dbg_info[DBG_INFO_WIDTH -1:0];
-	
+        cpu_byte_rd_addr[(i+1)*BYTE_ADDR_WIDTH-1-:BYTE_ADDR_WIDTH],
+        cpu_rd_en[i],
+        cpu_resized_mem_data[(i+1)*32-1-:32],
+        cpu_resized_mem_data_valid[i],
+        cpu_acc[i],
+        cpu_rej[i],
+        cpu_inst_rd_addr[(i+1)*CODE_ADDR_WIDTH-1-:CODE_ADDR_WIDTH],
+        cpu_inst_rd_en[i],
+        cpu_inst_rd_data[(i+1)*CODE_DATA_WIDTH-1-:CODE_DATA_WIDTH]
+    } = dbg_info[(i+1)*DBG_INFO_WIDTH-1 -: DBG_INFO_WIDTH];   
+ 
+    end
+    
     axistream_forwarder # (
         .SN_FWD_ADDR_WIDTH(SN_FWD_ADDR_WIDTH),
         .SN_FWD_DATA_WIDTH(SN_FWD_DATA_WIDTH),
@@ -455,6 +507,7 @@ end endgenerate
 
         //AXI Stream interface
         .fwd_TDATA(fwd_TDATA),
+        .fwd_reorder_tag(fwd_reorder_tag),
         .fwd_TKEEP(fwd_TKEEP),
         .fwd_TLAST(fwd_TLAST),
         .fwd_TVALID(fwd_TVALID),
@@ -464,6 +517,7 @@ end endgenerate
         .fwd_addr(fwd_addr),
         .fwd_rd_en(fwd_rd_en),
         .fwd_rd_data(fwd_rd_data),
+        .fwd_rd_reorder_tag(fwd_rd_reorder_tag),
         .fwd_rd_data_vld(fwd_rd_data_vld),
         .fwd_byte_len(fwd_byte_len),
 
@@ -471,6 +525,55 @@ end endgenerate
         .rdy_for_fwd(rdy_for_fwd),
         .rdy_for_fwd_ack(rdy_for_fwd_ack)
     );
+
+    circular_buffer # (
+        .TAG_WIDTH(TAG_WIDTH),
+        .CIRCULAR_BUFFER_SIZE(CIRCULAR_BUFFER_SIZE),
+        .DATA_WIDTH(SN_FWD_DATA_WIDTH),
+        .MAX_TDATA_PER_PACKET(PACKET_MEM_BYTES*8/SN_FWD_DATA_WIDTH)
+    ) the_circular_buffer (
+        .clk(clk),
+        .rst(!control_start),
+
+        .in_TDATA(fwd_TDATA),
+        .in_reorder_tag(fwd_reorder_tag),
+        .in_TKEEP(fwd_TKEEP),
+        .in_TLAST(fwd_TLAST),
+        .in_TVALID(fwd_TVALID),
+        .in_TREADY(fwd_TREADY),
+
+        .out_TDATA(cb_TDATA),
+        .out_reorder_tag(cb_reorder_tag),
+        .out_TKEEP(cb_TKEEP),
+        .out_TLAST(cb_TLAST),
+        .out_TVALID(cb_TVALID),
+        .out_TREADY(cb_TREADY),
+        .packet_status(cb_rd_packet_status)
+    );
+        
+    
+    packet_status # (
+        .NUM_CORES(N),
+        .TAG_WIDTH(TAG_WIDTH),
+        .CIRCULAR_BUFFER_SIZE(CIRCULAR_BUFFER_SIZE),
+        .STATUS_TABLE_SIZE(CIRCULAR_BUFFER_SIZE * 2)
+    ) the_packet_status_table (
+        .clk(clk),
+        .rst(!control_start),
+        // from BPF cores
+        .parallel_BPF_reorder_tags(parallel_BPF_reorder_tags), 
+        .BPF_wr_valids(cpu_acc | cpu_rej),
+        .BPF_wr_packets_status(cpu_acc & (~cpu_rej)),
+        // from the circular buffer
+        .cb_reorder_tag(cb_reorder_tag),
+        // to the circular buffer
+        .cb_rd_packet_status(cb_rd_packet_status),
+        // for simulation demo
+        .status_table(status_table)
+    );
+
+    assign control_start_debug=control_start;
+    
 endmodule
 
 `undef KEEP_WIDTH
