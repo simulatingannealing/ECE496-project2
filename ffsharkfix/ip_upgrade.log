@@ -1,0 +1,121 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Sat Mar 27 00:29:23 2021
+| Host         : capstone running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xczu19eg-ffvc1760-2-i
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_input_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of design_1_input_0_0 (user.org:user:input:1.0) from (Rev. 7) to (Rev. 8)
+
+
+
+
+
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Fri Mar 26 23:57:25 2021
+| Host         : capstone running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xczu19eg-ffvc1760-2-i
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_input_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of design_1_input_0_0 (user.org:user:input:1.0) from (Rev. 6) to (Rev. 7)
+
+
+
+
+
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Fri Mar 26 23:46:54 2021
+| Host         : capstone running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xczu19eg-ffvc1760-2-i
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_input_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of design_1_input_0_0 (user.org:user:input:1.0) from (Rev. 5) to (Rev. 6)
+
+
+
+
+
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Fri Mar 26 22:30:00 2021
+| Host         : capstone running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xczu19eg-ffvc1760-2-i
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_input_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of design_1_input_0_0 (user.org:user:input:1.0) from (Rev. 4) to (Rev. 5)
+
+
+
+
+
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Fri Mar 26 21:45:57 2021
+| Host         : capstone running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xczu19eg-ffvc1760-2-i
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_input_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of design_1_input_0_0 (user.org:user:input:1.0) from (Rev. 3) to (Rev. 4)
+
+
+
+
+
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Fri Mar 26 19:30:54 2021
+| Host         : capstone running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xczu19eg-ffvc1760-2-i
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_input_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of design_1_input_0_0 (user.org:user:input:1.0) from (Rev. 2) to (Rev. 3)
+

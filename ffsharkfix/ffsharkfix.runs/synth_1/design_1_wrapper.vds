@@ -1,0 +1,372 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Sat Mar 27 02:26:35 2021
+# Process ID: 13675
+# Current directory: /home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1
+# Command line: vivado -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
+# Log file: /home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/design_1_wrapper.vds
+# Journal file: /home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source design_1_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/input_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ECE496-project2/vivado_scripts/axistream_packetfilt'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/mnt/Xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1357.191 ; gain = 0.000 ; free physical = 52601 ; free virtual = 54448
+add_files: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1443.480 ; gain = 86.289 ; free physical = 52523 ; free virtual = 54370
+Command: synth_design -top design_1_wrapper -part xczu19eg-ffvc1760-2-i
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-1540] The version limit for your license is '2020.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 13752 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1587.621 ; gain = 85.000 ; free physical = 52392 ; free virtual = 54239
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'design_1_wrapper' [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'design_1' [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/synth/design_1.v:13]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axi_fifo_mm_s_0_0' [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_axi_fifo_mm_s_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axi_fifo_mm_s_0_0' (1#1) [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_axi_fifo_mm_s_0_0_stub.v:6]
+WARNING: [Synth 8-350] instance 'axi_fifo_mm_s_0' of module 'design_1_axi_fifo_mm_s_0_0' requires 32 connections, but only 29 given [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/synth/design_1.v:124]
+INFO: [Synth 8-6157] synthesizing module 'design_1_axistream_packetfilt_0_0' [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_axistream_packetfilt_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_axistream_packetfilt_0_0' (2#1) [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_axistream_packetfilt_0_0_stub.v:6]
+WARNING: [Synth 8-350] instance 'axistream_packetfilt_0' of module 'design_1_axistream_packetfilt_0_0' requires 45 connections, but only 32 given [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/synth/design_1.v:154]
+INFO: [Synth 8-6157] synthesizing module 'design_1_debug_bridge_0_0' [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_debug_bridge_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_debug_bridge_0_0' (3#1) [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_debug_bridge_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_xlconstant_0_1' [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_xlconstant_0_1/synth/design_1_xlconstant_0_1.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_5_xlconstant' [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ipshared/4649/hdl/xlconstant_v1_1_vl_rfs.v:23]
+	Parameter CONST_VAL bound to: 1 - type: integer 
+	Parameter CONST_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_5_xlconstant' (4#1) [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ipshared/4649/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_xlconstant_0_1' (5#1) [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_xlconstant_0_1/synth/design_1_xlconstant_0_1.v:57]
+INFO: [Synth 8-6157] synthesizing module 'design_1_smartconnect_0_0' [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_smartconnect_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_smartconnect_0_0' (6#1) [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_smartconnect_0_0_stub.v:6]
+WARNING: [Synth 8-350] instance 'smartconnect_0' of module 'design_1_smartconnect_0_0' requires 97 connections, but only 95 given [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/synth/design_1.v:211]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/synth/design_1.v:307]
+INFO: [Synth 8-6157] synthesizing module 'design_1_system_ila_0_0' [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_system_ila_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_system_ila_0_0' (7#1) [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_system_ila_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_xlconstant_0_0' [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_xlconstant_0_0/synth/design_1_xlconstant_0_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_5_xlconstant__parameterized0' [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ipshared/4649/hdl/xlconstant_v1_1_vl_rfs.v:23]
+	Parameter CONST_VAL bound to: 0 - type: integer 
+	Parameter CONST_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_5_xlconstant__parameterized0' (7#1) [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ipshared/4649/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_xlconstant_0_0' (8#1) [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_xlconstant_0_0/synth/design_1_xlconstant_0_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'design_1_zynq_ultra_ps_e_0_0' [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_zynq_ultra_ps_e_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_zynq_ultra_ps_e_0_0' (9#1) [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/.Xil/Vivado-13675-capstone/realtime/design_1_zynq_ultra_ps_e_0_0_stub.v:6]
+WARNING: [Synth 8-350] instance 'zynq_ultra_ps_e_0' of module 'design_1_zynq_ultra_ps_e_0_0' requires 83 connections, but only 71 given [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/synth/design_1.v:322]
+INFO: [Synth 8-6155] done synthesizing module 'design_1' (10#1) [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/synth/design_1.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_wrapper' (11#1) [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v:12]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1633.371 ; gain = 130.750 ; free physical = 52403 ; free virtual = 54250
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1633.371 ; gain = 130.750 ; free physical = 52403 ; free virtual = 54250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1633.371 ; gain = 130.750 ; free physical = 52403 ; free virtual = 54250
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xczu19eg-ffvc1760-2-i
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_axistream_packetfilt_0_0/design_1_axistream_packetfilt_0_0/design_1_axistream_packetfilt_0_0_in_context.xdc] for cell 'design_1_i/axistream_packetfilt_0'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_axistream_packetfilt_0_0/design_1_axistream_packetfilt_0_0/design_1_axistream_packetfilt_0_0_in_context.xdc] for cell 'design_1_i/axistream_packetfilt_0'
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0_in_context.xdc] for cell 'design_1_i/zynq_ultra_ps_e_0'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0_in_context.xdc] for cell 'design_1_i/zynq_ultra_ps_e_0'
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_smartconnect_0_0/design_1_smartconnect_0_0/design_1_smartconnect_0_0_in_context.xdc] for cell 'design_1_i/smartconnect_0'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_smartconnect_0_0/design_1_smartconnect_0_0/design_1_smartconnect_0_0_in_context.xdc] for cell 'design_1_i/smartconnect_0'
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_axi_fifo_mm_s_0_0/design_1_axi_fifo_mm_s_0_0/design_1_axi_fifo_mm_s_0_0_in_context.xdc] for cell 'design_1_i/axi_fifo_mm_s_0'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_axi_fifo_mm_s_0_0/design_1_axi_fifo_mm_s_0_0/design_1_axi_fifo_mm_s_0_0_in_context.xdc] for cell 'design_1_i/axi_fifo_mm_s_0'
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0_in_context.xdc] for cell 'design_1_i/debug_bridge_0'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0_in_context.xdc] for cell 'design_1_i/debug_bridge_0'
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_system_ila_0_0/design_1_system_ila_0_0/design_1_system_ila_0_0_in_context.xdc] for cell 'design_1_i/system_ila_0'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_system_ila_0_0/design_1_system_ila_0_0/design_1_system_ila_0_0_in_context.xdc] for cell 'design_1_i/system_ila_0'
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2795.738 ; gain = 0.000 ; free physical = 51497 ; free virtual = 53344
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2795.738 ; gain = 0.000 ; free physical = 51497 ; free virtual = 53344
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2795.738 ; gain = 0.000 ; free physical = 51497 ; free virtual = 53344
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:47 . Memory (MB): peak = 2795.738 ; gain = 1293.117 ; free physical = 51573 ; free virtual = 53420
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu19eg-ffvc1760-2-i
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:47 . Memory (MB): peak = 2795.738 ; gain = 1293.117 ; free physical = 51573 ; free virtual = 53420
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for design_1_i. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for design_1_i/axistream_packetfilt_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for design_1_i/zynq_ultra_ps_e_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for design_1_i/smartconnect_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for design_1_i/axi_fifo_mm_s_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for design_1_i/debug_bridge_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for design_1_i/system_ila_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for design_1_i/zero. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for design_1_i/one. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:47 . Memory (MB): peak = 2795.738 ; gain = 1293.117 ; free physical = 51572 ; free virtual = 53419
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:47 . Memory (MB): peak = 2795.738 ; gain = 1293.117 ; free physical = 51572 ; free virtual = 53419
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1968 (col length:264)
+BRAMs: 1968 (col length: RAMB18 264 RAMB36 132)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:48 . Memory (MB): peak = 2795.738 ; gain = 1293.117 ; free physical = 51562 ; free virtual = 53409
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/zynq_ultra_ps_e_0/pl_clk0' to pin 'design_1_i/zynq_ultra_ps_e_0/bbstub_pl_clk0/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_arready' to pin 'design_1_i/debug_bridge_0/bbstub_S_AXI_arready/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_awready' to pin 'design_1_i/debug_bridge_0/bbstub_S_AXI_awready/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_bresp[0]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_bresp[0]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_bresp[1]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_bresp[1]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_bvalid' to pin 'design_1_i/debug_bridge_0/bbstub_S_AXI_bvalid/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[0]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[0]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[10]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[10]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[11]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[11]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[12]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[12]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[13]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[13]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[14]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[14]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[15]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[15]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[16]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[16]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[17]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[17]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[18]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[18]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[19]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[19]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[1]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[1]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[20]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[20]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[21]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[21]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[22]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[22]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[23]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[23]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[24]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[24]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[25]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[25]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[26]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[26]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[27]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[27]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[28]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[28]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[29]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[29]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[2]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[2]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[30]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[30]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[31]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[31]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[3]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[3]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[4]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[4]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[5]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[5]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[6]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[6]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[7]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[7]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[8]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[8]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rdata[9]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rdata[9]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rresp[0]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rresp[0]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rresp[1]' to pin '{design_1_i/debug_bridge_0/bbstub_S_AXI_rresp[1]/O}'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_rvalid' to pin 'design_1_i/debug_bridge_0/bbstub_S_AXI_rvalid/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'design_1_i/debug_bridge_0/S_AXI_wready' to pin 'design_1_i/debug_bridge_0/bbstub_S_AXI_wready/O'
+INFO: [Synth 8-5819] Moved 42 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:52 ; elapsed = 00:01:59 . Memory (MB): peak = 3063.730 ; gain = 1561.109 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:52 ; elapsed = 00:01:59 . Memory (MB): peak = 3063.730 ; gain = 1561.109 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:52 ; elapsed = 00:01:59 . Memory (MB): peak = 3073.746 ; gain = 1571.125 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:52 ; elapsed = 00:02:00 . Memory (MB): peak = 3073.746 ; gain = 1571.125 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:52 ; elapsed = 00:02:00 . Memory (MB): peak = 3073.746 ; gain = 1571.125 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:52 ; elapsed = 00:02:00 . Memory (MB): peak = 3073.746 ; gain = 1571.125 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:52 ; elapsed = 00:02:00 . Memory (MB): peak = 3073.746 ; gain = 1571.125 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:52 ; elapsed = 00:02:00 . Memory (MB): peak = 3073.746 ; gain = 1571.125 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:52 ; elapsed = 00:02:00 . Memory (MB): peak = 3073.746 ; gain = 1571.125 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------------------------+----------+
+|      |BlackBox name                     |Instances |
++------+----------------------------------+----------+
+|1     |design_1_axi_fifo_mm_s_0_0        |         1|
+|2     |design_1_axistream_packetfilt_0_0 |         1|
+|3     |design_1_debug_bridge_0_0         |         1|
+|4     |design_1_smartconnect_0_0         |         1|
+|5     |design_1_system_ila_0_0           |         1|
+|6     |design_1_zynq_ultra_ps_e_0_0      |         1|
++------+----------------------------------+----------+
+
+Report Cell Usage: 
++------+----------------------------------+------+
+|      |Cell                              |Count |
++------+----------------------------------+------+
+|1     |design_1_axi_fifo_mm_s_0_0        |     1|
+|2     |design_1_axistream_packetfilt_0_0 |     1|
+|3     |design_1_debug_bridge_0_0         |     1|
+|4     |design_1_smartconnect_0_0         |     1|
+|5     |design_1_system_ila_0_0           |     1|
+|6     |design_1_zynq_ultra_ps_e_0_0      |     1|
++------+----------------------------------+------+
+
+Report Instance Areas: 
++------+-------------+------------------------+------+
+|      |Instance     |Module                  |Cells |
++------+-------------+------------------------+------+
+|1     |top          |                        |  1738|
+|2     |  design_1_i |design_1                |  1738|
+|3     |    one      |design_1_xlconstant_0_1 |     0|
+|4     |    zero     |design_1_xlconstant_0_0 |     0|
++------+-------------+------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:52 ; elapsed = 00:02:00 . Memory (MB): peak = 3073.746 ; gain = 1571.125 ; free physical = 50978 ; free virtual = 52825
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:01:21 . Memory (MB): peak = 3073.746 ; gain = 408.758 ; free physical = 51016 ; free virtual = 52863
+Synthesis Optimization Complete : Time (s): cpu = 00:00:53 ; elapsed = 00:02:00 . Memory (MB): peak = 3073.754 ; gain = 1571.125 ; free physical = 51025 ; free virtual = 52872
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3113.520 ; gain = 0.000 ; free physical = 50940 ; free virtual = 52787
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+82 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:55 ; elapsed = 00:02:02 . Memory (MB): peak = 3125.520 ; gain = 1682.039 ; free physical = 50989 ; free virtual = 52836
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3125.520 ; gain = 0.000 ; free physical = 50989 ; free virtual = 52836
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/ffsharkfix/ffsharkfix.runs/synth_1/design_1_wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Mar 27 02:29:02 2021...

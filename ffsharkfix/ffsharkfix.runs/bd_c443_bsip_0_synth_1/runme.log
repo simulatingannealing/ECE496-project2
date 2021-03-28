@@ -1,0 +1,459 @@
+
+*** Running vivado
+    with args -log bd_c443_bsip_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_c443_bsip_0.tcl
+
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source bd_c443_bsip_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/input_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ECE496-project2/vivado_scripts/axistream_packetfilt'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/mnt/Xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1346.195 ; gain = 0.000 ; free physical = 55501 ; free virtual = 57220
+Command: synth_design -top bd_c443_bsip_0 -part xczu19eg-ffvc1760-2-i -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-1540] The version limit for your license is '2020.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 19183 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1512.633 ; gain = 78.000 ; free physical = 54609 ; free virtual = 56328
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'bd_c443_bsip_0' [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/synth/bd_c443_bsip_0.v:57]
+INFO: [Synth 8-6155] done synthesizing module 'bd_c443_bsip_0' (6#1) [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/synth/bd_c443_bsip_0.v:57]
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_tdo
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_drck
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_reset
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_sel
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_capture
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_shift
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_runtest
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_tdi
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_tck
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_tms
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_update
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1559.383 ; gain = 124.750 ; free physical = 54432 ; free virtual = 56151
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1559.383 ; gain = 124.750 ; free physical = 54387 ; free virtual = 56106
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1559.383 ; gain = 124.750 ; free physical = 54387 ; free virtual = 56106
+---------------------------------------------------------------------------------
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Device 21-403] Loading part xczu19eg-ffvc1760-2-i
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/bd_c443_bsip_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/bd_c443_bsip_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_bsip_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_bsip_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/constraints/bsip.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/constraints/bsip.xdc] for cell 'inst'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/constraints/bsip.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/bd_c443_bsip_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/bd_c443_bsip_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2718.664 ; gain = 0.000 ; free physical = 49241 ; free virtual = 50960
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2718.664 ; gain = 0.000 ; free physical = 49239 ; free virtual = 50958
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  BUFG => BUFGCE: 1 instances
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2718.664 ; gain = 0.000 ; free physical = 49239 ; free virtual = 50958
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2718.664 ; gain = 0.000 ; free physical = 49237 ; free virtual = 50956
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:25 ; elapsed = 00:00:51 . Memory (MB): peak = 2718.664 ; gain = 1284.031 ; free physical = 49300 ; free virtual = 51020
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu19eg-ffvc1760-2-i
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:25 ; elapsed = 00:00:51 . Memory (MB): peak = 2718.664 ; gain = 1284.031 ; free physical = 49300 ; free virtual = 51019
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for inst. (constraint file  /home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_bsip_0_synth_1/dont_touch.xdc, line 6).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:51 . Memory (MB): peak = 2718.664 ; gain = 1284.031 ; free physical = 49298 ; free virtual = 51017
+---------------------------------------------------------------------------------
+.p 33
+.s 16
+.ar tlr_st
+	 tlr_st tlr_st 
+	 tlr_st rti_st 
+	 rti_st seldr_st 
+	 rti_st rti_st 
+	 seldr_st selir_st 
+	 seldr_st capdr_st 
+	 capdr_st ex1dr_st 
+	 capdr_st shdr_st 
+	 shdr_st ex1dr_st 
+	 shdr_st shdr_st 
+	 ex1dr_st udr_st 
+	 ex1dr_st pdr_st 
+	 pdr_st ex2dr_st 
+	 pdr_st pdr_st 
+	 ex2dr_st udr_st 
+	 ex2dr_st shdr_st 
+	 udr_st seldr_st 
+	 udr_st rti_st 
+	 selir_st tlr_st 
+	 selir_st capir_st 
+	 capir_st ex1ir_st 
+	 capir_st shir_st 
+	 shir_st ex1ir_st 
+	 shir_st shir_st 
+	 ex1ir_st uir_st 
+	 ex1ir_st pir_st 
+	 pir_st ex2ir_st 
+	 pir_st pir_st 
+	 ex2ir_st uir_st 
+	 ex2ir_st shir_st 
+	 uir_st seldr_st 
+	 uir_st rti_st 
+	 ex2dr_st tlr_st 
+.e
+INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'bsip_v1_1_0_jtag_tapctl'
+INFO: [Synth 8-5544] ROM "updateir_i" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "updatedr_i" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "capir_i" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "capdr_i" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "shiftdr_i" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "shiftir_i" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "reset_i" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "runtest_i" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "user_code_sel" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-6159] Found Keep on FSM register 'current_state_reg' in module 'bsip_v1_1_0_jtag_tapctl', re-encoding will not be performed
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  tlr_st |                             1111 |                             1111
+                  rti_st |                             1100 |                             1100
+                seldr_st |                             0111 |                             0111
+                selir_st |                             0100 |                             0100
+                capir_st |                             1110 |                             1110
+                 shir_st |                             1010 |                             1010
+                ex1ir_st |                             1001 |                             1001
+                  pir_st |                             1011 |                             1011
+                ex2ir_st |                             1000 |                             1000
+                  uir_st |                             1101 |                             1101
+                capdr_st |                             0110 |                             0110
+                 shdr_st |                             0010 |                             0010
+                ex1dr_st |                             0001 |                             0001
+                  pdr_st |                             0011 |                             0011
+                ex2dr_st |                             0000 |                             0000
+                  udr_st |                             0101 |                             0101
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:51 . Memory (MB): peak = 2718.664 ; gain = 1284.031 ; free physical = 49277 ; free virtual = 50996
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+	                6 Bit    Registers := 2     
+	                1 Bit    Registers := 13    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 1     
+	  16 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 23    
+	   2 Input      3 Bit        Muxes := 9     
+	   2 Input      2 Bit        Muxes := 8     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 14    
+	   3 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module bsip_v1_1_0_jtag_tapctl 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 9     
++---Muxes : 
+	  16 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 23    
+	   2 Input      3 Bit        Muxes := 9     
+	   2 Input      2 Bit        Muxes := 8     
+	   2 Input      1 Bit        Muxes := 8     
+Module bsip_v1_1_0_jtag_reg 
+Detailed RTL Component Info : 
++---Registers : 
+	                6 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module bsip_v1_1_0_jtag_reg__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module bsip_v1_1_0_jtag_reg__parameterized3 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module bsip_v1_1_0_jtag_tap 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+Module bsip_v1_1_0_bscan_tap 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1968 (col length:264)
+BRAMs: 1968 (col length: RAMB18 264 RAMB36 132)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_tdo
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_drck
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_reset
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_sel
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_capture
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_shift
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_runtest
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_tdi
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_tck
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_tms
+WARNING: [Synth 8-3331] design bsip_v1_1_0_bsip has unconnected port prim_update
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:52 . Memory (MB): peak = 2718.664 ; gain = 1284.031 ; free physical = 49241 ; free virtual = 50960
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:55 ; elapsed = 00:02:07 . Memory (MB): peak = 2997.664 ; gain = 1563.031 ; free physical = 45351 ; free virtual = 47070
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3006.680 ; gain = 1572.047 ; free physical = 45349 ; free virtual = 47068
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3016.703 ; gain = 1582.070 ; free physical = 45343 ; free virtual = 47062
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3016.703 ; gain = 1582.070 ; free physical = 45295 ; free virtual = 47014
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3016.703 ; gain = 1582.070 ; free physical = 45294 ; free virtual = 47013
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3016.703 ; gain = 1582.070 ; free physical = 45290 ; free virtual = 47009
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3016.703 ; gain = 1582.070 ; free physical = 45289 ; free virtual = 47008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3016.703 ; gain = 1582.070 ; free physical = 45286 ; free virtual = 47005
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3016.703 ; gain = 1582.070 ; free physical = 45285 ; free virtual = 47004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |BUFG |     1|
+|2     |LUT2 |     4|
+|3     |LUT3 |     7|
+|4     |LUT4 |    11|
+|5     |LUT5 |     4|
+|6     |LUT6 |     3|
+|7     |FDCE |     5|
+|8     |FDPE |     2|
+|9     |FDRE |    43|
+|10    |FDSE |     8|
++------+-----+------+
+
+Report Instance Areas: 
++------+--------------------------------+-------------------------------------+------+
+|      |Instance                        |Module                               |Cells |
++------+--------------------------------+-------------------------------------+------+
+|1     |top                             |                                     |    88|
+|2     |  inst                          |bsip_v1_1_0_bsip                     |    88|
+|3     |    \USE_SOFTBSCAN.U_BSCAN_TAP  |bsip_v1_1_0_bscan_tap                |    87|
+|4     |      U_BASETAP                 |bsip_v1_1_0_jtag_tap                 |    85|
+|5     |        U_BYPASS                |bsip_v1_1_0_jtag_reg__parameterized1 |     1|
+|6     |        U_ID                    |bsip_v1_1_0_jtag_reg__parameterized3 |    32|
+|7     |        U_IR                    |bsip_v1_1_0_jtag_reg                 |    18|
+|8     |        U_TAP                   |bsip_v1_1_0_jtag_tapctl              |    30|
++------+--------------------------------+-------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3016.703 ; gain = 1582.070 ; free physical = 45282 ; free virtual = 47001
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 11 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:37 ; elapsed = 00:01:26 . Memory (MB): peak = 3016.703 ; gain = 422.789 ; free physical = 45303 ; free virtual = 47023
+Synthesis Optimization Complete : Time (s): cpu = 00:00:55 ; elapsed = 00:02:08 . Memory (MB): peak = 3016.711 ; gain = 1582.070 ; free physical = 45312 ; free virtual = 47031
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3078.352 ; gain = 0.000 ; free physical = 45065 ; free virtual = 46784
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  BUFG => BUFGCE: 1 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+49 Infos, 22 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:58 ; elapsed = 00:02:10 . Memory (MB): peak = 3078.352 ; gain = 1714.312 ; free physical = 45127 ; free virtual = 46846
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3078.352 ; gain = 0.000 ; free physical = 45127 ; free virtual = 46846
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_bsip_0_synth_1/bd_c443_bsip_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_c443_bsip_0, cache-ID = ef94962fee5cd75f
+INFO: [Coretcl 2-1174] Renamed 7 cell refs.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3102.363 ; gain = 0.000 ; free physical = 44597 ; free virtual = 46316
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_bsip_0_synth_1/bd_c443_bsip_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file bd_c443_bsip_0_utilization_synth.rpt -pb bd_c443_bsip_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 23 02:41:17 2021...

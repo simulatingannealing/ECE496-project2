@@ -1,0 +1,408 @@
+
+*** Running vivado
+    with args -log bd_c443_axi_jtag_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_c443_axi_jtag_0.tcl
+
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source bd_c443_axi_jtag_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ip_repo/input_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/tianyi/ECE496-project2/vivado_scripts/axistream_packetfilt'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/mnt/Xilinx/Vivado/2018.3/data/ip'.
+update_ip_catalog: Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1382.895 ; gain = 0.000 ; free physical = 55499 ; free virtual = 57218
+Command: synth_design -top bd_c443_axi_jtag_0 -part xczu19eg-ffvc1760-2-i -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu19eg'
+INFO: [Common 17-1540] The version limit for your license is '2020.05' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 19216 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1512.035 ; gain = 70.000 ; free physical = 54621 ; free virtual = 56340
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'bd_c443_axi_jtag_0' [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/synth/bd_c443_axi_jtag_0.v:57]
+INFO: [Synth 8-6155] done synthesizing module 'bd_c443_axi_jtag_0' (4#1) [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/synth/bd_c443_axi_jtag_0.v:57]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi4liteif has unconnected port s_axi_awprot[2]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi4liteif has unconnected port s_axi_awprot[1]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi4liteif has unconnected port s_axi_awprot[0]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi4liteif has unconnected port s_axi_arprot[2]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi4liteif has unconnected port s_axi_arprot[1]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi4liteif has unconnected port s_axi_arprot[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1558.785 ; gain = 116.750 ; free physical = 54406 ; free virtual = 56126
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1558.785 ; gain = 116.750 ; free physical = 54411 ; free virtual = 56130
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1558.785 ; gain = 116.750 ; free physical = 54413 ; free virtual = 56132
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xczu19eg-ffvc1760-2-i
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/bd_c443_axi_jtag_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/bd_c443_axi_jtag_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_axi_jtag_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_axi_jtag_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/constraints/axi_jtag.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/constraints/axi_jtag.xdc] for cell 'inst'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/tianyi/ffsharkfix/ffsharkfix.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/constraints/axi_jtag.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/bd_c443_axi_jtag_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/bd_c443_axi_jtag_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2725.512 ; gain = 0.000 ; free physical = 49151 ; free virtual = 50871
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2725.512 ; gain = 0.000 ; free physical = 49151 ; free virtual = 50870
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2725.512 ; gain = 0.000 ; free physical = 49151 ; free virtual = 50870
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2725.512 ; gain = 0.000 ; free physical = 49149 ; free virtual = 50868
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:51 . Memory (MB): peak = 2725.512 ; gain = 1283.477 ; free physical = 49306 ; free virtual = 51025
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu19eg-ffvc1760-2-i
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:51 . Memory (MB): peak = 2725.512 ; gain = 1283.477 ; free physical = 49306 ; free virtual = 51025
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for inst. (constraint file  /home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_axi_jtag_0_synth_1/dont_touch.xdc, line 6).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:51 . Memory (MB): peak = 2725.512 ; gain = 1283.477 ; free physical = 49306 ; free virtual = 51025
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_jtag_v1_0_0_jtagproc'
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[31]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tck_pulse" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[30]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[29]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[28]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[27]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[26]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[25]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[24]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[23]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[22]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[21]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[20]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[19]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[18]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[17]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[16]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[15]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[14]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[13]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[12]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[11]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[10]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[9]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[8]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[7]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[6]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[5]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[4]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[3]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[2]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[1]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tdo_buffer_reg[0]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "done_i" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "tms_output" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                    IDLE |                              001 |                              001
+                    TCKL |                              010 |                              010
+                    TCKH |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'axi_jtag_v1_0_0_jtagproc'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:51 . Memory (MB): peak = 2725.512 ; gain = 1283.477 ; free physical = 49292 ; free virtual = 51011
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 9     
+	                8 Bit    Registers := 1     
+	                5 Bit    Registers := 3     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 43    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 9     
+	   6 Input     32 Bit        Muxes := 5     
+	   2 Input     31 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 1     
+	   4 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 79    
+	   4 Input      1 Bit        Muxes := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module axi_jtag_v1_0_0_axi4liteif 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 7     
+	                5 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 7     
+	   6 Input     32 Bit        Muxes := 5     
+	   2 Input      1 Bit        Muxes := 5     
+Module axi_jtag_v1_0_0_jtagproc 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                8 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                1 Bit    Registers := 35    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+	   2 Input     31 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 1     
+	   4 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 73    
+	   4 Input      1 Bit        Muxes := 3     
+Module axi_jtag_v1_0_0_axi_jtag 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1968 (col length:264)
+BRAMs: 1968 (col length: RAMB18 264 RAMB36 132)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-5546] ROM "u_jtag_proc/tck_pulse" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "u_jtag_proc/done_i" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi_jtag has unconnected port s_axi_awprot[2]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi_jtag has unconnected port s_axi_awprot[1]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi_jtag has unconnected port s_axi_awprot[0]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi_jtag has unconnected port s_axi_arprot[2]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi_jtag has unconnected port s_axi_arprot[1]
+WARNING: [Synth 8-3331] design axi_jtag_v1_0_0_axi_jtag has unconnected port s_axi_arprot[0]
+INFO: [Synth 8-3886] merging instance 'inst/u_axi4_lite_if/axi_rresp_reg[0]' (FDRE) to 'inst/u_axi4_lite_if/axi_rresp_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\u_axi4_lite_if/axi_rresp_reg[1] )
+INFO: [Synth 8-3886] merging instance 'inst/u_axi4_lite_if/axi_bresp_reg[0]' (FDRE) to 'inst/u_axi4_lite_if/axi_bresp_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\u_axi4_lite_if/axi_bresp_reg[1] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:53 . Memory (MB): peak = 2725.512 ; gain = 1283.477 ; free physical = 49194 ; free virtual = 50913
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:56 ; elapsed = 00:02:09 . Memory (MB): peak = 3002.512 ; gain = 1560.477 ; free physical = 45195 ; free virtual = 46914
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:57 ; elapsed = 00:02:10 . Memory (MB): peak = 3032.543 ; gain = 1590.508 ; free physical = 45122 ; free virtual = 46841
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:57 ; elapsed = 00:02:11 . Memory (MB): peak = 3040.551 ; gain = 1598.516 ; free physical = 44991 ; free virtual = 46710
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:58 ; elapsed = 00:02:11 . Memory (MB): peak = 3040.551 ; gain = 1598.516 ; free physical = 44256 ; free virtual = 45975
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:58 ; elapsed = 00:02:11 . Memory (MB): peak = 3040.551 ; gain = 1598.516 ; free physical = 44252 ; free virtual = 45971
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:58 ; elapsed = 00:02:11 . Memory (MB): peak = 3040.551 ; gain = 1598.516 ; free physical = 44228 ; free virtual = 45947
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:58 ; elapsed = 00:02:11 . Memory (MB): peak = 3040.551 ; gain = 1598.516 ; free physical = 44228 ; free virtual = 45947
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:58 ; elapsed = 00:02:12 . Memory (MB): peak = 3040.551 ; gain = 1598.516 ; free physical = 44232 ; free virtual = 45951
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:58 ; elapsed = 00:02:12 . Memory (MB): peak = 3040.551 ; gain = 1598.516 ; free physical = 44234 ; free virtual = 45953
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY8 |     4|
+|2     |LUT1   |     3|
+|3     |LUT2   |    10|
+|4     |LUT3   |    42|
+|5     |LUT4   |    49|
+|6     |LUT5   |    26|
+|7     |LUT6   |   176|
+|8     |FDRE   |   353|
+|9     |FDSE   |     1|
++------+-------+------+
+
+Report Instance Areas: 
++------+-------------------+---------------------------+------+
+|      |Instance           |Module                     |Cells |
++------+-------------------+---------------------------+------+
+|1     |top                |                           |   664|
+|2     |  inst             |axi_jtag_v1_0_0_axi_jtag   |   664|
+|3     |    u_axi4_lite_if |axi_jtag_v1_0_0_axi4liteif |   302|
+|4     |    u_jtag_proc    |axi_jtag_v1_0_0_jtagproc   |   359|
++------+-------------------+---------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:58 ; elapsed = 00:02:12 . Memory (MB): peak = 3040.551 ; gain = 1598.516 ; free physical = 44238 ; free virtual = 45957
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 6 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:40 ; elapsed = 00:01:30 . Memory (MB): peak = 3040.551 ; gain = 431.789 ; free physical = 44341 ; free virtual = 46060
+Synthesis Optimization Complete : Time (s): cpu = 00:00:58 ; elapsed = 00:02:12 . Memory (MB): peak = 3040.559 ; gain = 1598.516 ; free physical = 44345 ; free virtual = 46064
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 4 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3092.566 ; gain = 0.000 ; free physical = 47552 ; free virtual = 49271
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+65 Infos, 12 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:01 ; elapsed = 00:02:14 . Memory (MB): peak = 3092.566 ; gain = 1709.672 ; free physical = 47606 ; free virtual = 49325
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3092.566 ; gain = 0.000 ; free physical = 47606 ; free virtual = 49325
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_axi_jtag_0_synth_1/bd_c443_axi_jtag_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP bd_c443_axi_jtag_0, cache-ID = 5acbc847f0cb2deb
+INFO: [Coretcl 2-1174] Renamed 3 cell refs.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3116.578 ; gain = 0.000 ; free physical = 47556 ; free virtual = 49275
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/tianyi/ffsharkfix/ffsharkfix.runs/bd_c443_axi_jtag_0_synth_1/bd_c443_axi_jtag_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file bd_c443_axi_jtag_0_utilization_synth.rpt -pb bd_c443_axi_jtag_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 23 02:41:22 2021...
