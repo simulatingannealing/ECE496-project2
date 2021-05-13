@@ -1,3 +1,16 @@
+# ECE496 Team 2020175 - FFShark Packet Reordering
+
+This is Team 2020175's repository for our ECE496 capstone project during the 2020-2021 school year.
+
+FFShark was originally developed to implement BPF packet filtering in FPGA hardware. Our project modified and extended the FFShark design to correctly reorder filtered packets so they are emitted in the same order as the original packets arrived.
+
+Team Members:
+- [Tianyi (Ronan) Zhang](https://github.com/Ronan-Zhang)
+- [Bruno Almeida](https://github.com/brunofalmeida)
+- [Yuanli (Danny) Ding](https://github.com/simulatingannealing)
+
+The remainder of this README is copied from the [original FFShark repository](https://github.com/UofT-HPRC/fpga-bpf).
+
 # fpga-bpf
 
 This code is free for non-commercial use. Please send any enquiries to marco.merlini@utoronto.ca
